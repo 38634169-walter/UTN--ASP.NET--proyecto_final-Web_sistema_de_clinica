@@ -1,0 +1,16 @@
+﻿li{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+}
+
+.wmio{
+    width:50%;
+}
+
+@media all and (max-width:600px) {
+    .wmio {
+        width: 90%;
+    }
+}
