@@ -5,16 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using modelo;
+using negocio;
+
 namespace ProjectWEB
 {
-    public partial class index : System.Web.UI.Page
+    public partial class verClientes : System.Web.UI.Page
     {
+        public List<Cliente> clientesList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["logged"] != null)
-            {
-                Response.Redirect("inicio.aspx");
-            }
+            ClienteNegocio cliNego = new ClienteNegocio();
+            clientesList = cliNego.listar();
         }
     }
 }

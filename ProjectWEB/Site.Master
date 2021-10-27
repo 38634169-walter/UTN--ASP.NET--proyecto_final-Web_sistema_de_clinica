@@ -13,14 +13,28 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
+    <link href="~/Content/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/todoP.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="~/Content/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/css/global.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <style>
+        i{
+            font-size:2rem;
+            color:aqua;
+            margin-right:10px;
+        }
+        .cuerpo{
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,55,1) 0%, rgba(0,212,255,1) 100%);
+        }
+    </style>
+
 </head>
 <body>
     <form runat="server">
@@ -46,10 +60,75 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        
-        </asp:ContentPlaceHolder>
+        <div class="d-flex flex-row vh-100">
 
+            <div class="bg-primary container w-25 vh-100">
+                <div>
+                    <h1 class="text-center mt-4">Clinica Milagro</h1>
+                    <div class="w-100 d-flex justify-content-center align-items-center">
+                        <asp:Label class="text-light me-1" ID="LabelNombre" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+
+                <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
+                    <% if(especialidad == "Recepcionista") { %>
+                            <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
+                                <i class="fas fa-user iconosMenu"></i>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verClientes.aspx">Ver Paciente</a>
+                            </div>
+                            <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
+                                <i class="fas fa-user-plus iconosMenu"></i>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesCliente.aspx">Agregar Paciente</a>
+                            </div>
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="far fa-list-alt iconosMenu"></i>
+                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonVerTurno" runat="server" Text="Ver Turno" />
+                            </div>
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="far fa-calendar-plus iconosMenu"></i>
+                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonAgregarTurno" runat="server" Text="Agregar Turno" />
+                            </div>
+                    <% } %>
+
+
+                    <% if (especialidad == "Doctor") { %>
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="far fa-list-alt iconosMenu"></i>
+                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonVerturnos" runat="server" Text="Ver Turnos" />
+                            </div>
+                            
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="fas fa-user iconosMenu"></i>
+                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonVerPaciente" runat="server" Text="Ver Pacientes" />
+                            </div>
+                    <% } %>
+
+
+                    <% if (especialidad == "Administrador") { %>
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="fas fa-user iconosMenu"></i>
+                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonAgregarPersonal" runat="server" Text="Agregar Personal" />
+                            </div>        
+                    <% } %>
+
+
+                </ul>
+                <div class="btn bg-transparent d-flex justify-content-start align-items-center position-absolute bottom-0 mb-4">
+                    <i class="fas fa-sign-out-alt iconosMenu"></i>
+                    <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesion" OnClick="ButtonCerrarSesion_Click"/>
+                </div>
+            </div>
+
+
+            <div class="bg-light w-75 overflow-scroll" style="background:background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 2%, rgba(146,146,209,1) 100%);">
+            
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                
+                </asp:ContentPlaceHolder>
+
+            </div>
+        </div>
     </form>
 </body>
 </html>

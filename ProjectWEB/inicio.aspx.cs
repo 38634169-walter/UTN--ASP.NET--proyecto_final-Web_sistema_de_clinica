@@ -7,14 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace ProjectWEB
 {
-    public partial class index : System.Web.UI.Page
+    public partial class inicio : System.Web.UI.Page
     {
+        public string accion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["logged"] != null)
-            {
-                Response.Redirect("inicio.aspx");
+            if(Request.QueryString["accion"] != null) {
+                accion = Request.QueryString["accion"].ToString();
             }
         }
+
+        
     }
 }

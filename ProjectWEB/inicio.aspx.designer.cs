@@ -11,7 +11,7 @@ namespace ProjectWEB
 {
 
 
-    public partial class index
+    public partial class inicio
     {
     }
 }
