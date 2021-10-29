@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="accionesCliente.aspx" />
+    <Content Include="agregarHistorialPaciente.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -114,6 +115,7 @@
     <Content Include="Content\inicio.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\tabla.css" />
+    <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -127,6 +129,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Default.aspx" />
+    <Content Include="historialPaciente.aspx" />
     <Content Include="inicio.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -176,8 +179,22 @@
     <Compile Include="accionesCliente.aspx.designer.cs">
       <DependentUpon>accionesCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="agregarHistorialPaciente.aspx.cs">
+      <DependentUpon>agregarHistorialPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarHistorialPaciente.aspx.designer.cs">
+      <DependentUpon>agregarHistorialPaciente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="eliminarTurnos.aspx.cs">
+      <DependentUpon>eliminarTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eliminarTurnos.aspx.designer.cs">
+      <DependentUpon>eliminarTurnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +204,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="historialPaciente.aspx.cs">
+      <DependentUpon>historialPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="historialPaciente.aspx.designer.cs">
+      <DependentUpon>historialPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>

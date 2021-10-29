@@ -9,11 +9,23 @@ namespace ProjectWEB
 {
     public partial class inicio : System.Web.UI.Page
     {
-        public string accion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if(Request.QueryString["accion"] != null) {
-                accion = Request.QueryString["accion"].ToString();
+                string accion = Request.QueryString["accion"].ToString();
+                
+                if (accion == "agregado")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "agregado()", true);
+                }
+                if (accion == "eliminado")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminado()", true);
+                }
+                if (accion == "modificado")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "modificado()", true);
+                }
             }
         }
 

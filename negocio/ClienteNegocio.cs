@@ -105,5 +105,34 @@ namespace negocio
                 con.cerrar_conexion();
             }
         }
+        
+        public List<Cliente> listar_historial_clientes()
+        {
+            List<Cliente> clienteList = new List<Cliente>();
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("SELECT ID,nombre,apellido,dni, FROM Clientes");
+                con.ejecutar_lectura();
+                while (con.lector.Read())
+                {
+                    Cliente cli = new Cliente();
+                    cli.id = Convert.ToInt32(con.lector["ID"]);
+                    cli.nombre = (string)con.lector["nombre"];
+                    cli.apellido = (string)con.lector["apellido"];
+                    cli.dni = (string)con.lector["dni"];
+                    clienteList.Add(cli);
+                }
+                return clienteList; 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
     }
 }

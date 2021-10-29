@@ -111,5 +111,23 @@ namespace negocio
                 con.cerrar_conexion();
             }
         }
+
+        public void eliminar(int id)
+        {
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("DELETE FROM Turnos WHERE ID='" + id + "' ");
+                con.ejecutar_escritura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
     }
 }

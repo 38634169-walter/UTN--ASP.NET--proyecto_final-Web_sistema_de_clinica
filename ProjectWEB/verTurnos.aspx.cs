@@ -18,5 +18,10 @@ namespace ProjectWEB
             TurnoNegocio turNego = new TurnoNegocio();
             turnosList = turNego.listar();
         }
+
+        protected void alert_eliminar_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"ranbomtext","eliminar()",true);
+        }
     }
 }

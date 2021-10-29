@@ -11,43 +11,43 @@ namespace ProjectWEB
 {
 
 
-    public partial class SiteMaster
+    public partial class agregarHistorialPaciente
     {
 
         /// <summary>
-        /// Control LabelNombre.
+        /// Control LabelPaciente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelNombre;
+        protected global::System.Web.UI.WebControls.Label LabelPaciente;
 
         /// <summary>
-        /// Control ButtonAgregarPersonal.
+        /// Control LabelObservaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAgregarPersonal;
+        protected global::System.Web.UI.WebControls.Label LabelObservaciones;
 
         /// <summary>
-        /// Control ButtonCerrarSesion.
+        /// Control TextBoxObservacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonCerrarSesion;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxObservacion;
 
         /// <summary>
-        /// Control MainContent.
+        /// Control ButtonAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button ButtonAgregar;
     }
 }
