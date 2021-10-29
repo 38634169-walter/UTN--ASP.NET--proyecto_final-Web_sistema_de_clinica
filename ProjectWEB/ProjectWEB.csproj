@@ -159,6 +159,10 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="verClientes.aspx" />
+    <Content Include="accionesTurnos.aspx" />
+    <Content Include="verPacientesMedicos.aspx" />
+    <Content Include="verTurnos.aspx" />
+    <Content Include="verTurnosMedicos.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -219,6 +223,34 @@
     </Compile>
     <Compile Include="verClientes.aspx.designer.cs">
       <DependentUpon>verClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="accionesTurnos.aspx.cs">
+      <DependentUpon>accionesTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accionesTurnos.aspx.designer.cs">
+      <DependentUpon>accionesTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verPacientesMedicos.aspx.cs">
+      <DependentUpon>verPacientesMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verPacientesMedicos.aspx.designer.cs">
+      <DependentUpon>verPacientesMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verTurnos.aspx.cs">
+      <DependentUpon>verTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verTurnos.aspx.designer.cs">
+      <DependentUpon>verTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verTurnosMedicos.aspx.cs">
+      <DependentUpon>verTurnosMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verTurnosMedicos.aspx.designer.cs">
+      <DependentUpon>verTurnosMedicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

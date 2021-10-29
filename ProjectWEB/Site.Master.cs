@@ -12,7 +12,7 @@ namespace ProjectWEB
 {
     public partial class SiteMaster : MasterPage
     {
-        public string especialidad { get; set; }
+        public string cargo { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["logged"] == null)
@@ -23,8 +23,8 @@ namespace ProjectWEB
             string apellido = Session["apellidoUsuario"].ToString();
             LabelNombre.Text = nombre + " " + apellido;
 
-            string esp = Session["especialidadUsuario"].ToString();
-            especialidad = esp;
+            string car = Session["cargoUsuario"].ToString();
+            cargo = car;
         }
 
         protected void ButtonCerrarSesion_Click(object sender, EventArgs e)

@@ -24,33 +24,6 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.Label LabelNombre;
 
         /// <summary>
-        /// Control ButtonVerTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonVerTurno;
-
-        /// <summary>
-        /// Control ButtonAgregarTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAgregarTurno;
-
-        /// <summary>
-        /// Control ButtonVerturnos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonVerturnos;
-
-        /// <summary>
         /// Control ButtonVerPaciente.
         /// </summary>
         /// <remarks>

@@ -12,7 +12,7 @@ namespace ProjectWEB
 {
     public partial class log : System.Web.UI.Page
     {
-        public Personal persona = null;
+        public Personal personal = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["logged"] != null)
@@ -28,13 +28,13 @@ namespace ProjectWEB
 
             UsuarioNegocio usuNego = new UsuarioNegocio();
             bool validar = false;
-            persona = usuNego.validarUsu(usuario, clave, ref validar);
+            personal = usuNego.validarUsu(usuario, clave, ref validar);
             if (validar == true)
             {
-                Session.Add("nombreUsuario", persona.nombre);
-                Session.Add("apellidoUsuario", persona.apellido);
-                Session.Add("ID_Usuario", persona.usuario.id);
-                Session.Add("especialidadUsuario", persona.especialidad.nombre);
+                Session.Add("nombreUsuario", personal.nombre);
+                Session.Add("apellidoUsuario", personal.apellido);
+                Session.Add("ID_Usuario", personal.usuario.id);
+                Session.Add("cargoUsuario", personal.especialidad.cargo.nombre);
                 Session.Add("logged", true);
                 Response.Redirect("inicio.aspx", false);
             }

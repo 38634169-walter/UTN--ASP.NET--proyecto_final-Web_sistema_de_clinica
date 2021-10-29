@@ -6,12 +6,16 @@
     
     <div class="d-flex justify-content-center align-items-center flex-column">
         <div class="mt-2">
-            <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
+            <asp:Label ID="Label2" runat="server" Text="Nombre: "></asp:Label>
             <asp:TextBox ID="TextBoxNombre" runat="server"></asp:TextBox>
         </div>
         <div class="mt-2">
-            <asp:Label ID="Label1" runat="server" Text="Apellido"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Apellido: "></asp:Label>
             <asp:TextBox ID="TextBoxApellido" runat="server"></asp:TextBox>
+        </div>
+        <div class="mt-2">
+            <asp:Label ID="Label3" runat="server" Text="DNI: "></asp:Label>
+            <asp:TextBox ID="TextBoxDni" runat="server"></asp:TextBox>
         </div>
         <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClick="ButtonAgregarModificar_Click"/>
     </div>

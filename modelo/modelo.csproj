@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cargo.cs" />
     <Compile Include="Especialidad.cs" />
-    <Compile Include="EspecialidadPersonal.cs" />
     <Compile Include="Historial.cs" />
     <Compile Include="Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

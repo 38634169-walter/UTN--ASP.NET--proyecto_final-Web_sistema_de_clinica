@@ -18,31 +18,36 @@ namespace ProjectWEB
         {
             if (Request.QueryString["id"] != null)
             {
+                LabelTitulo.Text = "Editar Paciente";
+                ButtonAgregarModificar.Text = "Confirmar";
+
                 cliente = new Cliente();
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 ClienteNegocio cliNego = new ClienteNegocio();
                 cliente = cliNego.buscar_por_id(id);
-                LabelTitulo.Text = "Editar Paciente";
 
                 if (!IsPostBack)
                 {
-                        TextBoxApellido.Text = cliente.apellido;
-                        TextBoxNombre.Text = cliente.nombre;
+                    TextBoxApellido.Text = cliente.apellido;
+                    TextBoxNombre.Text = cliente.nombre;
+                    TextBoxDni.Text = cliente.dni;
                 }
             }
         }
 
         protected void ButtonAgregarModificar_Click(object sender, EventArgs e)
         {
-            string confirmacion = "";
-            ClienteNegocio cliNego = new ClienteNegocio();
-
             if(cliente == null)
             {
                 cliente = new Cliente();
             }
             cliente.nombre = TextBoxNombre.Text;
             cliente.apellido = TextBoxApellido.Text;
+            cliente.dni = TextBoxDni.Text;
+         
+            
+            string confirmacion = "";
+            ClienteNegocio cliNego = new ClienteNegocio();
             if (cliente.id != 0)
             {
                 cliNego.modificar(cliente);

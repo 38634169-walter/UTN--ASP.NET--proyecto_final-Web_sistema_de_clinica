@@ -9,11 +9,12 @@
         <table class="tabla">
             <thead>
                 <tr>
-                    <th colspan="3" class="cabeza-tabla">Clientes</th>
+                    <th colspan="4" class="cabeza-tabla">Clientes</th>
                 </tr>
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>DNI</th>
                     <th>Editar</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                     <tr>
                         <td> <%: cliente.nombre %> </td>
                         <td> <%: cliente.apellido %> </td>
+                        <td> <%: cliente.dni %> </td>
                         <td style="height:1cm;">
                             <a href="/accionesCliente.aspx?id=<%: cliente.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                         </td>

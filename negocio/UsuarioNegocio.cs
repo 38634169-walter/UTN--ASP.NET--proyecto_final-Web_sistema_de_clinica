@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                con.consultar("SELECT u.ID AS ID_Usuario,p.nombre AS nombrePersona,p.apellido AS apellido ,e.nombre AS Especialidad FROM Usuarios u, Personal p, Especialidades_Personal ep, Especialidades e WHERE u.ID=p.ID AND p.ID=ep.ID_Personal AND ep.ID_Especialidad=e.ID AND usuario = '" + usuario +"' AND clave = '" + clave +"'");
+                con.consultar("SELECT u.ID AS ID_Usuario,p.nombre AS nombrePersona,p.apellido AS apellido ,c.nombre AS cargo FROM Usuarios u, Personal p, Especialidades e,Cargos c WHERE u.ID=p.ID AND p.ID_Especialidad=e.ID AND e.ID_Cargo=c.ID AND usuario = '" + usuario +"' AND clave = '" + clave +"'");
                 con.ejecutar_lectura();
 
                 while(con.lector.Read())
@@ -28,7 +28,8 @@ namespace negocio
                     persona.usuario = new Usuario();
                     persona.usuario.id = Convert.ToInt32(con.lector["ID_Usuario"]);
                     persona.especialidad = new Especialidad();
-                    persona.especialidad.nombre = (string)con.lector["Especialidad"];
+                    persona.especialidad.cargo = new Cargo();
+                    persona.especialidad.cargo.nombre = (string)con.lector["cargo"];
                     validar = true;
                 }
                 return persona;

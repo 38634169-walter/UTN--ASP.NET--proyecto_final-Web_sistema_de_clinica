@@ -71,7 +71,7 @@
                 </div>
 
                 <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
-                    <% if(especialidad == "Recepcionista") { %>
+                    <% if(cargo == "Recepcionista") { %>
                             <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/verClientes.aspx">Ver Paciente</a>
@@ -82,19 +82,19 @@
                             </div>
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-list-alt iconosMenu"></i>
-                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonVerTurno" runat="server" Text="Ver Turno" />
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnos.aspx">Ver Turno</a>
                             </div>
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-calendar-plus iconosMenu"></i>
-                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonAgregarTurno" runat="server" Text="Agregar Turno" />
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesTurnos.aspx">Agregar Turno</a>
                             </div>
                     <% } %>
 
 
-                    <% if (especialidad == "Doctor") { %>
+                    <% if (cargo == "Doctor") { %>
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-list-alt iconosMenu"></i>
-                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonVerturnos" runat="server" Text="Ver Turnos" />
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver Turnos</a>
                             </div>
                             
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
@@ -104,7 +104,7 @@
                     <% } %>
 
 
-                    <% if (especialidad == "Administrador") { %>
+                    <% if (cargo == "Administrador") { %>
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
                                 <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonAgregarPersonal" runat="server" Text="Agregar Personal" />
@@ -120,8 +120,7 @@
             </div>
 
 
-            <div class="bg-light w-75 overflow-scroll" style="background:background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 2%, rgba(146,146,209,1) 100%);">
+            <div class="bg-light w-75 overflow-scroll" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 2%, rgba(146,146,209,1) 100%);">
             
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 

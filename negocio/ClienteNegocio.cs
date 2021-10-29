@@ -24,6 +24,7 @@ namespace negocio
                     cli.id = id;
                     cli.nombre = (string)con.lector["nombre"];
                     cli.apellido = (string)con.lector["apellido"];
+                    cli.dni = (string)con.lector["dni"];
                 }
                 return cli;
             }
@@ -42,9 +43,10 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("UPDATE Clientes SET nombre=@nombre, apellido=@apellido WHERE ID = '" + cliente.id + "' ");
+                con.consultar("UPDATE Clientes SET nombre=@nombre, apellido=@apellido, dni=@dni WHERE ID = '" + cliente.id + "' ");
                 con.setear_parametros("@nombre",cliente.nombre);
                 con.setear_parametros("@apellido",cliente.apellido);
+                con.setear_parametros("@dni",cliente.dni);
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
@@ -62,7 +64,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("INSERT INTO Clientes(nombre,apellido) VALUES ('" + cliente.nombre + "', '" + cliente.apellido +"') " );
+                con.consultar("INSERT INTO Clientes(nombre,apellido,dni) VALUES ('" + cliente.nombre + "', '" + cliente.apellido +"', '" + cliente.dni + "'  ) " );
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
@@ -81,7 +83,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT ID,nombre,apellido FROM Clientes");
+                con.consultar("SELECT ID,nombre,apellido,dni FROM Clientes");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
@@ -89,6 +91,7 @@ namespace negocio
                     cli.id = Convert.ToInt32(con.lector["ID"]);
                     cli.nombre = (string)con.lector["nombre"];
                     cli.apellido = (string)con.lector["apellido"];
+                    cli.dni = (string)con.lector["dni"];
                     clienteList.Add(cli);
                 }
                 return clienteList; 

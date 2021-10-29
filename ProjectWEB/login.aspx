@@ -39,7 +39,6 @@
                 <li>
                     <asp:Label ID="LabelIncorrecto" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </li>
-                <!--<asp:Button class="btn btn-success mt-3" ID="ButtonIngresar" runat="server" Text="Ingresar" OnClick="Button1_Click" />-->
                 <asp:Button class="btn btn-success mt-3" ID="Button1" runat="server" Text="Ingresar" OnClick="Button1_Click"/>
             </div>
         </div>
