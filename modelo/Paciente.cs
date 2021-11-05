@@ -6,20 +6,10 @@ using System.Threading.Tasks;
 
 namespace modelo
 {
-    public class Cliente
+    public class Paciente : Persona
     {
         public int id { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-
-        public string dni { get; set; }
-
         public Turno turno { get; set; }
         public Historial historial { get; set; }
-
-        public override string ToString()
-        {
-            return dni;
-        }
     }
 }

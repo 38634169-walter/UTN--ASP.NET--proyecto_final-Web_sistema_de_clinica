@@ -11,7 +11,7 @@ namespace ProjectWEB
 {
 
 
-    public partial class verClientes
+    public partial class verPersonal
     {
     }
 }

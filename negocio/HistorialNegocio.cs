@@ -17,20 +17,20 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT h.observaciones,c.nombre AS nombreCliente,c.apellido AS apellidoCliente, p.nombre AS nombrePersonal, p.apellido AS apellidoPersonal FROM Historiales h, Clientes c, Personal p WHERE h.ID_Cliente=c.ID AND h.ID_Personal=p.ID AND h.ID_Cliente='" + id + "' ");
+                con.consultar("SELECT h.observaciones,h.fecha,dp.nombre,dp.apellido,d.IDDoctor FROM Historiales h, Pacientes p, Doctores d, Datos_Personales dp WHERE h.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND h.ID_Doctor=d.IDDoctor AND h.ID_Paciente='" + id + "' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
                     Historial his = new Historial();
 
                     his.observacion = (string)con.lector["observaciones"];
-                    his.cliente = new Cliente();
-                    his.cliente.nombre = (string)con.lector["nombreCliente"];
-                    his.cliente.apellido = (string) con.lector["apellidoCliente"];
+                    his.fecha = Convert.ToString(con.lector["fecha"]);
+                    his.paciente= new Paciente();
+                    his.paciente.nombre = (string)con.lector["nombre"];
+                    his.paciente.apellido = (string) con.lector["apellido"];
 
-                    his.personal = new Personal();
-                    his.personal.nombre = (string)con.lector["nombrePersonal"];
-                    his.personal.apellido = (string) con.lector["apellidoPersonal"];
+                    his.doctor = new Doctor();
+                    his.doctor.id = Convert.ToInt32(con.lector["IDDoctor"]);
                     
                     historialList.Add(his);
                 }
@@ -47,9 +47,9 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("INSERT INTO Historiales (ID_Cliente,ID_Personal,observaciones) VALUES (@cliente,@personal,'" + historia.observacion + "') ");
-                con.setear_parametros("@cliente",historia.cliente.id);
-                con.setear_parametros("@personal",historia.personal.id);
+                con.consultar("INSERT INTO Historiales (ID_Paciente,ID_Doctor,observaciones,fecha) VALUES (@cliente,@personal,'" + historia.observacion + "','" + historia.fecha + "' )");
+                con.setear_parametros("@cliente",historia.paciente.id);
+                con.setear_parametros("@personal",historia.doctor.id);
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

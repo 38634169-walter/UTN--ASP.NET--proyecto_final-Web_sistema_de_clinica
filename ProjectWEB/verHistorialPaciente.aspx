@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="historialPaciente.aspx.cs" Inherits="ProjectWEB.historialPaciente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verHistorialPaciente.aspx.cs" Inherits="ProjectWEB.historialPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
     <div>
-        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Paciente <%: paciente %> </h1>
+        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;"><%: paciente %> </h1>
     </div>
 
     <div class="tabla-container mt-5">
@@ -21,9 +21,15 @@
                 <% foreach (var historial in historialesList)
                     { %>
                     <tr>
-                        <td> </td>
+                        <td> <%: historial.fecha %> </td>
                         <td> <%: historial.observacion %> </td>
-                        <td> <%: historial.personal.nombre %> <%: historial.personal.apellido %> </td>
+                        <td> <%: historial.doctor.nombre %> <%: historial.doctor.apellido %> </td>
+                    </tr>
+                <% } %>
+                <% if(!historialesList.Any())
+                    { %>
+                    <tr>
+                        <td colspan="3" > No hay historias hasta el momento</td>
                     </tr>
                 <% } %>
             </tbody>

@@ -70,46 +70,62 @@
                     </div>
                 </div>
 
+
                 <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
-                    <% if(cargo == "Recepcionista") { %>
+
+
+                <!-- SECRETARIAS -->
+
                             <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verClientes.aspx">Ver Paciente</a>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientes.aspx">Ver Paciente</a>
                             </div>
                             <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
                                 <i class="fas fa-user-plus iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesCliente.aspx">Agregar Paciente</a>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesPaciente.aspx">Agregar Paciente</a>
                             </div>
+
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-list-alt iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnos.aspx">Ver Turno</a>
                             </div>
+
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-calendar-plus iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/accionesTurnos.aspx">Agregar Turno</a>
                             </div>
-                    <% } %>
 
 
-                    <% if (cargo == "Doctor") { %>
+
+                   <!-- DOCTORES -->
+
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="far fa-list-alt iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver Turnos</a>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver mis turnos</a>
                             </div>
                             
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientesMedicos.aspx">Ver Pacientes</a>
                             </div>
-                    <% } %>
 
 
-                    <% if (cargo == "Administrador") { %>
+                    <!-- ADMINISTRADORES -->
+
+
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
-                                <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonAgregarPersonal" runat="server" Text="Agregar Personal" />
-                            </div>        
-                    <% } %>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesDoctores.aspx">Agregar Medico</a>
+                            </div> 
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="fas fa-cogs iconosMenu"></i>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verDoctores.aspx">Medicos</a>
+                            </div> 
+                            <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
+                                <i class="fas fa-notes-medical iconosMenu"></i>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/agregarEspecialidad.aspx">Agregar Especialidad</a>
+                            </div>
+
 
 
                 </ul>
@@ -128,6 +144,11 @@
 
             </div>
         </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script class=" text-center" src="/Content/js/agregado.js"></script>
+        <script class="text-center" src="/Content/js/eliminado.js"></script>
+        <script class="text-center" src="/Content/js/modificado.js"></script>
+        <script class="text-center" src="/Content/js/noRegistrado.js"></script>
     </form>
 </body>
 </html>

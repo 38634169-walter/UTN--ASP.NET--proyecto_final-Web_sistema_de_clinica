@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-center align-items-center flex-column">
             <asp:Label class="text-light" ID="LabelObservaciones" runat="server" Text="Observacion: "></asp:Label>
-            <asp:TextBox class="rounded-2" ID="TextBoxObservacion" runat="server" MaxLength="300"></asp:TextBox>
+            <asp:TextBox class="rounded-2" ID="TextBoxObservacion" runat="server" MaxLength="300" ViewStateMode="Disabled" Wrap="True" Height="220px" TabIndex="5" TextMode="MultiLine" Width="341px"></asp:TextBox>
         <asp:Button class="btn btn-success my-2" ID="ButtonAgregar" runat="server" Text="Agregar" OnClick="ButtonAgregar_Click" />
     </div>
 </asp:Content>

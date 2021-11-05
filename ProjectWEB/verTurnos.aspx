@@ -1,9 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verTurnos.aspx.cs" Inherits="ProjectWEB.verTurnos1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div>
         <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de turnos</h1>
+    </div>
+
+    <div class="d-flex justify-content-start align-items-center flex-column">
+        <div class="mt-3">
+            <label class="text-light "> DNI: </label>
+            <asp:TextBox ID="TextBoxDni" runat="server"></asp:TextBox>
+        </div>
+        <div class="mt-3">
+            <label class="text-light "> Fecha: </label>
+        </div>
+        <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
     </div>
 
     <div class="tabla-container mt-5">
@@ -24,36 +36,47 @@
                 <% foreach (var turno in turnosList)
                     { %>
                     <tr>
-                        <td> <%: turno.cliente.nombre  %> </td>
-                        <td> <%: turno.cliente.apellido  %> </td>
-                        <td><%: turno.cliente.dni %></td>
+                        <td> <%: turno.paciente.nombre  %> </td>
+                        <td> <%: turno.paciente.apellido  %> </td>
+                        <td><%: turno.paciente.dni %></td>
                         <td></td>
                         <td style="height:1cm;">
-                            <a href="/accionesTurnos.aspx?id=<%: turno.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
-                            <asp:Button ID="alert_eliminar" runat="server" Text="Button" OnClick="alert_eliminar_Click" />
-                            <a href="/eliminarTurnos.aspx?id=<%: turno.id %>" class=""><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
+                           <a href="/accionesTurnos.aspx?id=<%: turno.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
+
+                            
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="alert_eliminar_Click">
+                                <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
+                            </asp:LinkButton>
+
+                            <input id="eli" value="<%: turno.id %>" type="text" style="display:none"></input>
+                            <a href="/verInfoTurno.aspx?id=<%: turno.id %>" class=""><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
                         </td>
                     </tr>
                 <% } %>
+                <% if (!turnosList.Any())
+                    { %>
+                        <tr>
+                            <td colspan="5" >No hay resultados</td>
+                        </tr>
+                <%} %>
             </tbody>
         </table>
         <script>
             function eliminar() {
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Seguro que deseas dar de baja el turno?',
+                    text: "Se dara de baja!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar',
+                    showCancelButton: true,
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
+                        var elimi = document.getElementById('eli');
+                        window.location.href = "/eliminarTurnos.aspx?id=" + elimi.value;
                     }
                 })
             }

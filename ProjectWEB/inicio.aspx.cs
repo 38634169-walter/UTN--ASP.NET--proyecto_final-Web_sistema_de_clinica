@@ -26,6 +26,7 @@ namespace ProjectWEB
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "modificado()", true);
                 }
+                
             }
         }
 

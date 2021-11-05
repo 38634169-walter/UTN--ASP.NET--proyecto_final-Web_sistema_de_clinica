@@ -15,7 +15,8 @@ namespace ProjectWEB
         public List<Turno> turnosList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(Session["ID_Usuario"]);
+            // NO BORRRAR // int id = Convert.ToInt32(Session["ID_Usuario"]);
+            int id = 1;
             TurnoNegocio turNego = new TurnoNegocio();
             turnosList=turNego.turnos_de_medicos(id);
         }

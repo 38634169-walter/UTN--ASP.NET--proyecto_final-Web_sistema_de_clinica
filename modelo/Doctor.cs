@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace modelo
 {
-    public class Cargo
+    public class Doctor : Empleado
     {
         public int id { get; set; }
-        public string nombre { get; set; }
+        public Especialidad especialidad { get; set; }
     }
 }

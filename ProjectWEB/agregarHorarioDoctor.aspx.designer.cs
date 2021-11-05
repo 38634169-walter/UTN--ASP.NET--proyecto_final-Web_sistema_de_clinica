@@ -11,7 +11,7 @@ namespace ProjectWEB
 {
 
 
-    public partial class agregarPaciente
+    public partial class agregarHorarioPersonal
     {
 
         /// <summary>
@@ -24,66 +24,48 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.Label LabelTitulo;
 
         /// <summary>
-        /// Control Label2.
+        /// Control LabelHorarioInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label LabelHorarioInicio;
 
         /// <summary>
-        /// Control TextBoxNombre.
+        /// Control TextBoxHorarioInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNombre;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxHorarioInicio;
 
         /// <summary>
-        /// Control Label1.
+        /// Control LabelHorarioFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LabelHorarioFin;
 
         /// <summary>
-        /// Control TextBoxApellido.
+        /// Control TextBoxHorarioFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxApellido;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxHorarioFin;
 
         /// <summary>
-        /// Control Label3.
+        /// Control ButtonAsignar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
-        /// Control TextBoxDni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDni;
-
-        /// <summary>
-        /// Control ButtonAgregarModificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAgregarModificar;
+        protected global::System.Web.UI.WebControls.Button ButtonAsignar;
     }
 }

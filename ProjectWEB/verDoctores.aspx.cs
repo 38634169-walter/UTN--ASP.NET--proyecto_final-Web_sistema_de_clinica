@@ -10,13 +10,13 @@ using negocio;
 
 namespace ProjectWEB
 {
-    public partial class verClientes : System.Web.UI.Page
+    public partial class verPersonal : System.Web.UI.Page
     {
-        public List<Cliente> clientesList;
+        public List<Doctor> doctoresList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClienteNegocio cliNego = new ClienteNegocio();
-            clientesList = cliNego.listar();
+            DoctorNegocio docNego = new DoctorNegocio();
+            doctoresList = docNego.listar("todo",1);
         }
     }
 }

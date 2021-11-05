@@ -15,22 +15,24 @@ namespace ProjectWEB
         public Historial historia;
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(Request.QueryString["id"]);
-            ClienteNegocio cliNego = new ClienteNegocio();
-            Cliente cli = new Cliente();
-            cli=cliNego.buscar_por_id(id);
-            LabelPaciente.Text += cli.nombre.ToString() + " " + cli.apellido.ToString();
+            string id = (string)Request.QueryString["id"];
+            PacienteNegocio pacNego = new PacienteNegocio();
+            List<Paciente> pac = new List<Paciente>();
+            pac=pacNego.buscar("id",id);
+            LabelPaciente.Text += pac[0].nombre.ToString() + " " + pac[0].apellido.ToString();
         }
 
         protected void ButtonAgregar_Click(object sender, EventArgs e)
         {
             historia = new Historial();
-            historia.cliente = new Cliente();
-            historia.cliente.id =Convert.ToInt32(Request.QueryString["id"]);
+            historia.paciente = new Paciente();
+            historia.paciente.id =Convert.ToInt32(Request.QueryString["id"]);
 
-            historia.personal = new Personal();
-            historia.personal.id = Convert.ToInt32(Session["ID_Usuario"]);
+            historia.doctor = new Doctor();
+            //NO BORRAR//historia.doctor.id = Convert.ToInt32(Session["ID_Usuario"]);
+            historia.doctor.id = 1;
             historia.observacion = TextBoxObservacion.Text;
+            historia.fecha=DateTime.Now.ToString();
 
             HistorialNegocio hisNego = new HistorialNegocio();
             hisNego.agregar(historia);

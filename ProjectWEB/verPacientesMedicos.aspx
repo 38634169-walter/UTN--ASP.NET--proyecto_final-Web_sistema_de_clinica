@@ -19,17 +19,23 @@
                 </tr>
             </thead>
             <tbody>
-                <% foreach (var cliente in clientesList)
+                <% foreach (var paciente in pacientesList)
                     { %>
                     <tr>
-                        <td> <%: cliente.nombre %> </td>
-                        <td> <%: cliente.apellido %> </td>
-                        <td> <%: cliente.dni %> </td>
+                        <td> <%: paciente.nombre %> </td>
+                        <td> <%: paciente.apellido %> </td>
+                        <td> <%: paciente.dni %> </td>
                         <td style="height:1cm;">
-                            <a href="/historialPaciente.aspx?id=<%: cliente.id %>" class="m-1"><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
-                            <a href="/agregarHistorialPaciente.aspx?id=<%: cliente.id %>" class="m-1"><i class="fas fa-plus text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
+                            <a href="/verHistorialPaciente.aspx?id=<%: paciente.id %>" class="m-1"><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
+                            <a href="/agregarHistorialPaciente.aspx?id=<%: paciente.id %>" class="m-1"><i class="fas fa-plus text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                         </td>
                     </tr>
+                <% } %>
+                <% if (!pacientesList.Any())
+                    { %>
+                        <tr>
+                            <td colspan="4">No hay resultados</td>                        
+                        </tr>
                 <% } %>
             </tbody>
         </table>

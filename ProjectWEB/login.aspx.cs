@@ -6,23 +6,26 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using modelo;
-using negocio;
+
 
 namespace ProjectWEB
 {
     public partial class log : System.Web.UI.Page
     {
-        public Personal personal = null;
+        public Persona personal = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if (Session["logged"] != null)
             {
                 Response.Redirect("inicio.aspx");
             }
+            */
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            /*
             string usuario = TextBoxUsuario.Text;
             string clave = TextBoxClave.Text;
 
@@ -42,6 +45,7 @@ namespace ProjectWEB
             {
                 LabelIncorrecto.Text = "*Usuario o clave incorrectos";
             }
+            */
         }
     }
 }

@@ -17,20 +17,27 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT t.ID AS ID_Turno, e.ID AS ID_Especialidad, c.ID AS ID_Cliente, c.dni, e.nombre AS nombreEspecialidad FROM Turnos t, Clientes c, Especialidades e WHERE t.ID_Cliente=c.ID AND t.ID_Especialidad = e.ID AND t.ID = '" + id + "' " );
+                con.consultar("SELECT * FROM Turnos WHERE estado = 1 AND IDTurno = '" + id + "' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
                     turno.id = id;
-                    
+                    turno.fecha = Convert.ToString(con.lector["fecha"]);
+                    turno.hora = Convert.ToInt32(con.lector["hora"]);
+
                     turno.especialidad = new Especialidad();
                     turno.especialidad.id = Convert.ToInt32(con.lector["ID_Especialidad"]);
-                    turno.especialidad.nombre = (string)con.lector["nombreEspecialidad"];
 
-                    turno.cliente = new Cliente();
-                    turno.cliente.id = Convert.ToInt32(con.lector["ID_Cliente"]);
-                    turno.cliente.dni = (string)con.lector["dni"];
+                    turno.doctor = new Doctor();
+                    turno.doctor.id = Convert.ToInt32(con.lector["ID_Doctor"]);
+
+                    turno.secretaria = new Secretaria();
+                    turno.secretaria.id = Convert.ToInt32(con.lector["ID_Secretaria"]);
+
+                    turno.paciente = new Paciente();
+                    turno.paciente.id = Convert.ToInt32(con.lector["ID_Paciente"]);
                 }
+
                 return turno;
             }
             catch (Exception ex)
@@ -43,30 +50,46 @@ namespace negocio
                 con.cerrar_conexion();
             }
         }
-        public List<Turno> listar()
+        
+        public List<Turno> listar(string buscarPor, string buscar,int buscar2)
         {
+            string consulta = "";
+            switch (buscarPor)
+            {
+                case "dni":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND t.estado='1' ";
+                    break;
+                case "lista":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.estado='1' ";
+                    break;
+                case "turnos":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e, Doctor d WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND d.IDDoctor='" + buscar2 + "' AND t.fecha= '" + buscar + "' AND t.estado='1' ";
+                    break;
+            }
+
             List<Turno> turnoList = new List<Turno>();
             ConexionDB con = new ConexionDB();
             try
             {
                 
-                con.consultar("SELECT t.ID AS ID_Turno, e.ID AS ID_Especialidad, c.ID AS ID_Cliente, c.dni,c.nombre AS nombreCliente,c.apellido AS apellidoCliente,e.nombre AS nombreEspecialidad FROM Turnos t, Clientes c, Especialidades e WHERE t.ID_Cliente = c.ID AND t.ID_Especialidad = e.ID");
+                con.consultar(consulta);
 
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
                     Turno tur = new Turno();
-                    tur.id = Convert.ToInt32(con.lector["ID_Turno"]);
-                    
+                    tur.id = Convert.ToInt32(con.lector["IDTurno"]);
+                    tur.hora = Convert.ToInt32(con.lector["hora"]);
+
                     tur.especialidad = new Especialidad();
-                    tur.especialidad.id = Convert.ToInt32(con.lector["ID_Especialidad"]);
+                    tur.especialidad.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
                     tur.especialidad.nombre = (string)con.lector["nombreEspecialidad"];
 
-                    tur.cliente = new Cliente();
-                    tur.cliente.id = Convert.ToInt32(con.lector["ID_Cliente"]);
-                    tur.cliente.nombre = (string)con.lector["nombreCliente"];
-                    tur.cliente.apellido = (string)con.lector["apellidoCliente"];
-                    tur.cliente.dni = (string)con.lector["dni"];
+                    tur.paciente = new Paciente();
+                    tur.paciente.id = Convert.ToInt32(con.lector["IDPaciente"]);
+                    tur.paciente.nombre = (string)con.lector["nombrePaciente"];
+                    tur.paciente.apellido = (string)con.lector["apellido"];
+                    tur.paciente.dni = (string)con.lector["dni"];
 
                     turnoList.Add(tur);
                 }
@@ -89,15 +112,17 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT c.nombre AS nombreC,c.apellido AS apellidoC,c.dni AS dniC FROM Turnos t, Clientes c WHERE t.ID_Cliente=c.ID AND t.ID_Personal='" + id + "' ");
+                con.consultar("SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.estado='1' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
                     Turno tur = new Turno();
-                    tur.cliente = new Cliente();
-                    tur.cliente.nombre = (string)con.lector["nombreC"];
-                    tur.cliente.apellido = (string)con.lector["apellidoC"];
-                    tur.cliente.dni = (string)con.lector["dniC"];
+                    tur.fecha = con.lector["fecha"].ToString();
+                    tur.hora =Convert.ToInt32(con.lector["hora"]);
+                    tur.paciente = new Paciente();
+                    tur.paciente.nombre = (string)con.lector["nombre"];
+                    tur.paciente.apellido = (string)con.lector["apellido"];
+                    tur.paciente.dni = (string)con.lector["dni"];
                     turnosList.Add(tur);
                 }
                 return turnosList;
@@ -117,7 +142,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("DELETE FROM Turnos WHERE ID='" + id + "' ");
+                con.consultar("DELETE FROM Turnos WHERE IDTurno='" + id + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

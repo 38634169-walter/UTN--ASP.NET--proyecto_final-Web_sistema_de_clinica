@@ -12,11 +12,11 @@ namespace ProjectWEB
 {
     public partial class verPacientesMedicos : System.Web.UI.Page
     {
-        public List<Cliente> clientesList;
+        public List<Paciente> pacientesList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClienteNegocio cliNego = new ClienteNegocio();
-            clientesList = cliNego.listar();
+            PacienteNegocio pasNego = new PacienteNegocio();
+            pacientesList = pasNego.listar();
         }
     }
 }

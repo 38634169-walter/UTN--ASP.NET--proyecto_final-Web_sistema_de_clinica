@@ -16,16 +16,24 @@
                     <th>Apellido</th>
                     <th>DNI</th>
                     <th>Fecha</th>
+                    <th>Hora</th>
                 </tr>
             </thead>
             <tbody>
                 <% foreach (var turno in turnosList)
                     { %>
                     <tr>
-                        <td> <%: turno.cliente.nombre  %> </td>
-                        <td> <%: turno.cliente.apellido  %> </td>
-                        <td><%: turno.cliente.dni %></td>
-                        <td></td>                        
+                        <td> <%: turno.paciente.nombre  %> </td>
+                        <td> <%: turno.paciente.apellido  %> </td>
+                        <td><%: turno.paciente.dni %></td>
+                        <td><%: turno.fecha %></td>
+                        <td><%: turno.hora %>:00Hs</td>                        
+                    </tr>
+                <% } %>
+                <% if(!turnosList.Any())
+                    { %>
+                    <tr>
+                        <td colspan="4">No hay resultados</td>                        
                     </tr>
                 <% } %>
             </tbody>

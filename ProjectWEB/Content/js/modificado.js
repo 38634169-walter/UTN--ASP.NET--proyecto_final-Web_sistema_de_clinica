@@ -4,6 +4,6 @@ function modificado() {
         icon: 'success',
         title: 'Modificado con exito',
         showConfirmButton: true,
-        target: document.getElementById('m'),
+        //target: document.getElementById('m'),
     })
 }

@@ -11,9 +11,9 @@ namespace negocio
 {
     public class CargoNegocio
     {
-        public List<Cargo> listar()
+        public List<Rol> listar()
         {
-            List<Cargo> cargoList = new List<Cargo>();
+            List<Rol> cargoList = new List<Rol>();
             ConexionDB con = new ConexionDB();
             try
             {
@@ -21,7 +21,7 @@ namespace negocio
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
-                    Cargo car = new Cargo();
+                    Rol car = new Rol();
                     car.id = Convert.ToInt32(con.lector["ID"]);
                     car.nombre = (string)con.lector["nombre"];
                     cargoList.Add(car);

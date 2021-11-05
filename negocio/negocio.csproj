@@ -41,14 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClienteNegocio.cs" />
-    <Compile Include="CargoNegocio.cs" />
+    <Compile Include="DoctorNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
     <Compile Include="HistorialNegocio.cs" />
-    <Compile Include="PersonalNegocio.cs" />
+    <Compile Include="HorarioNegocio.cs" />
+    <Compile Include="PacienteNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TurnoNegocio.cs" />
-    <Compile Include="UsuarioNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\conexion\conexion.csproj">

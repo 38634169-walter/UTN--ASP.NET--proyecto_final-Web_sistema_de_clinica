@@ -9,12 +9,12 @@ namespace modelo
     public class Turno
     {
         public int id { get; set; }
-        public Especialidad especialidad { get; set; }
-        public Personal personal { get; set; }
-        public Personal recepcionista { get; set; }
         public string fecha { get; set; }
         public int hora { get; set; }
-        public Cliente cliente { get; set; }
+        public Especialidad especialidad { get; set; }
+        public Doctor doctor { get; set; }
+        public Secretaria secretaria { get; set; }
+        public Paciente paciente { get; set; }
     }
 }
 
