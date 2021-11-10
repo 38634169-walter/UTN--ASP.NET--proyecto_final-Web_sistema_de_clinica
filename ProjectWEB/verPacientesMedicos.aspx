@@ -5,6 +5,14 @@
         <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de pacientes</h1>
     </div>
 
+    <div class="d-flex justify-content-start align-items-center flex-column">
+        <div class="mt-3">
+            <label class="text-light "> DNI: </label>
+            <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+        </div>
+        <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarPaciente" runat="server" Text="Buscar" OnClick="ButtonBuscarPaciente_Click"/>
+    </div>
+
     <div class="tabla-container mt-5">
         <table class="tabla">
             <thead>

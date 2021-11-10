@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-start align-items-center flex-column">
         <div class="mt-3">
             <label class="text-light "> DNI: </label>
-            <asp:TextBox ID="TextBoxDni" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
         </div>
         <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarCliente" runat="server" Text="Buscar" OnClick="ButtonBuscarCliente_Click"/>
     </div>

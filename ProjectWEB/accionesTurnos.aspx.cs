@@ -25,6 +25,7 @@ namespace ProjectWEB
                 DropEspecialidad.DataValueField = "id";
                 DropEspecialidad.DataTextField = "nombre";
                 DropEspecialidad.DataBind();
+                DropEspecialidad.Items.Insert(0,new ListItem("[Seleccionar]","0"));
             }
 
             if (Request.QueryString["id"] != null)
@@ -74,6 +75,7 @@ namespace ProjectWEB
             DropPersonalDisponible.DataValueField = "id";
             DropPersonalDisponible.DataTextField = "nombreCompleto";
             DropPersonalDisponible.DataBind();
+            DropPersonalDisponible.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
             
             DropPersonalDisponible.Visible = true;
             LabelPersonal.Visible = true;
@@ -86,19 +88,27 @@ namespace ProjectWEB
         }
         protected void TextBoxfecha_TextChanged(object sender, EventArgs e)
         {
+            int idEspecialidad = Convert.ToInt32(DropEspecialidad.SelectedValue);
             int idDoctor = Convert.ToInt32(DropPersonalDisponible.SelectedValue);
             string fecha = TextBoxfecha.Text;
-            TurnoNegocio turNego = new TurnoNegocio();
-            //string id = idDoctor.ToString();
 
-            turnosList=turNego.listar("turnos",fecha, idDoctor);
+
+            //TurnoNegocio turNego = new TurnoNegocio();
+            //turnosList=turNego.buscar_horarios(idEspecialidad,idDoctor, fecha);
+            int[] n = new int[3];
+            n[0] = 1;
+            n[1] = 2;
+            n[2] = 4;
+
 
             DropHora.Visible = true;
             LabelHora.Visible = true;
-            DropHora.DataSource = turnosList;
-            DropHora.DataValueField = "id";
-            DropHora.DataTextField = "hora";
+            DropHora.DataSource = n;
+            //DropHora.DataValueField = "id";
+            //DropHora.DataTextField = "hora";
             DropHora.DataBind();
+            DropHora.Items.Insert(0, new ListItem("Seleccionar", "0"));
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

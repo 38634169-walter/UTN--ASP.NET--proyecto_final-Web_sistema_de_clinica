@@ -6,8 +6,8 @@
     
     <div class="d-flex justify-content-center align-items-center flex-column">
          <asp:Label ID="LabelEspecialidad" runat="server" Text="Nombre de especialidad: "></asp:Label>
-         <asp:TextBox ID="TextBoxEspecialidad" runat="server"></asp:TextBox>
-        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregar" runat="server" Text="Agregar" OnClick="ButtonAgregar_Click"/>
+         <asp:TextBox ClientIDMode="Static" CssClass="form-control w-50" ID="TextBoxEspecialidad" runat="server"></asp:TextBox>
+        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregar" runat="server" Text="Agregar"  OnClientClick="return validar_especialidad()" OnClick="ButtonAgregar_Click"/>
     </div>
 
 </asp:Content>

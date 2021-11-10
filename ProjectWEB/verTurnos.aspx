@@ -10,10 +10,11 @@
     <div class="d-flex justify-content-start align-items-center flex-column">
         <div class="mt-3">
             <label class="text-light "> DNI: </label>
-            <asp:TextBox ID="TextBoxDni" runat="server"></asp:TextBox>
+            <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
         </div>
         <div class="mt-3">
             <label class="text-light "> Fecha: </label>
+            <asp:TextBox ID="TextBoxFecha" runat="server" TextMode="Date"></asp:TextBox>
         </div>
         <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
     </div>
@@ -48,7 +49,7 @@
                                 <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
                             </asp:LinkButton>
 
-                            <input id="eli" value="<%: turno.id %>" type="text" style="display:none"></input>
+                            <input id="eliminarTurno" value="<%: turno.id %>" type="text" style="display:none"></input>
                             <a href="/verInfoTurno.aspx?id=<%: turno.id %>" class=""><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
                         </td>
                     </tr>
@@ -61,25 +62,6 @@
                 <%} %>
             </tbody>
         </table>
-        <script>
-            function eliminar() {
-                Swal.fire({
-                    title: 'Seguro que deseas dar de baja el turno?',
-                    text: "Se dara de baja!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    confirmButtonText: 'Confirmar',
-                    showCancelButton: true,
-                    cancelButtonColor: '#3085d6',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var elimi = document.getElementById('eli');
-                        window.location.href = "/eliminarTurnos.aspx?id=" + elimi.value;
-                    }
-                })
-            }
-        </script>
     </div> 
+    <script class="text-center" src="/Content/scripts/eliminarTurno.js"></script>
 </asp:Content>

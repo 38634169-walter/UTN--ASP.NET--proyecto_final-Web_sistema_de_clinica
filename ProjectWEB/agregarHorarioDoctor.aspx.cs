@@ -12,16 +12,17 @@ namespace ProjectWEB
 {
     public partial class agregarHorarioPersonal : System.Web.UI.Page
     {
+        public List<Doctor> doctoresList;
         public Doctor doctor;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
-                doctor = new Doctor();
-                DoctorNegocio docNego = new DoctorNegocio();
-                doctor = docNego.buscar_por_id(id);
-                LabelTitulo.Text += doctor.nombre + " " + doctor.apellido;
+                HorarioNegocio horNego = new HorarioNegocio();
+                doctoresList = horNego.horarios_doctor(id);
+                LabelTituloAgregar.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
+                LabelTituloVer.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
             }
         }
 
@@ -29,9 +30,11 @@ namespace ProjectWEB
         {
             int id =Convert.ToInt32(Request.QueryString["id"]);
             HorarioNegocio horNego = new HorarioNegocio();
+            doctor = new Doctor();
+            doctor.id = id;
             doctor.horario = new Horario();
-            doctor.horario.horaInicio = TextBoxHorarioInicio.Text;
-            doctor.horario.horaFin = TextBoxHorarioFin.Text;
+            doctor.horario.horaInicio = Convert.ToInt32(TextBoxHorarioInicio.Text);
+            doctor.horario.horaFin = Convert.ToInt32(TextBoxHorarioFin.Text);
 
             horNego.agregar(doctor);
             string confirmacion = "agregado";

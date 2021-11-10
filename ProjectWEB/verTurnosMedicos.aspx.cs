@@ -13,12 +13,24 @@ namespace ProjectWEB
     public partial class verTurnosMedicos : System.Web.UI.Page
     {
         public List<Turno> turnosList;
+        public int id;
         protected void Page_Load(object sender, EventArgs e)
         {
             // NO BORRRAR // int id = Convert.ToInt32(Session["ID_Usuario"]);
-            int id = 1;
+            id = 2;
             TurnoNegocio turNego = new TurnoNegocio();
-            turnosList=turNego.turnos_de_medicos(id);
+            turnosList=turNego.turnos_de_medicos(id,"todo","");
+        }
+
+        protected void ButtonBuscarTurno_Click(object sender, EventArgs e)
+        {
+            if (TextBoxFecha.Text != "")
+            {
+                // NO BORRRAR // int id = Convert.ToInt32(Session["ID_Usuario"]);
+                TurnoNegocio turNego = new TurnoNegocio();
+                string fecha = TextBoxFecha.Text;
+                turnosList=turNego.turnos_de_medicos(id,"fecha",fecha);
+            }
         }
     }
 }

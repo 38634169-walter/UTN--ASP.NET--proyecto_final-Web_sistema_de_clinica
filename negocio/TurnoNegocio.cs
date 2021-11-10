@@ -17,7 +17,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT * FROM Turnos WHERE estado = 1 AND IDTurno = '" + id + "' ");
+                con.consultar("SELECT dPaciente.nombre nomP,dPaciente.apellido apeP,dPaciente.dni dniP,dDoctores.nombre nomD, dDoctores.apellido apeD,dSecretaria.nombre nomS,dSecretaria.apellido apeS,e.nombre nomE,t.fecha, t.hora FROM Turnos t, Pacientes p, Datos_Personales dPaciente,Doctores d,Empleados eDoctores, Datos_Personales dDoctores,Secretarias s, Empleados eSecretaria, Datos_Personales dSecretaria,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dPaciente.IDDatosPersonales AND t.ID_Doctor =d.IDDoctor AND d.ID_Empleado=eDoctores.IDEmpleado AND eDoctores.ID_DatosPersonales=dDoctores.IDDatosPersonales AND t.ID_Secretaria=s.IDSecretaria AND s.ID_Empleado=eSecretaria.IDEmpleado AND eSecretaria.ID_DatosPersonales=dSecretaria.IDDatosPersonales AND t.ID_Especialidad=e.IDEspecialidad AND t.IDTurno = '" + id + "' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
@@ -26,16 +26,20 @@ namespace negocio
                     turno.hora = Convert.ToInt32(con.lector["hora"]);
 
                     turno.especialidad = new Especialidad();
-                    turno.especialidad.id = Convert.ToInt32(con.lector["ID_Especialidad"]);
+                    turno.especialidad.nombre = (string)con.lector["nomE"];
 
                     turno.doctor = new Doctor();
-                    turno.doctor.id = Convert.ToInt32(con.lector["ID_Doctor"]);
+                    turno.doctor.nombre = (string)con.lector["nomD"];
+                    turno.doctor.apellido = (string)con.lector["apeD"];
 
                     turno.secretaria = new Secretaria();
-                    turno.secretaria.id = Convert.ToInt32(con.lector["ID_Secretaria"]);
+                    turno.secretaria.nombre = (string)con.lector["nomS"];
+                    turno.secretaria.apellido = (string)con.lector["apeS"];
 
                     turno.paciente = new Paciente();
-                    turno.paciente.id = Convert.ToInt32(con.lector["ID_Paciente"]);
+                    turno.paciente.nombre = (string)con.lector["nomP"];
+                    turno.paciente.apellido = (string)con.lector["apeP"];
+                    turno.paciente.dni = (string)con.lector["dniP"];
                 }
 
                 return turno;
@@ -51,19 +55,22 @@ namespace negocio
             }
         }
         
-        public List<Turno> listar(string buscarPor, string buscar,int buscar2)
+        public List<Turno> listar(string buscarPor, string buscar,string buscar2)
         {
             string consulta = "";
             switch (buscarPor)
             {
-                case "dni":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND t.estado='1' ";
-                    break;
                 case "lista":
                     consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.estado='1' ";
                     break;
-                case "turnos":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e, Doctor d WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND d.IDDoctor='" + buscar2 + "' AND t.fecha= '" + buscar + "' AND t.estado='1' ";
+                case "dni":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND t.estado='1' ";
+                    break;
+                case "fecha":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND t.estado='1' ";
+                    break;
+                case "fecha y dni":
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND dp.dni = '" + buscar2 + "' AND t.estado='1' ";
                     break;
             }
 
@@ -106,13 +113,25 @@ namespace negocio
             }
         }
 
-        public List<Turno> turnos_de_medicos(int id)
+        public List<Turno> turnos_de_medicos(int id,string buscarPor,string buscar)
         {
             List<Turno> turnosList = new List<Turno>();
             ConexionDB con = new ConexionDB();
+
+            string consulta = "";
+            switch (buscarPor)
+            {
+                case "todo":
+                    consulta = "SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.estado='1' ";
+                    break;
+                case "fecha":
+                    consulta = "SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.fecha='" + buscar + "' AND t.estado='1' ";
+                    break;
+            }
+
             try
             {
-                con.consultar("SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.estado='1' ");
+                con.consultar(consulta);
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
@@ -152,6 +171,19 @@ namespace negocio
             finally
             {
                 con.cerrar_conexion();
+            }
+        }
+        public void buscar_horarios()
+        {
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                //con.consultar("SELECT h.horarioInicio,h.horarioFin FROM Doctores d, Empleados d, Empleados_Horairos eh, Horarios h AS d  WHERE  e.IDEmpleado = d.ID_Empleado AND eh.ID_Empleado = e.IDEmpleado AND h.IDHorario = eh.ID_Horario AND d.IDDoctor = '" +  + "' ");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

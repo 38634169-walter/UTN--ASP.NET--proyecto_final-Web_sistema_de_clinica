@@ -21,14 +21,6 @@ namespace ProjectWEB
                 TurnoNegocio turNego = new TurnoNegocio();
                 turno = new Turno();
                 turno=turNego.buscar_por_id(id);
-
-
-                PacienteNegocio pacNego = new PacienteNegocio();
-                List<Paciente> pacList = new List<Paciente>();
-                pacList=pacNego.buscar("id",turno.paciente.id.ToString());
-                turno.paciente.nombre = pacList[0].nombre;
-                turno.paciente.apellido = pacList[0].apellido;
-                turno.paciente.dni = pacList[0].dni;
             }
         }
     }

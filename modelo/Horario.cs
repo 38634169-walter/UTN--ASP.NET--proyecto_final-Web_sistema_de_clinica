@@ -9,7 +9,8 @@ namespace modelo
     public class Horario
     {
         public int id { get; set; }
-        public string horaInicio { get; set; }
-        public string horaFin { get; set; }
+        public int horaInicio { get; set; }
+        public int horaFin { get; set; }
+        
     }
 }

@@ -18,5 +18,15 @@ namespace ProjectWEB
             PacienteNegocio pasNego = new PacienteNegocio();
             pacientesList = pasNego.listar();
         }
+
+        protected void ButtonBuscarPaciente_Click(object sender, EventArgs e)
+        {
+            if (TextBoxDni.Text != "")
+            {
+                string dni = TextBoxDni.Text;
+                PacienteNegocio pacNego = new PacienteNegocio();
+                pacientesList = pacNego.buscar("dni",dni);
+            }
+        }
     }
 }

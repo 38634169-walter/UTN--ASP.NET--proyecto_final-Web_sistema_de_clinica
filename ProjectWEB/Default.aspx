@@ -19,7 +19,7 @@
 <body>
     <h1 class="text-center mt-4 shadow p-3" style="font-size:4rem;font-family: 'Abril Fatface', cursive;">Bienvenido a clinica Milagro</h1>
     <div class="text-light d-flex justify-content-center align-items-center flex-sm-row flex-column p-3">
-        <img src="/Content/imagenes/giftAnimado1.gif" alt="Imagen no disponible" />
+        <img src="/Content/img/giftAnimado1.gif" alt="Imagen no disponible" />
         <div class="w-10 text-sm-start text-center ms-sm-5">
             <h1>Nuestra identidad importa</h1>
             <p>Hacemos de el mundo un lugar mejor para que todos puedan tener su oportunidad</p>

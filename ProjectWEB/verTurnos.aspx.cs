@@ -17,7 +17,7 @@ namespace ProjectWEB
         protected void Page_Load(object sender, EventArgs e)
         {
             TurnoNegocio turNego = new TurnoNegocio();
-            turnosList = turNego.listar("lista", "",1);
+            turnosList = turNego.listar("lista", "","");
         }
 
         protected void alert_eliminar_Click(object sender, EventArgs e)
@@ -28,9 +28,23 @@ namespace ProjectWEB
         protected void ButtonBuscar_Click(object sender, EventArgs e)
         {
             string dni = TextBoxDni.Text;
+            string fecha = TextBoxFecha.Text;
             TurnoNegocio turNego = new TurnoNegocio();
             turnosList = new List<Turno>();
-            turnosList = turNego.listar("dni", dni,2);
+            if(TextBoxDni.Text != "" && TextBoxFecha.Text !="") {
+                turnosList = turNego.listar("fecha y dni", fecha, dni);
+            }
+            else
+            {
+                if (TextBoxDni.Text != "")
+                {
+                    turnosList = turNego.listar("dni", dni,"");
+                }
+                if (TextBoxFecha.Text != "")
+                {
+                    turnosList = turNego.listar("fecha", fecha ,"");
+                }
+            }
         }
        
     }

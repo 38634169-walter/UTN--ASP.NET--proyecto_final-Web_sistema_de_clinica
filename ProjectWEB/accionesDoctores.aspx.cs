@@ -81,8 +81,8 @@ namespace ProjectWEB
                 doctor.usuario.usuario = TextBoxUsuario.Text;
                 doctor.usuario.clave = TextBoxClave.Text;
                 doctor.horario = new Horario();
-                doctor.horario.horaInicio= TextBoxHorarioEntrada.Text;
-                doctor.horario.horaFin = TextBoxHorarioSalida.Text;
+                doctor.horario.horaInicio= Convert.ToInt32(TextBoxHorarioEntrada.Text);
+                doctor.horario.horaFin = Convert.ToInt32(TextBoxHorarioSalida.Text);
 
                 docNego.agregar(doctor);
                 confirmacion = "agregado";

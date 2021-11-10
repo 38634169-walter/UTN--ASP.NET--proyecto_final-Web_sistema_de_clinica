@@ -112,14 +112,22 @@
     <Content Include="agregarEspecialidadDoctor.aspx" />
     <Content Include="agregarHistorialPaciente.aspx" />
     <Content Include="agregarHorarioDoctor.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\global.css" />
-    <Content Include="Content\inicio.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Content\tabla.css" />
+    <Content Include="Content\bootstrap5\.babelrc.js" />
+    <Content Include="Content\bootstrap5\.gitattributes" />
+    <Content Include="Content\bootstrap5\.gitignore" />
+    <Content Include="Content\bootstrap5\package.js" />
+    <Content Include="Content\estilos\inicio.css" />
+    <Content Include="Content\estilos\todoP.css" />
+    <Content Include="Content\img\fondo.png" />
+    <Content Include="Content\img\giftAnimado1.gif" />
+    <Content Include="Content\scripts\agregado.js" />
+    <Content Include="Content\scripts\eliminado.js" />
+    <Content Include="Content\scripts\eliminarHorario.js" />
+    <Content Include="Content\scripts\eliminarTurno.js" />
+    <Content Include="Content\scripts\modificado.js" />
+    <Content Include="Content\scripts\noRegistrado.js" />
+    <Content Include="Content\scripts\validacion.js" />
+    <Content Include="eliminarHorario.aspx" />
     <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -128,10 +136,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap5\.browserslistrc" />
+    <Content Include="Content\bootstrap5\.bundlewatch.config.json" />
+    <Content Include="Content\bootstrap5\.editorconfig" />
+    <Content Include="Content\bootstrap5\.eslintignore" />
+    <Content Include="Content\bootstrap5\.eslintrc.json" />
+    <Content Include="Content\bootstrap5\.stylelintignore" />
+    <Content Include="Content\bootstrap5\.stylelintrc" />
+    <Content Include="Content\bootstrap5\CODE_OF_CONDUCT.md" />
+    <Content Include="Content\bootstrap5\composer.json" />
+    <Content Include="Content\bootstrap5\config.yml" />
+    <Content Include="Content\bootstrap5\LICENSE" />
+    <Content Include="Content\bootstrap5\package-lock.json" />
+    <Content Include="Content\bootstrap5\package.json" />
+    <Content Include="Content\bootstrap5\README.md" />
+    <Content Include="Content\bootstrap5\SECURITY.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Default.aspx" />
     <Content Include="inicio.aspx" />
@@ -195,6 +214,7 @@
     </Compile>
     <Compile Include="accionesTurnos.aspx.cs">
       <DependentUpon>accionesTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="accionesTurnos.aspx.designer.cs">
       <DependentUpon>accionesTurnos.aspx</DependentUpon>
@@ -229,6 +249,13 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="eliminarHorario.aspx.cs">
+      <DependentUpon>eliminarHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eliminarHorario.aspx.designer.cs">
+      <DependentUpon>eliminarHorario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="eliminarTurnos.aspx.cs">
       <DependentUpon>eliminarTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

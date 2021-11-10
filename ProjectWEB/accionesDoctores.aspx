@@ -9,58 +9,58 @@
         
         <div class="mt-2">
             <asp:Label ID="Label2" runat="server" Text="Nombre: "></asp:Label>
-            <asp:TextBox ID="TextBoxNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxNombre" runat="server"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="Label1" runat="server" Text="Apellido: "></asp:Label>
-            <asp:TextBox ID="TextBoxApellido" runat="server"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxApellido" runat="server"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelDni" runat="server" Text="DNI: " ViewStateMode="Enabled"></asp:Label>
-            <asp:TextBox ID="TextBoxDni" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxDni" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
         </div>
         <div class="mt-2">
             <asp:Label ID="LabelTelefono" runat="server" Text="Telefono: " ViewStateMode="Enabled"></asp:Label>
-            <asp:TextBox ID="TextBoxTelefono" runat="server" ValidateRequestMode="Enabled" TextMode="Phone"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxTelefono" runat="server" ValidateRequestMode="Enabled" TextMode="Phone"></asp:TextBox>
         </div>
         <div class="mt-2">
             <asp:Label ID="LabelEmail" runat="server" Text="Email: " ViewStateMode="Enabled"></asp:Label>
-            <asp:TextBox ID="TextBoxEmail" runat="server" ValidateRequestMode="Enabled" TextMode="Email"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxEmail" runat="server" ValidateRequestMode="Enabled" TextMode="Email"></asp:TextBox>
         </div>
         <div class="mt-2">
             <asp:Label ID="LabelSueldo" runat="server" Text="Sueldo: " ViewStateMode="Enabled"></asp:Label>
-            <asp:TextBox ID="TextBoxSueldo" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxSueldo" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-            <asp:DropDownList ID="DropEspecilidad" runat="server"></asp:DropDownList>    
+            <asp:DropDownList ClientIDMode="Static" CssClass="form-control" ID="DropEspecilidad" runat="server"></asp:DropDownList>    
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelHorarioEntrada" runat="server" Text="Horario de entrada: "></asp:Label>
-            <asp:TextBox ID="TextBoxHorarioEntrada" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioEntrada" runat="server" TextMode="Number"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelHorarioSalida" runat="server" Text="Horario de salida: "></asp:Label>
-            <asp:TextBox ID="TextBoxHorarioSalida" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioSalida" runat="server" TextMode="Number"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelUsuario" runat="server" Text="Usuario: "></asp:Label>
-            <asp:TextBox ID="TextBoxUsuario" runat="server"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxUsuario" runat="server"></asp:TextBox>
         </div>
         
         <div class="mt-2">
             <asp:Label ID="LabelClave" runat="server" Text="Contraseña: "></asp:Label>
-            <asp:TextBox ID="TextBoxClave" runat="server"></asp:TextBox>
+            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxClave" runat="server"></asp:TextBox>
         </div>
         
     
-        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClick="ButtonAgregarModificar_Click"/>
+        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClientClick="return validar_agregar_doctor()" OnClick="ButtonAgregarModificar_Click"/>
     
     </div>
 
