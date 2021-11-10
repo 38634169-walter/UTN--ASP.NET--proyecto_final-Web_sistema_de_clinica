@@ -104,7 +104,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_MODIFICAR_DOCTOR '" + doctor.id + "', '" +  doctor.nombre + "', '" + doctor.apellido + "', '" + doctor.dni + "', '" + doctor.email + "', '" + doctor.telefono + "', '" + doctor.sueldo + "', '" + doctor.usuario.usuario + "', '" + doctor.usuario.clave + "'  ");
+                con.consultar("EXEC SP_MODIFICAR_DOCTOR '" + doctor.id + "', '" +  doctor.nombre + "', '" + doctor.apellido + "', '" + doctor.email + "', '" + doctor.telefono + "', '" + doctor.sueldo + "', '" + doctor.usuario.usuario + "', '" + doctor.usuario.clave + "'  ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

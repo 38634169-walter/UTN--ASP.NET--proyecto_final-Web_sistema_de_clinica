@@ -47,6 +47,7 @@
     </div>
 
     <div class="d-flex justify-content-center align-items-center flex-column">
+        <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
         <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>
         <asp:TextBox ClientIDMode="Static" CssClass="form-control w-25" ID="TextBoxHorarioInicio" runat="server"></asp:TextBox>
     </div>

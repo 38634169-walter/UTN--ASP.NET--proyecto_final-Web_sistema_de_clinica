@@ -142,7 +142,9 @@
             <div class="bg-light w-75 overflow-scroll" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 2%, rgba(146,146,209,1) 100%);">
             
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                
+                    <div class="container">
+
+                    </div>
                 </asp:ContentPlaceHolder>
 
             </div>

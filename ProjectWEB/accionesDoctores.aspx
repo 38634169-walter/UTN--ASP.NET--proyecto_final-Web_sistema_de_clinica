@@ -6,7 +6,7 @@
     </div>
     
     <div class="d-flex justify-content-start align-items-center flex-column">
-        
+        <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
         <div class="mt-2">
             <asp:Label ID="Label2" runat="server" Text="Nombre: "></asp:Label>
             <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxNombre" runat="server"></asp:TextBox>
@@ -58,9 +58,9 @@
             <asp:Label ID="LabelClave" runat="server" Text="Contraseña: "></asp:Label>
             <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxClave" runat="server"></asp:TextBox>
         </div>
-        
     
-        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClientClick="return validar_agregar_doctor()" OnClick="ButtonAgregarModificar_Click"/>
+        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClientClick="return validar_agregar_doctor(<% editando %>)" OnClick="ButtonAgregarModificar_Click"/>
+
     
     </div>
 

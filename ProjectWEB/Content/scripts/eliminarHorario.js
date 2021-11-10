@@ -1,7 +1,7 @@
 ﻿function eliminarHorario() {
     Swal.fire({
-        title: 'Seguro que deseas dar de baja el turno?',
-        text: "Se dara de baja!",
+        title: 'Seguro que deseas quitar el horario?',
+        text: "Se quitara el horario!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

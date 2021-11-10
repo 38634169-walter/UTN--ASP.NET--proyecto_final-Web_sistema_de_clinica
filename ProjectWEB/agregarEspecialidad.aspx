@@ -5,6 +5,7 @@
     </div>
     
     <div class="d-flex justify-content-center align-items-center flex-column">
+        <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
          <asp:Label ID="LabelEspecialidad" runat="server" Text="Nombre de especialidad: "></asp:Label>
          <asp:TextBox ClientIDMode="Static" CssClass="form-control w-50" ID="TextBoxEspecialidad" runat="server"></asp:TextBox>
         <asp:Button class="btn btn-success mt-2" ID="ButtonAgregar" runat="server" Text="Agregar"  OnClientClick="return validar_especialidad()" OnClick="ButtonAgregar_Click"/>
