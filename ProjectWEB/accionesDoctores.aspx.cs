@@ -17,10 +17,9 @@ namespace ProjectWEB
         public List<Usuario> usuarioList;
         public Doctor doctor;
         public static string usuarioEditar;
-        public bool editando;
         protected void Page_Load(object sender, EventArgs e)
         {
-            editando = false;
+            ButtonModificar.Style.Add("display", "none");
             EspecialidadNegocio espNego = new EspecialidadNegocio();
             especialidadList = espNego.listar();
             if(!IsPostBack) {
@@ -32,7 +31,7 @@ namespace ProjectWEB
 
             if (Request.QueryString["id"] != null)
             {
-                editando = true;
+                ButtonModificar.Style.Add("display", "block");
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 DoctorNegocio docNego = new DoctorNegocio();
                 doctor = new Doctor();
@@ -56,7 +55,8 @@ namespace ProjectWEB
                     LabelEspecialidad.Style.Add("display", "none");
                     TextBoxUsuario.Text = doctor.usuario.usuario;
                     TextBoxClave.Text = doctor.usuario.clave;
-                    ButtonAgregarModificar.Text = "Modificar";
+
+                    ButtonAgregar.Style.Add("display","none");
                     LabelTitulo.Text = "Modificar medico";
                 }
             }

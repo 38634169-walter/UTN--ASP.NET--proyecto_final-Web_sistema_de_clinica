@@ -14,6 +14,7 @@ namespace ProjectWEB
     {
         public List<Doctor> doctoresList;
         public Doctor doctor;
+        public List<Especialidad> especialidadList;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
@@ -22,8 +23,16 @@ namespace ProjectWEB
                 HorarioNegocio horNego = new HorarioNegocio();
                 doctoresList = horNego.horarios_doctor(id);
                 if (!IsPostBack) {
+                    EspecialidadNegocio espNego = new EspecialidadNegocio();
+                    especialidadList = espNego.especialidades_doctor_tiene(doctoresList[0].id);
+                    DropDownListEspecilidad.DataSource = especialidadList;
+                    DropDownListEspecilidad.DataValueField = "id";
+                    DropDownListEspecilidad.DataTextField = "nombre";
+                    DropDownListEspecilidad.DataBind();
+
                     LabelTituloAgregar.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
                     LabelTituloVer.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
+
                 }
             }
         }
@@ -42,16 +51,16 @@ namespace ProjectWEB
                 doctor.horario = new Horario();
                 doctor.horario.horaInicio = horaInicio;
                 doctor.horario.horaFin = horaFin;
+                doctor.horario.especialidad = new Especialidad();
+                doctor.horario.especialidad.id = Convert.ToInt32(DropDownListEspecilidad.SelectedValue);
                 horNego.agregar(doctor);
                 string confirmacion = "agregado";
                 Response.Redirect("inicio.aspx?accion=" + confirmacion);
             }
-            else
-            {
-            }
         }
         public bool validar_horario(List<Doctor> doctoresList,int horaInicio,int horaFin)
         {
+            LabelError.Text = "";
             if (horaInicio > horaFin)
             {
                 LabelError.Text = "*El horario de inicio no debe ser mayor al de fin";
@@ -62,6 +71,11 @@ namespace ProjectWEB
                 if(horaInicio == horaFin)
                 {
                     LabelError.Text = "*Los horarios de inicio y fin no deben ser iguales";
+                    return false;
+                }
+                if(horaInicio > 24 || horaFin > 24)
+                {
+                    LabelError.Text = "*El horario ingresado se encuentra fuera del rango de 24hs";
                     return false;
                 }
             }

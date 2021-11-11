@@ -13,6 +13,8 @@ namespace ProjectWEB
     public partial class agregarPaciente : System.Web.UI.Page
     {
         public Paciente paciente;
+        public List<Paciente> pacienteList;
+        public static string pacienteDniEditar;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +32,8 @@ namespace ProjectWEB
 
                 if (!IsPostBack)
                 {
+                    pacienteDniEditar = paciente.dni;
+
                     TextBoxApellido.Text = paciente.apellido;
                     TextBoxNombre.Text = paciente.nombre;
                     TextBoxDni.Text = paciente.dni;
@@ -46,30 +50,47 @@ namespace ProjectWEB
 
         protected void ButtonAgregarModificar_Click(object sender, EventArgs e)
         {
-            if(paciente == null)
+           bool validar = validar_paciente_existente();
+            if (validar == true)
             {
-                paciente = new Paciente();
+                if (paciente == null) paciente = new Paciente();
+
+                paciente.nombre = TextBoxNombre.Text;
+                paciente.apellido = TextBoxApellido.Text;
+                paciente.dni = TextBoxDni.Text;
+                paciente.telefono = TextBoxTelefono.Text;
+                paciente.email = TextBoxEmail.Text;
+
+
+                string confirmacion = "";
+                PacienteNegocio cliNego = new PacienteNegocio();
+                if (paciente.id != 0)
+                {
+                    cliNego.modificar(paciente);
+                    confirmacion = "modificado";
+                }
+                else
+                {
+                    cliNego.agregar(paciente);
+                    confirmacion = "agregado";
+                }
+                Response.Redirect("inicio.aspx?accion=" + confirmacion);
             }
-            paciente.nombre = TextBoxNombre.Text;
-            paciente.apellido = TextBoxApellido.Text;
-            paciente.dni = TextBoxDni.Text;
-            paciente.telefono = TextBoxTelefono.Text;
-            paciente.email = TextBoxEmail.Text;
-         
-            
-            string confirmacion = "";
-            PacienteNegocio cliNego = new PacienteNegocio();
-            if (paciente.id != 0)
+        }
+        public bool validar_paciente_existente()
+        {
+            PacienteNegocio pacNego = new PacienteNegocio();
+            pacienteList = pacNego.buscar("dni", TextBoxDni.Text);
+            if (pacienteList.Any())
             {
-                cliNego.modificar(paciente);
-                confirmacion = "modificado";
+                if(pacienteDniEditar != null && pacienteDniEditar == TextBoxDni.Text)
+                {
+                    return true;
+                }
+                LabelError.Text = "*El paciente ya se encuentra registrado";
+                return false;
             }
-            else
-            {
-                cliNego.agregar(paciente);
-                confirmacion = "agregado";
-            }
-            Response.Redirect("inicio.aspx?accion=" + confirmacion);
+            return true;
         }
     }
 }

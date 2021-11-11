@@ -11,6 +11,6 @@ namespace modelo
         public int id { get; set; }
         public int horaInicio { get; set; }
         public int horaFin { get; set; }
-        
+        public Especialidad especialidad { get; set; }
     }
 }

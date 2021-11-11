@@ -77,7 +77,7 @@
 
 
                 <!-- SECRETARIAS -->
-                    <!-- 
+                    
                             <div class="btn bg-transparent d-flex justify-content-star align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientes.aspx">Ver Paciente</a>
@@ -96,7 +96,7 @@
                                 <i class="far fa-calendar-plus iconosMenu"></i>
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/accionesTurnos.aspx">Agregar Turno</a>
                             </div>
-                        -->
+                        
 
                    <!-- DOCTORES -->
                     
@@ -114,7 +114,7 @@
                     
                     <!-- ADMINISTRADORES -->
 
-
+                    <!--                    
 
                             <div class="btn bg-transparent d-flex justify-content-start align-items-center w-100 m-1">
                                 <i class="fas fa-user iconosMenu"></i>
@@ -129,7 +129,7 @@
                                 <a class="bg-transparent border-0 text-light fw-bold" href="/agregarEspecialidad.aspx">Agregar Especialidad</a>
                             </div>
 
-                        
+                        -->
 
                 </ul>
                 <div class="btn bg-transparent d-flex justify-content-start align-items-center position-absolute bottom-0 mb-4">
@@ -154,7 +154,7 @@
         <script class="text-center" src="/Content/scripts/eliminado.js"></script>
         <script class="text-center" src="/Content/scripts/modificado.js"></script>
         <script class="text-center" src="/Content/scripts/noRegistrado.js"></script>
-        <script class="text-center" src="/Content/scripts/validacion.js"></script>
+        <script class="text-center" src="/Content/scripts/validacioness.js"></script>
     </form>
 </body>
 </html>

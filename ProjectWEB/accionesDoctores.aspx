@@ -36,7 +36,7 @@
         
         <div class="mt-2">
             <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-            <asp:DropDownList ClientIDMode="Static" CssClass="form-control" ID="DropEspecilidad" runat="server"></asp:DropDownList>    
+            <asp:DropDownList ClientIDMode="Static" CssClass="form-select" ID="DropEspecilidad" runat="server"></asp:DropDownList>    
         </div>
         
         <div class="mt-2">
@@ -59,7 +59,9 @@
             <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxClave" runat="server"></asp:TextBox>
         </div>
     
-        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregarModificar" runat="server" Text="Agregar" OnClientClick="return validar_agregar_doctor(<% editando %>)" OnClick="ButtonAgregarModificar_Click"/>
+        <asp:Button class="btn btn-success mt-2" ID="ButtonAgregar" runat="server" Text="Agregar" OnClientClick="return validar_agregar_doctor()" OnClick="ButtonAgregarModificar_Click"/>
+        <asp:Button class="btn btn-success mt-2" ID="ButtonModificar" runat="server" Text="Modificar" OnClientClick="return validar_modificar_doctor()" OnClick="ButtonAgregarModificar_Click"/>
+
 
     
     </div>

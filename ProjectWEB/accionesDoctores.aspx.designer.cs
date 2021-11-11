@@ -231,12 +231,21 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.TextBox TextBoxClave;
 
         /// <summary>
-        /// Control ButtonAgregarModificar.
+        /// Control ButtonAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAgregarModificar;
+        protected global::System.Web.UI.WebControls.Button ButtonAgregar;
+
+        /// <summary>
+        /// Control ButtonModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonModificar;
     }
 }

@@ -114,6 +114,33 @@ namespace negocio
             }
         }
 
+        public List<Especialidad> especialidades_doctor_tiene(int id)
+        {
+            List<Especialidad> especialidadList = new List<Especialidad>();
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("SELECT e.nombre,e.IDEspecialidad FROM Especialidades e, Doctores d, Doctores_Especialidades de WHERE d.IDDoctor=de.ID_Doctor AND de.ID_Especialidad=e.IDEspecialidad AND d.IDDoctor = '" + id + "' ");
+                con.ejecutar_lectura();
+                while (con.lector.Read())
+                {
+                    Especialidad esp = new Especialidad();
+                    esp.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
+                    esp.nombre = (string)con.lector["nombre"];
+                    especialidadList.Add(esp);
+                }
+                return especialidadList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
+
         public void agregar_especialidad_doctor(Doctor doctor)
         {
             ConexionDB con = new ConexionDB();

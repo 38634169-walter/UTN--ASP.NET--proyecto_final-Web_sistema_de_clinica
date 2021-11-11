@@ -3,9 +3,13 @@
     <div class="d-flex justify-content-center align-items-center">
         <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Paciente"></asp:Label>
     </div>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            
             <div class="d-flex justify-content-center align-items-center flex-column">
+                <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+                
                 <div class="mt-2">
                     <asp:Label ID="Label2" runat="server" Text="Nombre: "></asp:Label>
                     <asp:TextBox CssClass=" form-control" ID="TextBoxNombre" runat="server" AutoPostBack="true" ClientIDMode="Static"></asp:TextBox>

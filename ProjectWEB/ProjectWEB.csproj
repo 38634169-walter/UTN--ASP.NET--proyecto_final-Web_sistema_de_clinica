@@ -126,7 +126,7 @@
     <Content Include="Content\scripts\eliminarTurno.js" />
     <Content Include="Content\scripts\modificado.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
-    <Content Include="Content\scripts\validacion.js" />
+    <Content Include="Content\scripts\validacioness.js" />
     <Content Include="eliminarHorario.aspx" />
     <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
