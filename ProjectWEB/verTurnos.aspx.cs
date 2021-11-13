@@ -22,7 +22,7 @@ namespace ProjectWEB
 
         protected void alert_eliminar_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminar()", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminarTurno()", true);
         }
 
         protected void ButtonBuscar_Click(object sender, EventArgs e)

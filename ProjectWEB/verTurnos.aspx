@@ -40,7 +40,7 @@
                         <td> <%: turno.paciente.nombre  %> </td>
                         <td> <%: turno.paciente.apellido  %> </td>
                         <td><%: turno.paciente.dni %></td>
-                        <td><%: turno.fecha %></td>
+                        <td><%: turno.fecha.ToString("dd/MM/yyyy") %></td>
                         <td style="height:1cm;">
                            <a href="/accionesTurnos.aspx?id=<%: turno.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
 

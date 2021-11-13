@@ -286,3 +286,58 @@ function validar_modificar_doctor() {
 }
 
 
+//////
+
+function validar_turno() {
+    var vali = true;
+
+    if ($('#TextBoxDni').val() == "") {
+        $('#TextBoxDni').addClass('is-invalid');
+        $('#TextBoxDni').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#TextBoxDni').addClass('is-valid');
+        $('#TextBoxDni').removeClass('is-invalid');
+    }
+    if ($('#DropEspecialidad').val() == "") {
+        $('#DropEspecialidad').addClass('is-invalid');
+        $('#DropEspecialidad').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#DropEspecialidad').addClass('is-valid');
+        $('#DropEspecialidad').removeClass('is-invalid');
+    }
+    if ($('#DropPersonalDisponible').val() == "") {
+        $('#DropPersonalDisponible').addClass('is-invalid');
+        $('#DropPersonalDisponible').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#DropPersonalDisponible').addClass('is-valid');
+        $('#DropPersonalDisponible').removeClass('is-invalid');
+    }
+    if ($('#TextBoxfecha').val() == "") {
+        $('#TextBoxfecha').addClass('is-invalid');
+        $('#TextBoxfecha').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#TextBoxfecha').addClass('is-valid');
+        $('#TextBoxfecha').removeClass('is-invalid');
+    }
+    if ($('#DropHora').val() == "") {
+        $('#DropHora').addClass('is-invalid');
+        $('#DropHora').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#DropHora').addClass('is-valid');
+        $('#DropHora').removeClass('is-invalid');
+    }
+
+    return vali;
+}
+
+

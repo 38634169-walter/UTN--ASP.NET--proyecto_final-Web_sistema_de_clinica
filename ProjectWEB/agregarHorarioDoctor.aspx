@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="agregarHorarioDoctor.aspx.cs" Inherits="ProjectWEB.agregarHorarioPersonal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="d-flex justify-content-center align-items-center flex-column">
-        <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTituloVer" runat="server" Text="Horarios de "></asp:Label>
+        <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTituloVer" runat="server" Text="Horarios"></asp:Label>
     </div>
 
      <div class="tabla-container mt-1">
@@ -25,8 +25,12 @@
                         <td> <%: doctor.horario.horaInicio %>:00Hs </td>
                         <td> <%: doctor.horario.horaFin %>:00Hs </td>
                         <td>
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="eliminarHorario()">
+                            <a href="/eliminarHorario.aspx?id=<%: doctor.horario.id %>">
                                 <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
+                            </a>
+
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">
+                                <i class="far fa-trash-alt text-light rounded-circle bg-success p-2" style="font-size:15px;"></i>
                             </asp:LinkButton>
 
                             <input id="eliminarHorario" value="<%: doctor.horario.id %>" type="text" style="display:none"></input>
@@ -36,7 +40,7 @@
                 <% if(!doctoresList.Any())
                     { %>
                     <tr>
-                        <td colspan="3" > No hay horarios asignados</td>
+                        <td colspan="4" > No hay horarios asignados</td>
                     </tr>
                 <% } %>
             </tbody>
@@ -45,14 +49,14 @@
 
 
     <div class="d-flex justify-content-center align-items-center flex-column">
-        <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar horario a "></asp:Label>
+        <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar horario"></asp:Label>
     </div>
 
     <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
     
     <div class="d-flex justify-content-center align-items-center flex-column">
         <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-        <asp:DropDownList ID="DropDownListEspecilidad" runat="server"></asp:DropDownList>
+        <asp:DropDownList  ID="DropDownListEspecilidad" runat="server"></asp:DropDownList>
     </div>
     <div class="d-flex justify-content-center align-items-center flex-column">
         <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>

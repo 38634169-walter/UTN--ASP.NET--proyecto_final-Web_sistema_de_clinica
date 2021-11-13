@@ -21,7 +21,7 @@
                 <% foreach (var historial in historialesList)
                     { %>
                     <tr>
-                        <td> <%: historial.fecha %> </td>
+                        <td> <%: historial.fecha.ToString("dd/MM/yyyy") %> </td>
                         <td> <%: historial.observacion %> </td>
                         <td> <%: historial.doctor.nombre %> <%: historial.doctor.apellido %> </td>
                     </tr>

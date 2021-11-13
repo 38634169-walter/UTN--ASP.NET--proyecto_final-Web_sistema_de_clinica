@@ -24,15 +24,16 @@ namespace ProjectWEB
                 doctoresList = horNego.horarios_doctor(id);
                 if (!IsPostBack) {
                     EspecialidadNegocio espNego = new EspecialidadNegocio();
-                    especialidadList = espNego.especialidades_doctor_tiene(doctoresList[0].id);
+                    especialidadList = espNego.especialidades_doctor_tiene(id);
                     DropDownListEspecilidad.DataSource = especialidadList;
                     DropDownListEspecilidad.DataValueField = "id";
                     DropDownListEspecilidad.DataTextField = "nombre";
                     DropDownListEspecilidad.DataBind();
 
-                    LabelTituloAgregar.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
-                    LabelTituloVer.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
-
+                    if(doctoresList.Any()) {
+                        LabelTituloVer.Text += " de " + doctoresList[0].nombre + " " + doctoresList[0].apellido;
+                        LabelTituloAgregar.Text += " a " + doctoresList[0].nombre + " " + doctoresList[0].apellido;
+                    }
                 }
             }
         }
@@ -94,6 +95,11 @@ namespace ProjectWEB
                 }
             }
             return true;
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminarHorario()", true);
         }
     }
 }

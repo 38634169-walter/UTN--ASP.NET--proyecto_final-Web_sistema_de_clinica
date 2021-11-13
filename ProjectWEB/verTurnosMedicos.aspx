@@ -34,7 +34,7 @@
                         <td> <%: turno.paciente.nombre  %> </td>
                         <td> <%: turno.paciente.apellido  %> </td>
                         <td><%: turno.paciente.dni %></td>
-                        <td><%: turno.fecha %></td>
+                        <td><%: turno.fecha.ToString("dd/MM/yyyy") %></td>
                         <td><%: turno.hora %>:00Hs</td>                        
                     </tr>
                 <% } %>

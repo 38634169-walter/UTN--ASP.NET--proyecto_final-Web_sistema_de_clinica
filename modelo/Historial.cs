@@ -10,7 +10,7 @@ namespace modelo
     {
         public int id { get; set; }
         public string observacion { get; set; }
-        public string fecha { get; set; }
+        public DateTime fecha { get; set; }
         public Doctor doctor { get; set; }
         public Paciente paciente { get; set; }
     }

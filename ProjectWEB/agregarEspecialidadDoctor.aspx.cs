@@ -23,9 +23,6 @@ namespace ProjectWEB
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
                 doctoresList=espNego.listar_especialidad_doctor(id);
 
-                LabelTituloAgregar.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
-                LabelTituloVer.Text += doctoresList[0].nombre + " " + doctoresList[0].apellido;
-
                 especialidadList = espNego.especialidades_doctor_no_tiene(id);
                 if (!IsPostBack)
                 {
@@ -33,6 +30,10 @@ namespace ProjectWEB
                     DropEspecialidad.DataValueField = "id";
                     DropEspecialidad.DataTextField = "nombre";
                     DropEspecialidad.DataBind();
+                    if(doctoresList.Any()) {
+                        LabelTituloVer.Text += " de " + doctoresList[0].nombre + " " + doctoresList[0].apellido;
+                        LabelTituloAgregar.Text += " a " + doctoresList[0].nombre + " " + doctoresList[0].apellido;
+                    }
                 }
             }
         }
@@ -47,6 +48,12 @@ namespace ProjectWEB
             espNego.agregar_especialidad_doctor(doctor);
             string confirmacion = "agregado";
             Response.Redirect("inicio.aspx?accion=" + confirmacion);
+            
+        }
+
+        protected void ButtonQuitarEspecialidad_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "quitar_especialidad()", true);
         }
     }
 }

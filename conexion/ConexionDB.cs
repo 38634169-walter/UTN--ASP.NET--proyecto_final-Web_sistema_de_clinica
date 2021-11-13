@@ -16,7 +16,7 @@ namespace conexion
 
         public ConexionDB()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=sistemaTurnosTPFinal5; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=sistemaTurnosTPFinal; integrated security=true");
             comando = new SqlCommand();
         }
 

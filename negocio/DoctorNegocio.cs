@@ -19,8 +19,8 @@ namespace negocio
                 case "todo":
                     consulta = "SELECT d.IDDoctor,dp.nombre AS nombreP, dp.apellido,dp.dni FROM Doctores d, Empleados e, Datos_Personales dp WHERE d.ID_Empleado = e.IDEmpleado AND e.ID_DatosPersonales = dp.IDDatosPersonales AND e.estado = 1";
                     break;
-                case "especialidad":
-                    consulta = "SELECT DISTINCT d.IDDoctor,dp.nombre AS nombreP, dp.apellido,dp.dni FROM Doctores d, Especialidades e, Doctores_Especialidades de ,Empleados em, Datos_Personales dp WHERE d.IDDoctor=de.ID_Doctor AND de.ID_Especialidad=e.IDEspecialidad AND em.IDEmpleado = d.ID_Empleado AND e.IDEspecialidad='" + buscar + "' AND em.ID_DatosPersonales = dp.IDDatosPersonales AND em.estado='1' ";
+                case "especialidades con turno disponible":
+                    consulta = "SELECT DISTINCT d.IDDoctor,dp.nombre AS nombreP, dp.apellido,dp.dni FROM Horarios h, Empleados em, Especialidades e, Datos_Personales dp, Doctores d WHERE em.IDEmpleado = h.ID_Empleado AND em.ID_DatosPersonales = dp.IDDatosPersonales AND d.ID_Empleado=em.IDEmpleado AND h.ID_Especialidad=e.IDEspecialidad AND em.estado=1 AND e.IDEspecialidad='" + buscar +"'  ";
                     break;
             }
             List<Doctor> doctoresList = new List<Doctor>();
@@ -105,6 +105,24 @@ namespace negocio
             try
             {
                 con.consultar("EXEC SP_MODIFICAR_DOCTOR '" + doctor.id + "', '" +  doctor.nombre + "', '" + doctor.apellido + "', '" + doctor.email + "', '" + doctor.telefono + "', '" + doctor.sueldo + "', '" + doctor.usuario.usuario + "', '" + doctor.usuario.clave + "'  ");
+                con.ejecutar_escritura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
+
+        public void quitar_especialidad_doctor(int especialidadID,int doctorID)
+        {
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("DELETE FROM Doctores_Especialidades WHERE ID_Doctor= '" + doctorID + "' AND ID_Especialidad='" + especialidadID + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

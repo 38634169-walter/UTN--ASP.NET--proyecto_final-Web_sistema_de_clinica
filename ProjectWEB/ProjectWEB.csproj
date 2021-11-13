@@ -126,7 +126,8 @@
     <Content Include="Content\scripts\eliminarTurno.js" />
     <Content Include="Content\scripts\modificado.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
-    <Content Include="Content\scripts\validacioness.js" />
+    <Content Include="Content\scripts\quitarEsp.js" />
+    <Content Include="Content\scripts\validacionesss.js" />
     <Content Include="eliminarHorario.aspx" />
     <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
@@ -155,6 +156,7 @@
     <Content Include="Default.aspx" />
     <Content Include="inicio.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="quitarEspecialidad.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -288,6 +290,20 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quitarEspecialidad.aspx.cs">
+      <DependentUpon>quitarEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quitarEspecialidad.aspx.designer.cs">
+      <DependentUpon>quitarEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secretarias.Master.cs">
+      <DependentUpon>Secretarias.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secretarias.Master.designer.cs">
+      <DependentUpon>Secretarias.Master</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +390,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Secretarias.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

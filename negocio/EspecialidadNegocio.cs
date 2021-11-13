@@ -11,6 +11,7 @@ namespace negocio
 {
     public class EspecialidadNegocio
     {
+
         public List<Especialidad> listar()
         {
             List<Especialidad> especialidadList = new List<Especialidad>();
@@ -18,6 +19,33 @@ namespace negocio
             try
             {
                 con.consultar("SELECT * FROM Especialidades");
+                con.ejecutar_lectura();
+                while (con.lector.Read())
+                {
+                    Especialidad esp = new Especialidad();
+                    esp.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
+                    esp.nombre = (string)con.lector["nombre"];
+                    especialidadList.Add(esp);
+                }
+                return especialidadList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
+        
+        public List<Especialidad> listar_especilidades_para_turnos()
+        {
+            List<Especialidad> especialidadList = new List<Especialidad>();
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("SELECT DISTINCT e.nombre, e.IDEspecialidad FROM Especialidades e, Horarios h WHERE h.ID_Especialidad=e.IDEspecialidad");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {

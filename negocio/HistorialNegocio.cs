@@ -24,7 +24,7 @@ namespace negocio
                     Historial his = new Historial();
 
                     his.observacion = (string)con.lector["observaciones"];
-                    his.fecha = Convert.ToString(con.lector["fecha"]);
+                    his.fecha = Convert.ToDateTime(con.lector["fecha"]);
                     his.paciente= new Paciente();
                     his.paciente.nombre = (string)con.lector["nomP"];
                     his.paciente.apellido = (string) con.lector["apeP"];
@@ -48,7 +48,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("INSERT INTO Historiales (ID_Paciente,ID_Doctor,observaciones,fecha) VALUES (@cliente,@personal,'" + historia.observacion + "','" + historia.fecha + "' )");
+                con.consultar("INSERT INTO Historiales (ID_Paciente,ID_Doctor,observaciones,fecha) VALUES (@cliente,@personal,'" + historia.observacion + "','" + historia.fecha.ToString("yyyy-MM-dd") + "' )");
                 con.setear_parametros("@cliente",historia.paciente.id);
                 con.setear_parametros("@personal",historia.doctor.id);
                 con.ejecutar_escritura();

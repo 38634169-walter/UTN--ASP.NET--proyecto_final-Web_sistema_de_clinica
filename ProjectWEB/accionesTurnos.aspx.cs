@@ -12,39 +12,60 @@ namespace ProjectWEB
 {
     public partial class verTurnos : System.Web.UI.Page
     {
-        public Turno turno;
-        public List<Doctor> doctoreslList;
-        public List<Turno> turnosList;
+        public static Turno turno;
+        public static int horaEditando=99;
+        public List<Doctor> doctoresList;
+        public List<Doctor> doctoresList2;
         public List<Paciente> pacientesList;
+        public List<Turno> turnosList;
+        public List<Horario> horariosList;
         public string noRegistrado ;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
-                DropEspecialidad.DataSource = espNego.listar();
+                DropEspecialidad.DataSource = espNego.listar_especilidades_para_turnos();
                 DropEspecialidad.DataValueField = "id";
                 DropEspecialidad.DataTextField = "nombre";
                 DropEspecialidad.DataBind();
-                DropEspecialidad.Items.Insert(0,new ListItem("[Seleccionar]","0"));
-            }
+                DropEspecialidad.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
 
-            if (Request.QueryString["id"] != null)
-            {
-                LabelTitulo.Text = "Editar Turno";
-                ButtonReservar.Text = "Confirmar";
-                turno = new Turno();
-                int id = Convert.ToInt32(Request.QueryString["id"]);
-                TurnoNegocio turNego = new TurnoNegocio();
-                turno = turNego.buscar_por_id(id);
-                if (!IsPostBack)
+                if (Request.QueryString["id"] != null)
                 {
-                    TextBoxDni.Text = turno.doctor.dni;
-                    DropEspecialidad.SelectedIndex= turno.especialidad.id;
+                    LabelTitulo.Text = "Editar Turno";
+                    ButtonReservar.Text = "Confirmar";
+                    turno = new Turno();
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    TurnoNegocio turNego = new TurnoNegocio();
+                    turno = turNego.buscar_por_id(id);
+
+                    TextBoxDni.Text = turno.paciente.dni;
+                    TextBoxfecha.Text = String.Format("{0:yyyy-MM-dd}", turno.fecha);
+                    DropEspecialidad.SelectedIndex = turno.especialidad.id;
+
+                    horaEditando = turno.hora;
+                    int[] horariosDisponibles = horarios_disponibles();
+                    DropHora.DataSource = horariosDisponibles;
+                    DropHora.DataBind();
+                    DropHora.SelectedValue=horaEditando.ToString();
+                    horaEditando = 99;
+
+
+                    //
+                    DoctorNegocio docNego = new DoctorNegocio();
+                    doctoresList = new List<Doctor>();
+                    doctoresList = docNego.listar("especialidades con turno disponible", turno.especialidad.id);
+
+                    DropPersonalDisponible.DataSource = doctoresList;
+                    DropPersonalDisponible.DataValueField = "id";
+                    DropPersonalDisponible.DataTextField = "nombreCompleto";
+                    DropPersonalDisponible.DataBind();
+                    DropPersonalDisponible.SelectedValue = turno.doctor.id.ToString();
+                    //
                 }
-            }
-            else
-            {
-                if (!IsPostBack) {
+                else
+                {
                     DropEspecialidad.Visible = false;
                     LabelEspecilidad.Visible = false;
                     TextBoxfecha.Visible = false;
@@ -53,6 +74,7 @@ namespace ProjectWEB
                     LabelHora.Visible = false;
                     DropPersonalDisponible.Visible = false;
                     LabelPersonal.Visible = false;
+                    
                 }
             }
         }
@@ -65,17 +87,25 @@ namespace ProjectWEB
         }
         protected void DropEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            TextBoxfecha.Text = "";
+            DropHora.Visible = false;
+            LabelHora.Visible = false;
             int id = Convert.ToInt32(DropEspecialidad.SelectedValue);
+            turno.especialidad = new Especialidad();
+            turno.especialidad.id = Convert.ToInt32(DropEspecialidad.SelectedValue);
 
+
+            //
             DoctorNegocio docNego = new DoctorNegocio();
-            doctoreslList = new List<Doctor>();
-            doctoreslList = docNego.listar("especialidad", id);
-            
-            DropPersonalDisponible.DataSource = doctoreslList;
+            doctoresList = new List<Doctor>();
+            doctoresList = docNego.listar("especialidades con turno disponible", id);
+
+            DropPersonalDisponible.DataSource = doctoresList;
             DropPersonalDisponible.DataValueField = "id";
             DropPersonalDisponible.DataTextField = "nombreCompleto";
             DropPersonalDisponible.DataBind();
             DropPersonalDisponible.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+            //
             
             DropPersonalDisponible.Visible = true;
             LabelPersonal.Visible = true;
@@ -83,65 +113,121 @@ namespace ProjectWEB
 
         protected void DropPersonalDisponible_SelectedIndexChanged(object sender, EventArgs e)
         {
+            TextBoxfecha.Text = "";
+            DropHora.Visible = false;
+            LabelHora.Visible = false;
+
+            turno.doctor = new Doctor();
+            turno.doctor.id = Convert.ToInt32(DropPersonalDisponible.SelectedValue);
             TextBoxfecha.Visible = true;
             LabelFecha.Visible = true;
         }
         protected void TextBoxfecha_TextChanged(object sender, EventArgs e)
         {
-            int idEspecialidad = Convert.ToInt32(DropEspecialidad.SelectedValue);
-            int idDoctor = Convert.ToInt32(DropPersonalDisponible.SelectedValue);
-            string fecha = TextBoxfecha.Text;
-
-
-            //TurnoNegocio turNego = new TurnoNegocio();
-            //turnosList=turNego.buscar_horarios(idEspecialidad,idDoctor, fecha);
-            int[] n = new int[3];
-            n[0] = 1;
-            n[1] = 2;
-            n[2] = 4;
-
+            
+            int[] horariosDisponibles = horarios_disponibles();
 
             DropHora.Visible = true;
             LabelHora.Visible = true;
-            DropHora.DataSource = n;
-            //DropHora.DataValueField = "id";
-            //DropHora.DataTextField = "hora";
+            DropHora.DataSource = horariosDisponibles;
             DropHora.DataBind();
-            DropHora.Items.Insert(0, new ListItem("Seleccionar", "0"));
+        }
+
+        protected void ButtonReservar_Click(object sender, EventArgs e)
+        {
+            turno.hora = Convert.ToInt32(DropHora.SelectedValue);
+            
+            
+            //////
+            turno.secretaria = new Secretaria();
+            turno.secretaria.id = 1;
+            /////
+            ///
+            TurnoNegocio turNego = new TurnoNegocio();
+            turNego.agregar(turno);
+            string accion = "agregado";
+            Response.Redirect("inicio.aspx?accion=" + accion);
+        }
+
+
+
+
+
+
+
+        public bool validar_dni()
+        {
+            PacienteNegocio pacNego = new PacienteNegocio();
+            pacientesList = pacNego.buscar("dni", TextBoxDni.Text);
+            if (pacientesList.Any())
+            {
+                if(turno == null) turno = new Turno();
+                turno.paciente = new Paciente();
+                turno.paciente.id = pacientesList[0].id;
+                return true;
+            }
+            Response.Redirect("accionesPaciente.aspx?noRegistrado=" + "noRegistrado");
+            return false;
             
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        public int[] horarios_disponibles()
         {
+            turno.fecha = Convert.ToDateTime(TextBoxfecha.Text);
+            TurnoNegocio turNego = new TurnoNegocio();
+            turnosList = turNego.turnos_medico_especialidad_fecha(turno);
+            HorarioNegocio horNego = new HorarioNegocio();
+            doctoresList2 = horNego.horarios_doctor_especialidad(turno.doctor.id, turno.especialidad.id);
 
-        }
-        public bool validar_dni()
-        {
-            if (TextBoxDni.Text == "")
-            {
-                LabelValidar.Text = "*Ingresar DNI del paciente";
-                
-                DropPersonalDisponible.Visible = false;
-                LabelPersonal.Visible = false;
-                TextBoxfecha.Visible = false;
-                LabelFecha.Visible = false;
-                DropHora.Visible = false;
-                LabelHora.Visible = false;
 
-                return false;
-            }
-            else
+            int cont = 0;
+            foreach (var doctor in doctoresList2)
             {
-                PacienteNegocio pacNego = new PacienteNegocio();
-                pacientesList = pacNego.buscar("dni", TextBoxDni.Text);
-                if (pacientesList.Any())
+                for (int i = doctor.horario.horaInicio; i < doctor.horario.horaFin; i++)
                 {
-                    LabelValidar.Text = "";
-                    return true;
+                    cont++;
+                    foreach (var turno in turnosList)
+                    {
+                        if (turno.hora == i)
+                        {
+                            cont--;
+                        }
+                    }
                 }
-                Response.Redirect("accionesPaciente.aspx?noRegistrado=" + "noRegistrado");
-                return false;
             }
+            if (horaEditando != 99)
+            {
+                cont++;
+            }
+            int[] horariosDisponibles = new int[cont];
+
+            cont = 0;
+            bool b = false;
+            foreach (var doctor in doctoresList2)
+            {
+                for (int i = doctor.horario.horaInicio; i < doctor.horario.horaFin; i++)
+                {
+                    foreach (var turno in turnosList)
+                    {
+                        if (turno.hora == i)
+                        {
+                            b = true;
+                            if (horaEditando == turno.hora)
+                            {
+                                horariosDisponibles[cont] = horaEditando;
+                                cont++;
+                            }
+                        }
+                    }
+                    if (b == false)
+                    {
+                        horariosDisponibles[cont] = i;
+                        cont++;
+                    }
+                    b = false;
+                }
+            }
+            return horariosDisponibles;
         }
 
     }

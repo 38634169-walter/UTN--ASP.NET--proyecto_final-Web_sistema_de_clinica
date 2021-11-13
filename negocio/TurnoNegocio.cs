@@ -17,26 +17,30 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT dPaciente.nombre nomP,dPaciente.apellido apeP,dPaciente.dni dniP,dDoctores.nombre nomD, dDoctores.apellido apeD,dSecretaria.nombre nomS,dSecretaria.apellido apeS,e.nombre nomE,t.fecha, t.hora FROM Turnos t, Pacientes p, Datos_Personales dPaciente,Doctores d,Empleados eDoctores, Datos_Personales dDoctores,Secretarias s, Empleados eSecretaria, Datos_Personales dSecretaria,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dPaciente.IDDatosPersonales AND t.ID_Doctor =d.IDDoctor AND d.ID_Empleado=eDoctores.IDEmpleado AND eDoctores.ID_DatosPersonales=dDoctores.IDDatosPersonales AND t.ID_Secretaria=s.IDSecretaria AND s.ID_Empleado=eSecretaria.IDEmpleado AND eSecretaria.ID_DatosPersonales=dSecretaria.IDDatosPersonales AND t.ID_Especialidad=e.IDEspecialidad AND t.IDTurno = '" + id + "' ");
+                con.consultar("SELECT p.IDPaciente,d.IDDoctor,s.IDSecretaria,e.IDEspecialidad,dPaciente.nombre nomP,dPaciente.apellido apeP,dPaciente.dni dniP,dDoctores.nombre nomD, dDoctores.apellido apeD,dSecretaria.nombre nomS,dSecretaria.apellido apeS,e.nombre nomE,t.fecha, t.hora FROM Turnos t, Pacientes p, Datos_Personales dPaciente,Doctores d,Empleados eDoctores, Datos_Personales dDoctores,Secretarias s, Empleados eSecretaria, Datos_Personales dSecretaria,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dPaciente.IDDatosPersonales AND t.ID_Doctor =d.IDDoctor AND d.ID_Empleado=eDoctores.IDEmpleado AND eDoctores.ID_DatosPersonales=dDoctores.IDDatosPersonales AND t.ID_Secretaria=s.IDSecretaria AND s.ID_Empleado=eSecretaria.IDEmpleado AND eSecretaria.ID_DatosPersonales=dSecretaria.IDDatosPersonales AND t.ID_Especialidad=e.IDEspecialidad AND t.IDTurno = '" + id + "' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
                     turno.id = id;
-                    turno.fecha = Convert.ToString(con.lector["fecha"]);
+                    turno.fecha =Convert.ToDateTime(con.lector["fecha"]);
                     turno.hora = Convert.ToInt32(con.lector["hora"]);
 
                     turno.especialidad = new Especialidad();
+                    turno.especialidad.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
                     turno.especialidad.nombre = (string)con.lector["nomE"];
 
                     turno.doctor = new Doctor();
+                    turno.doctor.id = Convert.ToInt32(con.lector["IDDoctor"]);
                     turno.doctor.nombre = (string)con.lector["nomD"];
                     turno.doctor.apellido = (string)con.lector["apeD"];
 
                     turno.secretaria = new Secretaria();
+                    turno.secretaria.id = Convert.ToInt32(con.lector["IDSecretaria"]);
                     turno.secretaria.nombre = (string)con.lector["nomS"];
                     turno.secretaria.apellido = (string)con.lector["apeS"];
 
                     turno.paciente = new Paciente();
+                    turno.paciente.id = Convert.ToInt32(con.lector["IDPaciente"]);
                     turno.paciente.nombre = (string)con.lector["nomP"];
                     turno.paciente.apellido = (string)con.lector["apeP"];
                     turno.paciente.dni = (string)con.lector["dniP"];
@@ -87,7 +91,8 @@ namespace negocio
                     Turno tur = new Turno();
                     tur.id = Convert.ToInt32(con.lector["IDTurno"]);
                     tur.hora = Convert.ToInt32(con.lector["hora"]);
-                    tur.fecha = con.lector["fecha"].ToString();
+                    tur.fecha = Convert.ToDateTime(con.lector["fecha"]);
+                    
 
                     tur.especialidad = new Especialidad();
                     tur.especialidad.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
@@ -137,7 +142,7 @@ namespace negocio
                 while (con.lector.Read())
                 {
                     Turno tur = new Turno();
-                    tur.fecha = con.lector["fecha"].ToString();
+                    tur.fecha = Convert.ToDateTime(con.lector["fecha"]);
                     tur.hora =Convert.ToInt32(con.lector["hora"]);
                     tur.paciente = new Paciente();
                     tur.paciente.nombre = (string)con.lector["nombre"];
@@ -174,17 +179,52 @@ namespace negocio
                 con.cerrar_conexion();
             }
         }
-        public void buscar_horarios()
+        public List<Turno> turnos_medico_especialidad_fecha(Turno turno)
+        {
+            List<Turno> turnoList = new List<Turno>();
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("SELECT * FROM Turnos WHERE ID_Doctor = '" + turno.doctor.id + "' AND ID_Especialidad = '" + turno.especialidad.id + "' AND fecha = '" + turno.fecha.ToString("yyyy-MM-dd") + "' AND estado = 1 ");
+                con.ejecutar_lectura();
+                while (con.lector.Read())
+                {
+                    Turno tur = new Turno();
+                    tur.id = Convert.ToInt32(con.lector["IDTurno"]);
+                    tur.hora = Convert.ToInt32(con.lector["hora"]);
+                    turnoList.Add(tur);
+                }
+                return turnoList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
+
+        public void agregar(Turno turno)
         {
             ConexionDB con = new ConexionDB();
             try
             {
-                //con.consultar("SELECT h.horarioInicio,h.horarioFin FROM Doctores d, Empleados d, Empleados_Horairos eh, Horarios h AS d  WHERE  e.IDEmpleado = d.ID_Empleado AND eh.ID_Empleado = e.IDEmpleado AND h.IDHorario = eh.ID_Horario AND d.IDDoctor = '" +  + "' ");
+                con.consultar("INSERT INTO Turnos(ID_Paciente,ID_Especialidad,ID_Doctor,ID_Secretaria,fecha,hora,estado) VALUES(@paciente,@especialidad,@doctor,@secretaria,'" + turno.fecha.ToString("yyyy-MM-dd") + "','" + turno.hora + "', '1' ) ");
+                con.setear_parametros("@paciente",turno.paciente.id);
+                con.setear_parametros("@especialidad",turno.especialidad.id);
+                con.setear_parametros("@doctor",turno.doctor.id);
+                con.setear_parametros("@secretaria",turno.secretaria.id);
+                con.ejecutar_escritura();
             }
             catch (Exception ex)
             {
-
                 throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
             }
         }
     }

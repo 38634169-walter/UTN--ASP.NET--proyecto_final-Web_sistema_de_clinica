@@ -32,7 +32,7 @@ namespace ProjectWEB
             //NO BORRAR//historia.doctor.id = Convert.ToInt32(Session["ID_Usuario"]);
             historia.doctor.id = 1;
             historia.observacion = TextBoxObservacion.Text;
-            historia.fecha=DateTime.Now.ToString();
+            historia.fecha = DateTime.Now;
 
             HistorialNegocio hisNego = new HistorialNegocio();
             hisNego.agregar(historia);
