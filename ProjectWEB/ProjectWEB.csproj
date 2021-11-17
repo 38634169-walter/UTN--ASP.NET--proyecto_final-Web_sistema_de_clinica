@@ -127,7 +127,7 @@
     <Content Include="Content\scripts\modificado.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
     <Content Include="Content\scripts\quitarEsp.js" />
-    <Content Include="Content\scripts\validacionesss.js" />
+    <Content Include="Content\scripts\validaciones.js" />
     <Content Include="eliminarHorario.aspx" />
     <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
@@ -187,6 +187,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="verHistorialPaciente.aspx" />
+    <Content Include="verHistoriaPaciente.aspx" />
     <Content Include="verInfoPaciente.aspx" />
     <Content Include="verInfoTurno.aspx" />
     <Content Include="verPacientes.aspx" />
@@ -324,6 +325,13 @@
     </Compile>
     <Compile Include="verHistorialPaciente.aspx.designer.cs">
       <DependentUpon>verHistorialPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verHistoriaPaciente.aspx.cs">
+      <DependentUpon>verHistoriaPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verHistoriaPaciente.aspx.designer.cs">
+      <DependentUpon>verHistoriaPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="verInfoPaciente.aspx.cs">
       <DependentUpon>verInfoPaciente.aspx</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verDoctores.aspx.cs" Inherits="ProjectWEB.verPersonal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div>
+    <div>
         <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de Medicos</h1>
     </div>
 

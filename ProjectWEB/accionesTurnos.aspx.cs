@@ -13,6 +13,7 @@ namespace ProjectWEB
     public partial class verTurnos : System.Web.UI.Page
     {
         public static Turno turno;
+        public Paciente paciente;
         public static int horaEditando=99;
         public List<Doctor> doctoresList;
         public List<Doctor> doctoresList2;
@@ -135,18 +136,29 @@ namespace ProjectWEB
 
         protected void ButtonReservar_Click(object sender, EventArgs e)
         {
-            turno.hora = Convert.ToInt32(DropHora.SelectedValue);
-            
-            
-            //////
             turno.secretaria = new Secretaria();
             turno.secretaria.id = 1;
-            /////
-            ///
-            TurnoNegocio turNego = new TurnoNegocio();
-            turNego.agregar(turno);
-            string accion = "agregado";
-            Response.Redirect("inicio.aspx?accion=" + accion);
+            turno.hora = Convert.ToInt32(DropHora.SelectedValue);
+            
+            string accion = "";
+            if (turno.id != 0)
+            {
+                turno.estado = new EstadoTurno();
+                turno.estado.id = 4;
+                TurnoNegocio turNego = new TurnoNegocio();
+                turNego.modificar(turno);
+                accion = "modificado";
+            }
+            else{ 
+
+
+                turno.estado = new EstadoTurno();
+                turno.estado.id = 2;
+                TurnoNegocio turNego = new TurnoNegocio();
+                turNego.agregar(turno);
+                accion = "agregado";
+            }
+            Response.Redirect("inicio.aspx?accion=" + accion); 
         }
 
 
@@ -158,12 +170,13 @@ namespace ProjectWEB
         public bool validar_dni()
         {
             PacienteNegocio pacNego = new PacienteNegocio();
-            pacientesList = pacNego.buscar("dni", TextBoxDni.Text);
-            if (pacientesList.Any())
+            paciente = new Paciente();
+            paciente = pacNego.buscar("dni", TextBoxDni.Text);
+            if (paciente != null)
             {
                 if(turno == null) turno = new Turno();
                 turno.paciente = new Paciente();
-                turno.paciente.id = pacientesList[0].id;
+                turno.paciente.id = paciente.id;
                 return true;
             }
             Response.Redirect("accionesPaciente.aspx?noRegistrado=" + "noRegistrado");

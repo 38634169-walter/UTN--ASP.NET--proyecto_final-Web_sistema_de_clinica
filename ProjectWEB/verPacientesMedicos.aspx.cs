@@ -12,7 +12,8 @@ namespace ProjectWEB
 {
     public partial class verPacientesMedicos : System.Web.UI.Page
     {
-        public List<Paciente> pacientesList;
+        public static List<Paciente> pacientesList;
+        public Paciente paciente;
         protected void Page_Load(object sender, EventArgs e)
         {
             PacienteNegocio pasNego = new PacienteNegocio();
@@ -21,11 +22,13 @@ namespace ProjectWEB
 
         protected void ButtonBuscarPaciente_Click(object sender, EventArgs e)
         {
-            if (TextBoxDni.Text != "")
+            string dni = TextBoxDni.Text;
+            PacienteNegocio pacNego = new PacienteNegocio();
+            paciente = pacNego.buscar("dni",dni);
+            pacientesList = new List<Paciente>();
+            if (! String.IsNullOrEmpty(paciente.nombre))
             {
-                string dni = TextBoxDni.Text;
-                PacienteNegocio pacNego = new PacienteNegocio();
-                pacientesList = pacNego.buscar("dni",dni);
+                pacientesList.Add(paciente);
             }
         }
     }

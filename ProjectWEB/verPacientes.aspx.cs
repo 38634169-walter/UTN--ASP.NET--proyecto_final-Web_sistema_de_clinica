@@ -12,18 +12,12 @@ namespace ProjectWEB
 {
     public partial class verClientes : System.Web.UI.Page
     {
-        public List<Paciente> pacientesList;
+        public static List<Paciente> pacientesList;
+        public Paciente paciente=null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
-            {
-                PacienteNegocio pacNego = new PacienteNegocio();
-                string id = (string)Request.QueryString["id"];
-                pacientesList = new List<Paciente>();
-                pacientesList=pacNego.buscar("id", id);
-            }
-            else
+            if (!IsPostBack)
             {
                 PacienteNegocio pacNego = new PacienteNegocio();
                 pacientesList = pacNego.listar();
@@ -34,13 +28,11 @@ namespace ProjectWEB
         {
             string dni = TextBoxDni.Text;
             PacienteNegocio pacNego = new PacienteNegocio();
+            paciente = pacNego.buscar("dni",dni);
             pacientesList = new List<Paciente>();
-            pacientesList = pacNego.buscar("dni",dni);
-            string id = "";
-            if (pacientesList.Any()) {
-                id = pacientesList[0].id.ToString(); ;
+            if(! String.IsNullOrEmpty(paciente.nombre)) {
+                pacientesList.Add(paciente);
             }
-            Response.Redirect("verPacientes.aspx?id=" + id);
         }
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Administrador.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="Empleado.cs" />
+    <Compile Include="EstadoTurno.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Especialidad.cs" />

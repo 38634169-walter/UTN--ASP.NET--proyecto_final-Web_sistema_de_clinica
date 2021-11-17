@@ -19,10 +19,8 @@ namespace ProjectWEB
             {
                 string id = (string)Request.QueryString["id"];
                 PacienteNegocio pacNego = new PacienteNegocio();
-                List<Paciente> pacientesList = new List<Paciente>();
                 paciente = new Paciente();
-                pacientesList = pacNego.buscar("id",id);
-                paciente=pacientesList[0];
+                paciente = pacNego.buscar("id",id);
             }
         }
     }

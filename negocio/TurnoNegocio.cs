@@ -65,16 +65,16 @@ namespace negocio
             switch (buscarPor)
             {
                 case "lista":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.estado='1' ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
                     break;
                 case "dni":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND t.estado='1' ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
                     break;
                 case "fecha":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND t.estado='1' ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
                     break;
                 case "fecha y dni":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND dp.dni = '" + buscar2 + "' AND t.estado='1' ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND dp.dni = '" + buscar2 + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
                     break;
             }
 
@@ -127,11 +127,11 @@ namespace negocio
             string consulta = "";
             switch (buscarPor)
             {
-                case "todo":
-                    consulta = "SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.estado='1' ";
+                case "todo":                    
+                    consulta = "SELECT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE,t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp WHERE t.ID_EstadoTurno=et.IDEstadoTurno AND t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND (t.ID_EstadoTurno=4 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=1)";
                     break;
                 case "fecha":
-                    consulta = "SELECT dp.nombre,dp.apellido,dp.dni,t.fecha,t.hora FROM Turnos t, Pacientes p, Datos_Personales dp WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.fecha='" + buscar + "' AND t.estado='1' ";
+                    consulta = "SELECT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE, t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp WHERE t.ID_EstadoTurno=et.IDEstadoTurno AND t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor='" + id + "' AND t.fecha='" + buscar + "' AND (t.ID_EstadoTurno=4 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=1) ";
                     break;
             }
 
@@ -142,12 +142,16 @@ namespace negocio
                 while (con.lector.Read())
                 {
                     Turno tur = new Turno();
+                    tur.id = Convert.ToInt32(con.lector["IDTurno"]);
                     tur.fecha = Convert.ToDateTime(con.lector["fecha"]);
                     tur.hora =Convert.ToInt32(con.lector["hora"]);
                     tur.paciente = new Paciente();
-                    tur.paciente.nombre = (string)con.lector["nombre"];
+                    tur.paciente.id = Convert.ToInt32(con.lector["IDPaciente"]);
+                    tur.paciente.nombre = (string)con.lector["nombreP"];
                     tur.paciente.apellido = (string)con.lector["apellido"];
                     tur.paciente.dni = (string)con.lector["dni"];
+                    tur.estado = new EstadoTurno();
+                    tur.estado.nombre = (string)con.lector["nombreE"];
                     turnosList.Add(tur);
                 }
                 return turnosList;
@@ -185,7 +189,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT * FROM Turnos WHERE ID_Doctor = '" + turno.doctor.id + "' AND ID_Especialidad = '" + turno.especialidad.id + "' AND fecha = '" + turno.fecha.ToString("yyyy-MM-dd") + "' AND estado = 1 ");
+                con.consultar("SELECT * FROM Turnos WHERE ID_Doctor = '" + turno.doctor.id + "' AND ID_Especialidad = '" + turno.especialidad.id + "' AND fecha = '" + turno.fecha.ToString("yyyy-MM-dd") + "' AND (ID_EstadoTurno=4 OR ID_EstadoTurno=2 OR ID_EstadoTurno=1) ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
@@ -211,11 +215,37 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("INSERT INTO Turnos(ID_Paciente,ID_Especialidad,ID_Doctor,ID_Secretaria,fecha,hora,estado) VALUES(@paciente,@especialidad,@doctor,@secretaria,'" + turno.fecha.ToString("yyyy-MM-dd") + "','" + turno.hora + "', '1' ) ");
+                con.consultar("INSERT INTO Turnos(ID_Paciente,ID_Especialidad,ID_Doctor,ID_Secretaria,ID_EstadoTurno,fecha,hora) VALUES(@paciente,@especialidad,@doctor,@secretaria,@estado,'" + turno.fecha.ToString("yyyy-MM-dd") + "','" + turno.hora + "') ");
                 con.setear_parametros("@paciente",turno.paciente.id);
                 con.setear_parametros("@especialidad",turno.especialidad.id);
                 con.setear_parametros("@doctor",turno.doctor.id);
                 con.setear_parametros("@secretaria",turno.secretaria.id);
+                con.setear_parametros("@estado",turno.estado.id);
+                con.ejecutar_escritura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.cerrar_conexion();
+            }
+        }
+
+        public void modificar(Turno turno)
+        {
+            ConexionDB con = new ConexionDB();
+            try
+            {
+                con.consultar("UPDATE Turnos SET ID_Paciente=@paciente , ID_Especialidad = @especialidad, ID_Doctor = @doctor, ID_Secretaria = @secretaria, ID_EstadoTurno = @estadoTurno ,fecha = @fecha, hora = @hora WHERE IDTurno='" + turno.id + "' ");
+                con.setear_parametros("@paciente",turno.paciente.id);
+                con.setear_parametros("@especialidad",turno.especialidad.id);
+                con.setear_parametros("@doctor",turno.doctor.id);
+                con.setear_parametros("@secretaria",turno.secretaria.id);
+                con.setear_parametros("@estadoTurno",turno.estado.id);
+                con.setear_parametros("@fecha",turno.fecha);
+                con.setear_parametros("@hora",turno.hora);
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

@@ -35,7 +35,6 @@
                         <td> <%: paciente.dni %> </td>
                         <td style="height:1cm;">
                             <a href="/verHistorialPaciente.aspx?id=<%: paciente.id %>" class="m-1"><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
-                            <a href="/agregarHistorialPaciente.aspx?id=<%: paciente.id %>" class="m-1"><i class="fas fa-plus text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                         </td>
                     </tr>
                 <% } %>

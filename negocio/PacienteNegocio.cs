@@ -11,7 +11,7 @@ namespace negocio
 {
     public class PacienteNegocio
     {
-        public List<Paciente> buscar(string buscarPor,string buscar)
+        public Paciente buscar(string buscarPor,string buscar)
         {
             string consulta = "";
             switch(buscarPor)
@@ -25,7 +25,7 @@ namespace negocio
                     break;
             }
 
-            List<Paciente> pacientesList = new List<Paciente>();
+            Paciente paciente = new Paciente();
             ConexionDB con = new ConexionDB();
             try
             {
@@ -33,17 +33,15 @@ namespace negocio
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
-                    Paciente pac = new Paciente();
-                    pac.idDatosPersonales = Convert.ToInt32(con.lector["IDDatosPersonales"]);
-                    pac.id = Convert.ToInt32(con.lector["IDPaciente"]);
-                    pac.nombre = (string)con.lector["nombre"];
-                    pac.apellido = (string)con.lector["apellido"];
-                    pac.dni = (string)con.lector["dni"];
-                    pac.email = (string)con.lector["email"];
-                    pac.telefono = (string)con.lector["telefono"];
-                    pacientesList.Add(pac);
+                    paciente.idDatosPersonales = Convert.ToInt32(con.lector["IDDatosPersonales"]);
+                    paciente.id = Convert.ToInt32(con.lector["IDPaciente"]);
+                    paciente.nombre = (string)con.lector["nombre"];
+                    paciente.apellido = (string)con.lector["apellido"];
+                    paciente.dni = (string)con.lector["dni"];
+                    paciente.email = (string)con.lector["email"];
+                    paciente.telefono = (string)con.lector["telefono"];
                 }
-                return pacientesList;
+                return paciente;
             }
             catch (Exception ex)
             {

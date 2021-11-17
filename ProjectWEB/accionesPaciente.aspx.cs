@@ -13,7 +13,6 @@ namespace ProjectWEB
     public partial class agregarPaciente : System.Web.UI.Page
     {
         public Paciente paciente;
-        public List<Paciente> pacienteList;
         public static string pacienteDniEditar;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,9 +25,7 @@ namespace ProjectWEB
                 paciente = new Paciente();
                 string id = (string)Request.QueryString["id"];
                 PacienteNegocio pacNego = new PacienteNegocio();
-                List<Paciente> pacientesList = new List<Paciente>();
-                pacientesList = pacNego.buscar("id",id);
-                paciente = pacientesList[0];
+                paciente = pacNego.buscar("id",id);
 
                 if (!IsPostBack)
                 {
@@ -80,8 +77,8 @@ namespace ProjectWEB
         public bool validar_paciente_existente()
         {
             PacienteNegocio pacNego = new PacienteNegocio();
-            pacienteList = pacNego.buscar("dni", TextBoxDni.Text);
-            if (pacienteList.Any())
+            paciente = pacNego.buscar("dni", TextBoxDni.Text);
+            if (paciente != null)
             {
                 if(pacienteDniEditar != null && pacienteDniEditar == TextBoxDni.Text)
                 {
