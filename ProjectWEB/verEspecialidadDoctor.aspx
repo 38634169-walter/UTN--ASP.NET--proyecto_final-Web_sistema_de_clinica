@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="agregarEspecialidadDoctor.aspx.cs" Inherits="ProjectWEB.agregarEspecialidadPersonal" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verEspecialidadDoctor.aspx.cs" Inherits="ProjectWEB.agregarEspecialidadPersonal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
@@ -22,10 +22,8 @@
                     { %>
                     <tr>
                         <td> <%: doctor.especialidad.nombre  %> </td>
-                        <td style="height:1cm;">
-                            <a href="quitarEspecialidad.aspx?idEsp=<%: doctor.especialidad.id %> &idDoc= <%: doctor.id %>">
-                                <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
-                            </a>
+                        <td style="height:1cm;" class="d-flex justify-content-center align-items-center flex-row">
+                            <a class="quitarEspecialidadesDoctores d-none" href="quitarEspecialidad.aspx?idEsp=<%: doctor.especialidad.id %> &idDoc= <%: doctor.id %>"><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
 
 
 
@@ -47,15 +45,16 @@
         </table>
     </div> 
     
-    
-    <div class="d-flex justify-content-center align-items-center flex-column">
-        <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
-    </div>
+    <div class="asignarEspecilidadesDoctores d-none">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
+        </div>
 
-    <div class="d-flex justify-content-center align-items-center flex-column">
-        <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-        <asp:DropDownList ID="DropEspecialidad" runat="server"></asp:DropDownList>
-        <asp:Button Class="btn btn-success mt-3" ID="ButtonAsignar" runat="server" Text="Asignar especilidad" OnClick="ButtonAsignar_Click" />
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
+            <asp:DropDownList ID="DropEspecialidad" runat="server"></asp:DropDownList>
+            <asp:Button Class="btn btn-success mt-3" ID="ButtonAsignar" runat="server" Text="Asignar especilidad" OnClick="ButtonAsignar_Click" />
+        </div>
     </div>
     <script class="text-center" src="/Content/scripts/quitarEsp.js"></script>
 </asp:Content>

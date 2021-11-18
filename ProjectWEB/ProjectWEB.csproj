@@ -109,9 +109,9 @@
     <Content Include="accionesDoctores.aspx" />
     <Content Include="accionesTurnos.aspx" />
     <Content Include="agregarEspecialidad.aspx" />
-    <Content Include="agregarEspecialidadDoctor.aspx" />
+    <Content Include="verEspecialidadDoctor.aspx" />
     <Content Include="agregarHistorialPaciente.aspx" />
-    <Content Include="agregarHorarioDoctor.aspx" />
+    <Content Include="verHorarioDoctor.aspx" />
     <Content Include="Content\bootstrap5\.babelrc.js" />
     <Content Include="Content\bootstrap5\.gitattributes" />
     <Content Include="Content\bootstrap5\.gitignore" />
@@ -192,7 +192,7 @@
     <Content Include="verInfoPaciente.aspx" />
     <Content Include="verInfoTurno.aspx" />
     <Content Include="verPacientes.aspx" />
-    <Content Include="verPacientesMedicos.aspx" />
+    <Content Include="verHistoriales.aspx" />
     <Content Include="verDoctores.aspx" />
     <Content Include="verTurnos.aspx" />
     <Content Include="verTurnosMedicos.aspx" />
@@ -230,12 +230,12 @@
     <Compile Include="agregarEspecialidad.aspx.designer.cs">
       <DependentUpon>agregarEspecialidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="agregarEspecialidadDoctor.aspx.cs">
-      <DependentUpon>agregarEspecialidadDoctor.aspx</DependentUpon>
+    <Compile Include="verEspecialidadDoctor.aspx.cs">
+      <DependentUpon>verEspecialidadDoctor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="agregarEspecialidadDoctor.aspx.designer.cs">
-      <DependentUpon>agregarEspecialidadDoctor.aspx</DependentUpon>
+    <Compile Include="verEspecialidadDoctor.aspx.designer.cs">
+      <DependentUpon>verEspecialidadDoctor.aspx</DependentUpon>
     </Compile>
     <Compile Include="agregarHistorialPaciente.aspx.cs">
       <DependentUpon>agregarHistorialPaciente.aspx</DependentUpon>
@@ -244,12 +244,12 @@
     <Compile Include="agregarHistorialPaciente.aspx.designer.cs">
       <DependentUpon>agregarHistorialPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="agregarHorarioDoctor.aspx.cs">
-      <DependentUpon>agregarHorarioDoctor.aspx</DependentUpon>
+    <Compile Include="verHorarioDoctor.aspx.cs">
+      <DependentUpon>verHorarioDoctor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="agregarHorarioDoctor.aspx.designer.cs">
-      <DependentUpon>agregarHorarioDoctor.aspx</DependentUpon>
+    <Compile Include="verHorarioDoctor.aspx.designer.cs">
+      <DependentUpon>verHorarioDoctor.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -355,12 +355,12 @@
     <Compile Include="verPacientes.aspx.designer.cs">
       <DependentUpon>verPacientes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="verPacientesMedicos.aspx.cs">
-      <DependentUpon>verPacientesMedicos.aspx</DependentUpon>
+    <Compile Include="verHistoriales.aspx.cs">
+      <DependentUpon>verHistoriales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="verPacientesMedicos.aspx.designer.cs">
-      <DependentUpon>verPacientesMedicos.aspx</DependentUpon>
+    <Compile Include="verHistoriales.aspx.designer.cs">
+      <DependentUpon>verHistoriales.aspx</DependentUpon>
     </Compile>
     <Compile Include="verDoctores.aspx.cs">
       <DependentUpon>verDoctores.aspx</DependentUpon>

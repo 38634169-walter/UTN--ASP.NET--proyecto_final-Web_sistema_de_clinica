@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using modelo;
 using negocio;
+using validarPermiso;
 
 namespace ProjectWEB
 {
@@ -14,9 +15,10 @@ namespace ProjectWEB
     {
         public Especialidad especialidad;
         public List<Especialidad> especialidadList;
+        public List<Permiso> permisosList;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            validar_permiso();
         }
 
         protected void ButtonAgregar_Click(object sender, EventArgs e)
@@ -46,6 +48,16 @@ namespace ProjectWEB
                 }
             }
             return validar;
+        }
+        public void validar_permiso()
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            ValidarPermiso valPer = new ValidarPermiso();
+            if (permisosList == null || valPer.validar_permiso(permisosList, "Agregar especialidades") == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
     }
 }

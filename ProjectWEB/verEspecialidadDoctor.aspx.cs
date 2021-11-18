@@ -14,10 +14,11 @@ namespace ProjectWEB
     {
         public List<Especialidad> especialidadList;
         public List<Doctor> doctoresList;
+        public List<Permiso> permisosList;
         public Doctor doctor;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            validarAcciones();
             if (Request.QueryString["id"] != null) {
                 int id =Convert.ToInt32(Request.QueryString["id"]);
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
@@ -49,6 +50,27 @@ namespace ProjectWEB
             string confirmacion = "agregado";
             Response.Redirect("inicio.aspx?accion=" + confirmacion);
             
+        }
+
+        public void validarAcciones()
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            bool val = false;
+            if (permisosList != null)
+            {
+                foreach (var permiso in permisosList)
+                {
+                    if (permiso.nombre == "Asignar especilidades doctores") ScriptManager.RegisterStartupScript(this, typeof(Page), "asignar", "validar_permiso('asignarEspecilidadesDoctores');", true);
+                    if (permiso.nombre == "Quitar especialidades doctores") ScriptManager.RegisterStartupScript(this, typeof(Page), "quitar", "validar_permiso('quitarEspecialidadesDoctores');", true);
+
+                    if (permiso.nombre == "Ver especialidades doctores") val = true;
+                }
+            }
+            if (val == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
 
         protected void ButtonQuitarEspecialidad_Click(object sender, EventArgs e)

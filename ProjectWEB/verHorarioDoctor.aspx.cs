@@ -15,8 +15,10 @@ namespace ProjectWEB
         public List<Doctor> doctoresList;
         public Doctor doctor;
         public List<Especialidad> especialidadList;
+        public List<Permiso> permisosList;
         protected void Page_Load(object sender, EventArgs e)
         {
+            validarAcciones();
             if (Request.QueryString["id"] != null)
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
@@ -95,6 +97,26 @@ namespace ProjectWEB
                 }
             }
             return true;
+        }
+        public void validarAcciones()
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            bool val = false;
+            if (permisosList != null)
+            {
+                foreach (var permiso in permisosList)
+                {
+                    if (permiso.nombre == "Asignar horarios doctores") ScriptManager.RegisterStartupScript(this, typeof(Page), "asignar", "validar_permiso('asignarHorariosDoctores');", true);
+                    if (permiso.nombre == "Eliminar horarios doctores") ScriptManager.RegisterStartupScript(this, typeof(Page), "eliminar", "validar_permiso('eliminarHorariosDoctores');", true);
+
+                    if (permiso.nombre == "Ver horarios doctores") val = true;
+                }
+            }
+            if (val == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)

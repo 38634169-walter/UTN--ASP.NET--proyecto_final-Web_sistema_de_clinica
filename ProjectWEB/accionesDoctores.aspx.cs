@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using modelo;
 using negocio;
+using validarPermiso;
 
 namespace ProjectWEB
 {
@@ -15,6 +16,7 @@ namespace ProjectWEB
         public List<Especialidad> especialidadList;
         public List<Persona> personaList;
         public List<Usuario> usuarioList;
+        public List<Permiso> permisosList;
         public Doctor doctor;
         public static string usuarioEditar;
         protected void Page_Load(object sender, EventArgs e)
@@ -31,6 +33,7 @@ namespace ProjectWEB
 
             if (Request.QueryString["id"] != null)
             {
+                validar_permisos("Editar doctores");
                 ButtonModificar.Style.Add("display", "block");
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 DoctorNegocio docNego = new DoctorNegocio();
@@ -59,6 +62,10 @@ namespace ProjectWEB
                     ButtonAgregar.Style.Add("display","none");
                     LabelTitulo.Text = "Modificar medico";
                 }
+            }
+            else
+            {
+                validar_permisos("Agregar doctores");
             }
         }
 
@@ -179,6 +186,17 @@ namespace ProjectWEB
             }
             
             return validar;
+        }
+
+        public void validar_permisos(string val)
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            ValidarPermiso valPer = new ValidarPermiso();
+            if (permisosList == null || valPer.validar_permiso(permisosList, val) == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
     }
 }

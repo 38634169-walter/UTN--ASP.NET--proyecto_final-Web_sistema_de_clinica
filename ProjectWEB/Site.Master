@@ -108,7 +108,7 @@
                             
                             <div id="verPacientesDoctor" runat="server" class="d-none">
                                 <i class="fas fa-user iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientesMedicos.aspx">Ver Pacientes</a>
+                                <a class="bg-transparent border-0 text-light fw-bold" href="/verHistoriales.aspx">Ver historiales</a>
                             </div>
                     
                     

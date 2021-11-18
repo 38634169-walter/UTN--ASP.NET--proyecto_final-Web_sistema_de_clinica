@@ -40,12 +40,12 @@
                         
                         <% if (turno.estado.nombre == "Modificado" || turno.estado.nombre == "Esperando") { %>
                             <td style="height:1cm;">
-                                <a href="/agregarHistorialPaciente.aspx?id=<%: turno.id %>" class="m-1"><i class="fas fa-plus text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
+                                <a href="/agregarHistorialPaciente.aspx?id=<%: turno.id %>" class="agregarHistoriales d-none m-1"><i class="fas fa-plus text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                             </td>
                         <% } %>
                         <%else { %>
                             <td style="height:1cm;">
-                                <a href="/verHistoriaPaciente.aspx?id=<%: turno.id %>" class="m-1"><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
+                                <a href="/verHistoriaPaciente.aspx?id=<%: turno.id %>" class="verHistoriales d-none m-1"><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>
                             </td>
                         <%} %>
 

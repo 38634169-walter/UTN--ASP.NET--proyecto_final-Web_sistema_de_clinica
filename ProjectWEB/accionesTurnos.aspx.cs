@@ -178,7 +178,8 @@ namespace ProjectWEB
             PacienteNegocio pacNego = new PacienteNegocio();
             paciente = new Paciente();
             paciente = pacNego.buscar("dni", TextBoxDni.Text);
-            if (paciente != null)
+            
+            if (paciente.id != 0)
             {
                 if(turno == null) turno = new Turno();
                 turno.paciente = new Paciente();

@@ -49,7 +49,7 @@ namespace ProjectWEB
                 if (permiso.nombre == "Agregar turnos") agregarTurnos.Attributes["class"] = "d-block mt-3";
 
                 if (permiso.nombre == "Ver turnos para doctor") verTurnosDoctor.Attributes["class"] = "d-block mt-3";
-                if (permiso.nombre == "Ver pacientes para doctor") verPacientesDoctor.Attributes["class"] = "d-block mt-3";
+                if (permiso.nombre == "Ver historiales") verPacientesDoctor.Attributes["class"] = "d-block mt-3";
 
                 if (permiso.nombre == "Agregar doctores") agregarDoctores.Attributes["class"] = "d-block mt-3";
                 if (permiso.nombre == "Ver doctores") verDoctores.Attributes["class"] = "d-block mt-3";
