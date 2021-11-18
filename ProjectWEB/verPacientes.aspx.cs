@@ -13,10 +13,12 @@ namespace ProjectWEB
     public partial class verClientes : System.Web.UI.Page
     {
         public static List<Paciente> pacientesList;
+        public List<Permiso> permisosList;
         public Paciente paciente=null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            validarAcciones();
             if (!IsPostBack)
             {
                 PacienteNegocio pacNego = new PacienteNegocio();
@@ -33,6 +35,25 @@ namespace ProjectWEB
             if(! String.IsNullOrEmpty(paciente.nombre)) {
                 pacientesList.Add(paciente);
             }
+        }
+        public void validarAcciones()
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            bool val = false;
+            if (permisosList != null)
+            {
+                foreach (var permiso in permisosList)
+                {
+                    if (permiso.nombre == "Editar pacientes") ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "validar_permiso('editarPaciente')", true);
+                    if (permiso.nombre == "Ver pacientes") val = true;
+                }
+            }
+            if (val == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
+            
         }
     }
 }

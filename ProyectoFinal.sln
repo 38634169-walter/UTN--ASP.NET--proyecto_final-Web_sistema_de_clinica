@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "negocio\negocio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conexion", "conexion\conexion.csproj", "{65C3417A-8E03-43C1-A40B-58ADAF004F9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "validarPermiso", "validarPermiso\validarPermiso.csproj", "{3920CED3-6A66-491C-93C6-1A9C11ED6054}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{65C3417A-8E03-43C1-A40B-58ADAF004F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C3417A-8E03-43C1-A40B-58ADAF004F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C3417A-8E03-43C1-A40B-58ADAF004F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3920CED3-6A66-491C-93C6-1A9C11ED6054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3920CED3-6A66-491C-93C6-1A9C11ED6054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3920CED3-6A66-491C-93C6-1A9C11ED6054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3920CED3-6A66-491C-93C6-1A9C11ED6054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

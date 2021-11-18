@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using modelo;
 using negocio;
+using validarPermiso;
 
 namespace ProjectWEB
 {
@@ -14,11 +15,15 @@ namespace ProjectWEB
     {
         public Paciente paciente;
         public static string pacienteDniEditar;
+        public List<Permiso> permisosList; 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Request.QueryString["id"] != null)
             {
+                validarAccion("Editar pacientes");
+
                 LabelTitulo.Text = "Editar Paciente";
                 ButtonAgregarModificar.Text = "Confirmar";
 
@@ -37,6 +42,10 @@ namespace ProjectWEB
                     TextBoxTelefono.Text = paciente.telefono;
                     TextBoxEmail.Text = paciente.email;
                 }
+            }
+            else
+            {
+                validarAccion("Agregar pacientes");
             }
             
             if (Request.QueryString["noRegistrado"] != null)
@@ -88,6 +97,16 @@ namespace ProjectWEB
                 return false;
             }
             return true;
+        }
+        public void validarAccion(string val)
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            ValidarPermiso valPer = new ValidarPermiso();
+            if(permisosList == null || valPer.validar_permiso(permisosList,val) == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
     }
 }

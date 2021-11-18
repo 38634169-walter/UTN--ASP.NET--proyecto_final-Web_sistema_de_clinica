@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using modelo;
 using negocio;
+using validarPermiso;
 
 namespace ProjectWEB
 {
@@ -20,6 +21,7 @@ namespace ProjectWEB
         public List<Paciente> pacientesList;
         public List<Turno> turnosList;
         public List<Horario> horariosList;
+        public List<Permiso> permisosList;
         public string noRegistrado ;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,6 +36,8 @@ namespace ProjectWEB
 
                 if (Request.QueryString["id"] != null)
                 {
+                    validar_permisos("Editar turnos");
+
                     LabelTitulo.Text = "Editar Turno";
                     ButtonReservar.Text = "Confirmar";
                     turno = new Turno();
@@ -67,6 +71,8 @@ namespace ProjectWEB
                 }
                 else
                 {
+                    validar_permisos("Agregar turnos");
+
                     DropEspecialidad.Visible = false;
                     LabelEspecilidad.Visible = false;
                     TextBoxfecha.Visible = false;
@@ -241,6 +247,18 @@ namespace ProjectWEB
                 }
             }
             return horariosDisponibles;
+        }
+
+        public void validar_permisos(string val)
+        {
+            
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            ValidarPermiso valPer = new ValidarPermiso();
+            if (permisosList == null || valPer.validar_permiso(permisosList, val) == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
         }
 
     }

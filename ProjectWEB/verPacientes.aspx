@@ -33,8 +33,8 @@
                                 <td> <%: paciente.nombre %> </td>
                                 <td> <%: paciente.apellido %> </td>
                                 <td> <%: paciente.dni %> </td>
-                                <td style="height:1cm;">
-                                    <a href="/accionesPaciente.aspx?id=<%: paciente.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
+                                <td style="height:1cm;" class="d-flex justify-content-center align-items-center flex-row">
+                                    <a class="editarPaciente d-none" href="/accionesPaciente.aspx?id=<%: paciente.id %>"><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                                     <a href="/verInfoPaciente.aspx?id=<%: paciente.id %>" class=""><i class="far fa-eye text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
                                 </td>
                             </tr>

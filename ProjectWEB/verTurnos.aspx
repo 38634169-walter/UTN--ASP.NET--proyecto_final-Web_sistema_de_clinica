@@ -41,13 +41,11 @@
                         <td> <%: turno.paciente.apellido  %> </td>
                         <td><%: turno.paciente.dni %></td>
                         <td><%: turno.fecha.ToString("dd/MM/yyyy") %></td>
-                        <td style="height:1cm;">
-                           <a href="/accionesTurnos.aspx?id=<%: turno.id %>" class=""><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
+                        <td style="height:1cm;" class="d-flex justify-content-center align-items-center flex-row">
+                           <a href="/accionesTurnos.aspx?id=<%: turno.id %>" class="editarTurno d-none"><i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size:15px;"></i></a>
 
                             
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="alert_eliminar_Click">
-                                <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
-                            </asp:LinkButton>
+                            <a href="/eliminarTurnos.aspx?id=<%: turno.id %>" class="eliminarTurno d-none"><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
 
                             <input id="eliminarTurno" value="<%: turno.id %>" type="text" style="display:none"></input>
                             <a href="/verInfoTurno.aspx?id=<%: turno.id %>" class=""><i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size:15px;"></i></a>

@@ -46,6 +46,7 @@
     <Compile Include="Empleado.cs" />
     <Compile Include="EstadoTurno.cs" />
     <Compile Include="Paciente.cs" />
+    <Compile Include="Permiso.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Historial.cs" />

@@ -14,8 +14,10 @@ namespace ProjectWEB
     {
         public Turno turno;
         public List<Turno> turnosList;
+        public List<Permiso> permisosList;
         protected void Page_Load(object sender, EventArgs e)
         {
+            validarAcciones();
             TurnoNegocio turNego = new TurnoNegocio();
             turnosList = turNego.listar("lista", "","");
         }
@@ -46,6 +48,26 @@ namespace ProjectWEB
                 }
             }
         }
-       
+        public void validarAcciones()
+        {
+            permisosList = new List<Permiso>();
+            permisosList = (List<Permiso>)Session["permisos"];
+            bool val = false;
+            if (permisosList != null)
+            {
+                foreach (var permiso in permisosList)
+                {
+                    if (permiso.nombre == "Editar turnos") ScriptManager.RegisterStartupScript(this, typeof(Page), "editar", "validar_permiso('editarTurno');", true);
+                    if (permiso.nombre == "Eliminar turnos") ScriptManager.RegisterStartupScript(this, typeof(Page), "eliminar", "validar_permiso('eliminarTurno');", true);
+                    
+                    if (permiso.nombre == "Ver turnos") val = true;
+                }
+            }
+            if (val == false)
+            {
+                Response.Redirect("inicio.aspx");
+            }
+        }
+
     }
 }

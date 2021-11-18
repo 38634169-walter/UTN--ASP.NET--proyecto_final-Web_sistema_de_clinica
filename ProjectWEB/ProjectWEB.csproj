@@ -128,6 +128,7 @@
     <Content Include="Content\scripts\noRegistrado.js" />
     <Content Include="Content\scripts\quitarEsp.js" />
     <Content Include="Content\scripts\validaciones.js" />
+    <Content Include="Content\scripts\validarPerm.js" />
     <Content Include="eliminarHorario.aspx" />
     <Content Include="eliminarTurnos.aspx" />
     <Content Include="favicon.ico" />
@@ -418,6 +419,10 @@
     <ProjectReference Include="..\negocio\negocio.csproj">
       <Project>{35e0e942-4a3b-4d16-99d6-25d478f4ff7f}</Project>
       <Name>negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\validarPermiso\validarPermiso.csproj">
+      <Project>{3920ced3-6a66-491c-93c6-1a9c11ed6054}</Project>
+      <Name>validarPermiso</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
