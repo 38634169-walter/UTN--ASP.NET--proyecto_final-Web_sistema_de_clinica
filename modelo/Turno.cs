@@ -11,7 +11,7 @@ namespace modelo
         public int id { get; set; }
         public Especialidad especialidad { get; set; }
         public Doctor doctor { get; set; }
-        public Secretaria secretaria { get; set; }
+        public Empleado empleado { get; set; }
         public Paciente paciente { get; set; }
         public EstadoTurno estado { get; set; }
         public Historial historia { get; set; }

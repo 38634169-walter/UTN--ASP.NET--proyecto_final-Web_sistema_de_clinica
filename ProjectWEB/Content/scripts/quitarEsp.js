@@ -14,7 +14,7 @@
         if (result.isConfirmed) {
             var esp = document.getElementById('especialidad');
             var doc = document.getElementById('doctor');
-            window.location.href = "/quitarEspecialidad.aspx?idEsp=" + esp.value + "&idDoc=" doc.value;
+            window.location.href = "/quitarEspecialidad.aspx?idEsp=" + esp.value + "&idDoc=" + doc.value;
         }
     })
 }

@@ -15,16 +15,19 @@ namespace ProjectWEB
         public Turno turno;
         public List<Turno> turnosList;
         public List<Permiso> permisosList;
+
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             validarAcciones();
+            
             TurnoNegocio turNego = new TurnoNegocio();
-            turnosList = turNego.listar("lista", "","");
-        }
-
-        protected void alert_eliminar_Click(object sender, EventArgs e)
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminarTurno()", true);
+            if (!IsPostBack)
+            {
+                turnosList = turNego.listar("lista", "", "");
+                GridViewTurnos.DataSource = turnosList;
+                GridViewTurnos.DataBind();
+            }
         }
 
         protected void ButtonBuscar_Click(object sender, EventArgs e)
@@ -69,5 +72,19 @@ namespace ProjectWEB
             }
         }
 
+        protected void eliminarTurno(object sender, GridViewDeleteEventArgs e)
+        {
+            int id =Convert.ToInt32(GridViewTurnos.DataKeys[e.RowIndex].Values[0]);
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "eliminar", "eliminarTurno('" + id + "');", true);
+
+            TurnoNegocio turNego = new TurnoNegocio();
+            turNego.eliminar(id);
+
+            GridViewTurnos.EditIndex = -1;
+            turnosList = turNego.listar("lista", "", "");
+            GridViewTurnos.DataSource = turnosList;
+            GridViewTurnos.DataBind();
+
+        }
     }
 }

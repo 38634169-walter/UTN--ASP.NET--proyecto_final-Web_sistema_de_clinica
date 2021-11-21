@@ -43,10 +43,11 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT u.IDUsuario,dp.nombre,dp.apellido FROM Empleados E, Datos_Personales dp, Usuarios u WHERE e.ID_DatosPersonales=dp.IDDatosPersonales AND e.IDEmpleado =u.IDUsuario AND u.usuario= '" + usuario + "' AND u.clave = '" + clave + "' AND u.estado=1");
+                con.consultar("SELECT u.IDUsuario,dp.nombre,dp.apellido,e.IDEmpleado FROM Empleados e, Datos_Personales dp, Usuarios u WHERE e.ID_DatosPersonales=dp.IDDatosPersonales AND e.IDEmpleado =u.IDUsuario AND u.usuario= '" + usuario + "' AND u.clave = '" + clave + "' AND u.estado=1");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
+                    empleado.idEmpleado = Convert.ToInt32(con.lector["IDEmpleado"]);
                     empleado.nombre = (string)con.lector["nombre"];
                     empleado.apellido = (string)con.lector["apellido"];
                     empleado.usuario = new Usuario();

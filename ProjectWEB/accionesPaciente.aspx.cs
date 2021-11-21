@@ -15,11 +15,11 @@ namespace ProjectWEB
     {
         public Paciente paciente;
         public static string pacienteDniEditar;
-        public List<Permiso> permisosList; 
+        public List<Permiso> permisosList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (Request.QueryString["id"] != null)
             {
                 validarAccion("Editar pacientes");
@@ -30,7 +30,7 @@ namespace ProjectWEB
                 paciente = new Paciente();
                 string id = (string)Request.QueryString["id"];
                 PacienteNegocio pacNego = new PacienteNegocio();
-                paciente = pacNego.buscar("id",id);
+                paciente = pacNego.buscar("id", id);
 
                 if (!IsPostBack)
                 {
@@ -47,7 +47,6 @@ namespace ProjectWEB
             {
                 validarAccion("Agregar pacientes");
             }
-            
             if (Request.QueryString["noRegistrado"] != null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "no_registrado()", true);
@@ -69,15 +68,15 @@ namespace ProjectWEB
 
 
                 string confirmacion = "";
-                PacienteNegocio cliNego = new PacienteNegocio();
+                PacienteNegocio pacNego = new PacienteNegocio();
                 if (paciente.id != 0)
                 {
-                    cliNego.modificar(paciente);
+                    pacNego.modificar(paciente);
                     confirmacion = "modificado";
                 }
                 else
                 {
-                    cliNego.agregar(paciente);
+                    pacNego.agregar(paciente);
                     confirmacion = "agregado";
                 }
                 Response.Redirect("inicio.aspx?accion=" + confirmacion);
@@ -87,7 +86,7 @@ namespace ProjectWEB
         {
             PacienteNegocio pacNego = new PacienteNegocio();
             paciente = pacNego.buscar("dni", TextBoxDni.Text);
-            if (paciente != null)
+            if (paciente.id != 0)
             {
                 if(pacienteDniEditar != null && pacienteDniEditar == TextBoxDni.Text)
                 {

@@ -142,8 +142,10 @@ namespace ProjectWEB
 
         protected void ButtonReservar_Click(object sender, EventArgs e)
         {
-            turno.secretaria = new Secretaria();
-            turno.secretaria.id = 1;
+            Empleado emp = new Empleado();
+            emp = (Empleado)Session["empleado"];
+            turno.empleado = new Secretaria();
+            turno.empleado.idEmpleado = emp.idEmpleado;
             turno.hora = Convert.ToInt32(DropHora.SelectedValue);
             
             string accion = "";

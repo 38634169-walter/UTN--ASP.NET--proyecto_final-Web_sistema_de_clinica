@@ -23,7 +23,7 @@ namespace ProjectWEB
                 TurnoNegocio turNego = new TurnoNegocio();
                 turNego.eliminar(id);
                 string confirmacion = "eliminado";
-                Response.Redirect("inicio.aspx?accion=" + confirmacion);
+                Response.Redirect("inicio.aspx?accion=" + confirmacion);   
             }
         }
         public void validar_permiso()

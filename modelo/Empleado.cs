@@ -8,6 +8,7 @@ namespace modelo
 {
     public class Empleado : Persona
     {
+        public int idEmpleado { get; set; }
         public double sueldo { get; set; }
         public Horario horario { get; set; }
         public Usuario usuario { get; set; }

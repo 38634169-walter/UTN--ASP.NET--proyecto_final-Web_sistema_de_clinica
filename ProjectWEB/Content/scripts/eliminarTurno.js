@@ -1,7 +1,7 @@
-﻿function eliminarTurno() {
+﻿function eliminarTurno(id) {
     Swal.fire({
         title: 'Seguro que deseas dar de baja el turno?',
-        text: "Se dara de baja!",
+        text: "Se dara de baja!" + id,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -11,8 +11,7 @@
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            var elimi = document.getElementById('eliminarTurno');
-            window.location.href = "/eliminarTurnos.aspx?id=" + elimi.value;
+            window.location.href = "/eliminarTurnos.aspx?id=" + id;
         }
     })
 }

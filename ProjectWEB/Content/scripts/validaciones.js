@@ -21,7 +21,7 @@ function validar_paciente() {
         $('#TextBoxApellido').addClass('is-valid');
         $('#TextBoxApellido').removeClass('is-invalid');
     }
-    if ($('#TextBoxDni').val() == "") {
+    if ($('#TextBoxDni').val() == "" || parseInt($('#TextBoxDni').val()) < 1 ) {
         $('#TextBoxDni').addClass('is-invalid');
         $('#TextBoxDni').removeClass('is-valid');
         vali = false;
@@ -39,7 +39,7 @@ function validar_paciente() {
         $('#TextBoxEmail').addClass('is-valid');
         $('#TextBoxEmail').removeClass('is-invalid');
     }
-    if ($('#TextBoxTelefono').val() == "") {
+    if ($('#TextBoxTelefono').val() == "" || parseInt($('#TextBoxTelefono').val()) < 1 ) {
         $('#TextBoxTelefono').addClass('is-invalid');
         $('#TextBoxTelefono').removeClass('is-valid');
         vali = false;
@@ -70,7 +70,7 @@ function validar_historial() {
 function validar_horario_doctor() {
     var vali = true;
 
-    if ($('#TextBoxHorarioInicio').val() == "") {
+    if ($('#TextBoxHorarioInicio').val() == "" ) {
         $('#TextBoxHorarioInicio').addClass('is-invalid');
         $('#TextBoxHorarioInicio').removeClass('is-valid');
         vali = false;
@@ -128,7 +128,7 @@ function validar_agregar_doctor() {
         $('#TextBoxApellido').addClass('is-valid');
         $('#TextBoxApellido').removeClass('is-invalid');
     }
-    if ($('#TextBoxTelefono').val() == "") {
+    if ($('#TextBoxTelefono').val() == "" || parseInt($('#TextBoxTelefono').val()) < 1 ) {
         $('#TextBoxTelefono').addClass('is-invalid');
         $('#TextBoxTelefono').removeClass('is-valid');
         vali = false;
@@ -146,7 +146,7 @@ function validar_agregar_doctor() {
         $('#TextBoxEmail').addClass('is-valid');
         $('#TextBoxEmail').removeClass('is-invalid');
     }
-    if ($('#TextBoxSueldo').val() == "") {
+    if ($('#TextBoxSueldo').val() == "" || parseInt($('#TextBoxSueldo').val()) < 1 ) {
         $('#TextBoxSueldo').addClass('is-invalid');
         $('#TextBoxSueldo').removeClass('is-valid');
         vali = false;
@@ -174,7 +174,7 @@ function validar_agregar_doctor() {
         $('#TextBoxClave').removeClass('is-invalid');
     }
 
-    if ($('#TextBoxDni').val() == "") {
+    if ($('#TextBoxDni').val() == "" || parseInt($('#TextBoxDni').val()) < 1) {
         $('#TextBoxDni').addClass('is-invalid');
         $('#TextBoxDni').removeClass('is-valid');
         vali = false;
@@ -236,7 +236,7 @@ function validar_modificar_doctor() {
         $('#TextBoxApellido').addClass('is-valid');
         $('#TextBoxApellido').removeClass('is-invalid');
     }
-    if ($('#TextBoxTelefono').val() == "") {
+    if ($('#TextBoxTelefono').val() == "" || parseInt($('#TextBoxTelefono').val()) < 1 ) {
         $('#TextBoxTelefono').addClass('is-invalid');
         $('#TextBoxTelefono').removeClass('is-valid');
         vali = false;
@@ -254,7 +254,7 @@ function validar_modificar_doctor() {
         $('#TextBoxEmail').addClass('is-valid');
         $('#TextBoxEmail').removeClass('is-invalid');
     }
-    if ($('#TextBoxSueldo').val() == "") {
+    if ($('#TextBoxSueldo').val() == "" || parseInt($('#TextBoxSueldo').val()) < 1 ) {
         $('#TextBoxSueldo').addClass('is-invalid');
         $('#TextBoxSueldo').removeClass('is-valid');
         vali = false;
@@ -289,7 +289,7 @@ function validar_modificar_doctor() {
 function validar_turno() {
     var vali = true;
 
-    if ($('#TextBoxDni').val() == "") {
+    if ($('#TextBoxDni').val() == "" || parseInt($('#TextBoxDni').val()) < 1) {
         $('#TextBoxDni').addClass('is-invalid');
         $('#TextBoxDni').removeClass('is-valid');
         vali = false;
@@ -325,7 +325,7 @@ function validar_turno() {
         $('#TextBoxfecha').addClass('is-valid');
         $('#TextBoxfecha').removeClass('is-invalid');
     }
-    if ($('#DropHora').val() == "") {
+    if ($('#DropHora').val() == "" || parseInt($('#DropHora').val()) < 1 || parseInt($('#DropHora').val()) > 24 ) {
         $('#DropHora').addClass('is-invalid');
         $('#DropHora').removeClass('is-valid');
         vali = false;

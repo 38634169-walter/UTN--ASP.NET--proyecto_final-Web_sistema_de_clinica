@@ -54,7 +54,7 @@
         
         <div class="d-flex justify-content-center align-items-center flex-column">
             <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-            <asp:DropDownList  ID="DropDownListEspecilidad" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownListEspecilidad" runat="server"></asp:DropDownList>
         </div>
         <div class="d-flex justify-content-center align-items-center flex-column">
             <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>

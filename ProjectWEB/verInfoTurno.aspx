@@ -18,7 +18,7 @@
                 <tr><td><strong>Hora: </strong></td><td>  <%: turno.hora %>:00 Hs</td></tr>
                 <tr><td><strong>Doctor/a: </strong></td><td><%: turno.doctor.nombre %> <%: turno.doctor.apellido %></td></tr>
                 <tr><td><strong>Especialidad: </strong></td><td><%: turno.especialidad.nombre %></td></tr>
-                <tr><td><strong>Turno dado por: </strong></td><td><%: turno.secretaria.nombre %> <%: turno.secretaria.apellido %></td></tr>
+                <tr><td><strong>Turno dado por: </strong></td><td><%: turno.empleado.nombre %> <%: turno.empleado.apellido %></td></tr>
             </tbody>
         </table>
     </div>        

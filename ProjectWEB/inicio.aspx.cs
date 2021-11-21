@@ -16,15 +16,15 @@ namespace ProjectWEB
                 
                 if (accion == "agregado")
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "agregado()", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "agregado", "agregado();", true);
                 }
                 if (accion == "eliminado")
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminado()", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "eliminado", "eliminado();", true);
                 }
                 if (accion == "modificado")
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "modificado()", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "modificado", "modificado();", true);
                 }
                 
             }

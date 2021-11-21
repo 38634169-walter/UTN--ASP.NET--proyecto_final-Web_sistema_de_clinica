@@ -4,36 +4,34 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <%--<title><%: Page.Title %> - Mi aplicación ASP.NET</title>--%>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
     <link href="~/Content/bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/estilos/todoP.css" rel="stylesheet" />    
+    <link href="~/Content/estilos/todoPar.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
 
-    <webopt:bundlereference runat="server" path="~/Content/estilos" />
+    <webopt:BundleReference runat="server" Path="~/Content/estilos" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        i{
-            font-size:2rem;
-            color:aqua;
-            margin-right:10px;
-        }
-        .cuerpo{
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,55,1) 0%, rgba(0,212,255,1) 100%);
+        i {
+            font-size: 2rem;
+            color: aqua;
+            margin-right: 10px;
         }
     </style>
 
@@ -62,100 +60,107 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div id="m" class="d-flex flex-row vh-100">
+        <div class=" container-fluid vh-100">
+            <div class="row vh-100">
+                <div class="col-lg-4 overflow-scroll position-relative vh-md-100 vh-50 p-0" style="background: linear-gradient(0deg, rgba(71,147,148,1) 0%, rgba(58,118,116,1) 100%);">
 
-            <div class="bg-primary container w-25 vh-100">
-                <div>
-                    <h1 class="text-center mt-4 text-dark" style="font-family: 'Abril Fatface', cursive;" >Clinica Milagro</h1>
-                    <div class="w-100 d-flex justify-content-center align-items-center">
-                        <asp:Label class="text-light me-1" ID="LabelNombre" runat="server" Text=""></asp:Label>
-                    </div>
-                </div>
-
-
-                <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
-
-
-                <!-- SECRETARIAS -->
-                          
-                            <div id="verPacientes" runat="server" class="d-none">
-                                <i class="fas fa-user iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientes.aspx">Ver Paciente</a>
-                            </div>
-                            <div id="agregarPacientes" runat="server" class="d-none">
-                                <i class="fas fa-user-plus iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesPaciente.aspx">Agregar Paciente</a>
-                            </div>
-
-                            <div id="verTurnos" runat="server" class="d-none">
-                                <i class="far fa-list-alt iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnos.aspx">Ver Turno</a>
-                            </div>
-
-                            <div id="agregarTurnos" runat="server" class="d-none">
-                                <i class="far fa-calendar-plus iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesTurnos.aspx">Agregar Turno</a>
-                            </div>
-                    
-
-                   <!-- DOCTORES -->
-                    
-                                    
-                            <div id="verTurnosDoctor" runat="server" class="d-none">
-                                <i class="far fa-list-alt iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver mis turnos</a>
-                            </div>
+                    <nav id="barra" class="navbar navbar-expand-lg navbar-light bg-transaparent">
+                        <div id="barraDentro" class="container-fluid d-flex justify-content-lg-center align-items-lg-center flex-lg-column">
                             
-                            <div id="verPacientesDoctor" runat="server" class="d-none">
-                                <i class="fas fa-user iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verHistoriales.aspx">Ver historiales</a>
+                            <a class="navbar-brand" href="/inicio.aspx">
+                                <h1 id="text-emp" class="text-center mt-4" style="font-family: 'Abril Fatface', cursive;">Clinica Milagro</h1>
+                            </a>
+                            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-ellipsis-v text-light"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul id="barraAdentro" class="navbar-nav d-flex justify-content-center align-items-start flex-column mt-1 w-100 ">
+
+                                    <div class="w-100 d-flex justify-content-center align-items-center">
+                                        <asp:Label class="text-light me-1" ID="LabelNombre" runat="server" Text=""></asp:Label>
+                                    </div>
+
+                                    <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
+
+
+                                        <!-- SECRETARIAS -->
+                                        <div id="verPacientes" runat="server" class="d-none">
+                                            <i class="fas fa-user iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientes.aspx">Ver Paciente</a>
+                                        </div>
+                                        <div id="agregarPacientes" runat="server" class="d-none">
+                                            <i class="fas fa-user-plus iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/accionesPaciente.aspx">Agregar Paciente</a>
+                                        </div>
+                                        <div id="verTurnos" runat="server" class="d-none">
+                                            <i class="far fa-list-alt iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnos.aspx">Ver Turno</a>
+                                        </div>
+                                        <div id="agregarTurnos" runat="server" class="d-none">
+                                            <i class="far fa-calendar-plus iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/accionesTurnos.aspx">Agregar Turno</a>
+                                        </div>
+
+
+                                        <!-- DOCTORES -->
+
+
+                                        <div id="verTurnosDoctor" runat="server" class="d-none">
+                                            <i class="far fa-list-alt iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver mis turnos</a>
+                                        </div>
+
+                                        <div id="verPacientesDoctor" runat="server" class="d-none">
+                                            <i class="fas fa-user iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/verHistoriales.aspx">Ver historiales</a>
+                                        </div>
+
+
+                                        <!-- ADMINISTRADORES -->
+
+
+
+                                        <div id="agregarDoctores" runat="server" class="d-none">
+                                            <i class="fas fa-user iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/accionesDoctores.aspx">Agregar Medico</a>
+                                        </div>
+                                        <div id="verDoctores" runat="server" class="d-none">
+                                            <i class="fas fa-cogs iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/verDoctores.aspx">Medicos</a>
+                                        </div>
+                                        <div id="agregarEspecialidad" runat="server" class="d-none">
+                                            <i class="fas fa-notes-medical iconosMenu"></i>
+                                            <a class="bg-transparent border-0 text-light fw-bold" href="/agregarEspecialidad.aspx">Agregar Especialidad</a>
+                                        </div>
+
+
+                                    </ul>
+                                    <div class="btn bg-transparent d-flex justify-content-start align-items-center mb-4 mt-5">
+                                        <i class="fas fa-sign-out-alt iconosMenu"></i>
+                                        <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesion" OnClick="ButtonCerrarSesion_Click" />
+                                    </div>
+
+                                </ul>
                             </div>
-                    
-                    
-                    <!-- ADMINISTRADORES -->
+                        </div>
+                    </nav>
 
-                             
-
-                            <div id="agregarDoctores" runat="server" class="d-none">
-                                <i class="fas fa-user iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/accionesDoctores.aspx">Agregar Medico</a>
-                            </div> 
-                            <div id="verDoctores" runat="server" class="d-none">
-                                <i class="fas fa-cogs iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/verDoctores.aspx">Medicos</a>
-                            </div> 
-                            <div id="agregarEspecialidad" runat="server" class="d-none">
-                                <i class="fas fa-notes-medical iconosMenu"></i>
-                                <a class="bg-transparent border-0 text-light fw-bold" href="/agregarEspecialidad.aspx">Agregar Especialidad</a>
-                            </div>
-
-                    
-
-                </ul>
-                <div class="btn bg-transparent d-flex justify-content-start align-items-center position-absolute bottom-0 mb-4">
-                    <i class="fas fa-sign-out-alt iconosMenu"></i>
-                    <asp:Button class="bg-transparent border-0 text-light fw-bold" ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesion" OnClick="ButtonCerrarSesion_Click"/>
                 </div>
-            </div>
 
 
-            <div class="bg-light w-75 overflow-scroll" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 2%, rgba(146,146,209,1) 100%);">
-            
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    <div class="container">
+                <div class="col-lg-8 bg-light overflow-scroll vh-100" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,111,121,1) 0%, rgba(217,246,251,1) 100%);">
 
-                    </div>
-                </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
 
             </div>
         </div>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script class=" text-center" src="/Content/scripts/agregado.js"></script>
-        <script class="text-center" src="/Content/scripts/eliminado.js"></script>
-        <script class="text-center" src="/Content/scripts/modificado.js"></script>
-        <script class="text-center" src="/Content/scripts/noRegistrado.js"></script>
-        <script class="text-center" src="/Content/scripts/validaciones.js"></script>
-        <script class="text-center" src="/Content/scripts/validarPerm.js"></script>
+        <script src="/Content/scripts/confirmaciones.js"></script>
+        <script src="/Content/scripts/noRegistrado.js"></script>
+        <script src="/Content/scripts/validaciones.js"></script>
+        <script src="/Content/scripts/validarPerm.js"></script>
     </form>
 </body>
 </html>

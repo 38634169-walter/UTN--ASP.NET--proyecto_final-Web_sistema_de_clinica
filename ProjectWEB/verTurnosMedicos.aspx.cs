@@ -14,24 +14,25 @@ namespace ProjectWEB
     {
         public List<Turno> turnosList;
         public List<Permiso> permisosList;
+        public static Empleado empleado;
         public int id;
         protected void Page_Load(object sender, EventArgs e)
         {
             validar_permisos();
-            // NO BORRRAR // int id = Convert.ToInt32(Session["ID_Usuario"]);
-            id = 1;
+            
+            empleado = new Empleado();
+            empleado = (Empleado)Session["empleado"];
             TurnoNegocio turNego = new TurnoNegocio();
-            turnosList=turNego.turnos_de_medicos(id,"todo","");
+            turnosList=turNego.turnos_de_medicos(empleado.idEmpleado,"todo","");
         }
 
         protected void ButtonBuscarTurno_Click(object sender, EventArgs e)
         {
             if (TextBoxFecha.Text != "")
             {
-                // NO BORRRAR // int id = Convert.ToInt32(Session["ID_Usuario"]);
                 TurnoNegocio turNego = new TurnoNegocio();
                 string fecha = TextBoxFecha.Text;
-                turnosList=turNego.turnos_de_medicos(id,"fecha",fecha);
+                turnosList=turNego.turnos_de_medicos(empleado.idEmpleado,"fecha",fecha);
             }
         }
         public void validar_permisos()

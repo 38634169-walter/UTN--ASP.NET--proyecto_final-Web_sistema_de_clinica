@@ -21,7 +21,7 @@ namespace negocio
                     break;
                 
                 case "dni":
-                    consulta = "SELECT * FROM Pacientes p, Datos_Personales dp WHERE p.ID_DatosPersonales = dp.IDDatosPersonales AND dp.dni = '" + buscar + "' ";
+                    consulta = "SELECT * FROM Pacientes p, Datos_Personales dp, Empleados e, Datos_Personales dpe WHERE p.ID_DatosPersonales = dp.IDDatosPersonales AND e.ID_DatosPersonales = dpe.IDDatosPersonales AND (dp.dni = '" + buscar + "' OR dpe.dni = '" + buscar + "') ";
                     break;
             }
 
@@ -76,12 +76,12 @@ namespace negocio
             }
         }
 
-        public void agregar(Paciente cliente)
+        public void agregar(Paciente paciente)
         {
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_INSERTAR_PACIENTE '" + cliente.nombre + "','" + cliente.apellido + "','" + cliente.email + "','" + cliente.telefono + "','" + cliente.dni + "' ");
+                con.consultar("EXEC SP_INSERTAR_PACIENTE '" + paciente.nombre + "','" + paciente.apellido + "','" + paciente.email + "','" + paciente.telefono + "','" + paciente.dni + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
