@@ -180,16 +180,24 @@ namespace ProjectWEB
 
         public bool validar_dni()
         {
+            LabelError.Text = "";
             PacienteNegocio pacNego = new PacienteNegocio();
             paciente = new Paciente();
             paciente = pacNego.buscar("dni", TextBoxDni.Text);
-            
+            EmpleadoNegocio empNego = new EmpleadoNegocio();
+            Empleado emp = new Empleado();
+            emp = empNego.buscar(TextBoxDni.Text);
             if (paciente.id != 0)
             {
                 if(turno == null) turno = new Turno();
                 turno.paciente = new Paciente();
                 turno.paciente.id = paciente.id;
                 return true;
+            }
+            if (emp.idEmpleado != 0)
+            {
+                LabelError.Text = "*Error el DNI ingresado pertenece a un empleado";
+                return false;
             }
             Response.Redirect("accionesPaciente.aspx?noRegistrado=" + "noRegistrado");
             return false;

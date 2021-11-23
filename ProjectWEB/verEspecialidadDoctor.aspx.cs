@@ -72,11 +72,6 @@ namespace ProjectWEB
             }
         }
 
-        protected void ButtonQuitarEspecialidad_Click(object sender, EventArgs e)
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "quitar_especialidad()", true);
-        }
-
         protected void GridViewEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string[] arg = new string[2];
@@ -91,7 +86,7 @@ namespace ProjectWEB
         protected void GridViewEspecialidad_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridViewEspecialidad.PageIndex = e.NewPageIndex;
-
+            cargar_grid();
         }
 
         public void cargar_grid()

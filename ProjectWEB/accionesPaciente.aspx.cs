@@ -84,6 +84,7 @@ namespace ProjectWEB
         }
         public bool validar_paciente_existente()
         {
+            LabelError.Text = "";
             PacienteNegocio pacNego = new PacienteNegocio();
             paciente = pacNego.buscar("dni", TextBoxDni.Text);
             if (paciente.id != 0)
@@ -93,6 +94,14 @@ namespace ProjectWEB
                     return true;
                 }
                 LabelError.Text = "*El paciente ya se encuentra registrado";
+                return false;
+            }
+            EmpleadoNegocio empNego = new EmpleadoNegocio();
+            Empleado emp = new Empleado();
+            emp = empNego.buscar(TextBoxDni.Text);
+            if (emp.idEmpleado != 0)
+            {
+                LabelError.Text = "*Error el DNI ingresado pertenece a un empleado";
                 return false;
             }
             return true;

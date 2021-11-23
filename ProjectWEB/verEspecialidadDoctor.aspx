@@ -7,10 +7,6 @@
     </div>
     
 
-
-
-
-
     <asp:GridView 
         ID="GridViewEspecialidad" 
         runat="server"
@@ -23,6 +19,7 @@
         GridLines="None"
         CssClass="gv"
         PagerStyle-CssClass="pgr"
+        ShowHeaderWhenEmpty="true"
         >
             <Columns>
                 <asp:BoundField HeaderText="Especialidad" DataField="especialidad.nombre"/>
@@ -35,7 +32,9 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-
+            <EmptyDataTemplate>
+                <asp:Label ID="LabelVacio" runat="server" Text="No hay datos" ForeColor="Black"></asp:Label>
+            </EmptyDataTemplate>
     </asp:GridView>
 
     

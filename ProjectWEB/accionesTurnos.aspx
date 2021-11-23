@@ -6,7 +6,6 @@
         <div class="col-3">
 
          </div>
-
         <div class="col-6">
             <div class="d-flex justify-content-center align-items-center">
                 <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
@@ -14,6 +13,8 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                         
+                    <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+                    
                     <div class="m-2 rounded-circle">
                         <asp:Label ID="LabelDni" runat="server" Text="DNI: "></asp:Label>
                         <asp:TextBox ClientIDMode="Static" CssClass="form-control ms-2" ID="TextBoxDni" runat="server" AutoPostBack="True" OnTextChanged="TextBoxDni_TextChanged"></asp:TextBox>

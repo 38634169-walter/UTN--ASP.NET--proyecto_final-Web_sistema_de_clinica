@@ -31,6 +31,7 @@ namespace ProjectWEB
 
         protected void ButtonBuscar_Click(object sender, EventArgs e)
         {
+            LabelError.Text = "";
             string dni = TextBoxDni.Text;
             string fecha = TextBoxFecha.Text;
             TurnoNegocio turNego = new TurnoNegocio();
@@ -54,6 +55,11 @@ namespace ProjectWEB
                     GridViewTurnos.DataSource = turnosList;
                     GridViewTurnos.DataBind();
                 }
+            }
+            if (!turnosList.Any() || turnosList[0].id == null)
+            {
+                GridViewTurnos.DataSource = turnosList;
+                GridViewTurnos.DataBind();
             }
         }
         public void validarAcciones()
@@ -102,6 +108,7 @@ namespace ProjectWEB
 
         public void cargar_tabla()
         {
+            LabelError.Text = "";
             GridViewTurnos.EditIndex = -1;
             GridViewTurnos.DataSource = turnosList;
             GridViewTurnos.DataBind();

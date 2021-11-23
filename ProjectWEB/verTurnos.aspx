@@ -24,10 +24,9 @@
                 <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
             </div>
             
-            <div class="tabla-container mt-5">
-
-
-
+            <div class="d-flex justify-content-center align-items-center flex-row my-5">
+                <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+            </div>
 
             <asp:GridView ID="GridViewTurnos" runat="server"
                 OnRowDeleting="eliminar_turno" 
@@ -41,7 +40,8 @@
                 GridLines="None"
                 AlternatingRowStyle-CssClass="alternadas"
                 CssClass="gv" 
-                PagerStyle-CssClass="pgr">
+                PagerStyle-CssClass="pgr"
+                ShowHeaderWhenEmpty="true">
                     <Columns>
 
                         <asp:BoundField HeaderText="ID" DataField="id"/>
@@ -74,15 +74,14 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-
                     </Columns>
+
+                                
+                    <emptydatatemplate>
+                        <asp:Label ID="LabelVacio" runat="server" Text="No hay datos" ForeColor="Black"></asp:Label>
+                    </emptydatatemplate> 
+                    
+                
             </asp:GridView>
-
-
-
-
-
-
-
     
 </asp:Content>

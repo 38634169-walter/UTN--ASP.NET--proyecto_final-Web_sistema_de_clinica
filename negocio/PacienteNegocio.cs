@@ -21,7 +21,7 @@ namespace negocio
                     break;
                 
                 case "dni":
-                    consulta = "SELECT * FROM Pacientes p, Datos_Personales dp, Empleados e, Datos_Personales dpe WHERE p.ID_DatosPersonales = dp.IDDatosPersonales AND e.ID_DatosPersonales = dpe.IDDatosPersonales AND (dp.dni = '" + buscar + "' OR dpe.dni = '" + buscar + "') ";
+                    consulta = "SELECT * FROM Pacientes p, Datos_Personales dp WHERE p.ID_DatosPersonales = dp.IDDatosPersonales AND dp.dni = '" + buscar + "' ";
                     break;
             }
 

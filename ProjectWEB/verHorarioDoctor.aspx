@@ -19,7 +19,8 @@
         PageSize="10"
         OnPageIndexChanging="GridViewHorarios_PageIndexChanging"
         GridLines="None"
-        PagerStyle-CssClass="pgr">
+        PagerStyle-CssClass="pgr"
+        ShowHeaderWhenEmpty>
             <Columns>
 
                 <asp:BoundField HeaderText="Especialidad" DataField="horario.especialidad.nombre" />
@@ -43,8 +44,13 @@
                         </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
-
             </Columns>
+            
+        
+            <EmptyDataTemplate>
+                <asp:Label ID="LabelVacio" runat="server" Text="No hay datos" ForeColor="Black"></asp:Label>
+            </EmptyDataTemplate>
+            
     </asp:GridView>
 
 

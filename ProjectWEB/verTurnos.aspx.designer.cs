@@ -42,6 +42,15 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.Button ButtonBuscar;
 
         /// <summary>
+        /// Control LabelError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelError;
+
+        /// <summary>
         /// Control GridViewTurnos.
         /// </summary>
         /// <remarks>
