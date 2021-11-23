@@ -37,16 +37,22 @@ namespace ProjectWEB
             turnosList = new List<Turno>();
             if(TextBoxDni.Text != "" && TextBoxFecha.Text !="") {
                 turnosList = turNego.listar("fecha y dni", fecha, dni);
+                GridViewTurnos.DataSource = turnosList;
+                GridViewTurnos.DataBind();
             }
             else
             {
                 if (TextBoxDni.Text != "")
                 {
                     turnosList = turNego.listar("dni", dni,"");
+                    GridViewTurnos.DataSource = turnosList;
+                    GridViewTurnos.DataBind();
                 }
                 if (TextBoxFecha.Text != "")
                 {
                     turnosList = turNego.listar("fecha", fecha ,"");
+                    GridViewTurnos.DataSource = turnosList;
+                    GridViewTurnos.DataBind();
                 }
             }
         }

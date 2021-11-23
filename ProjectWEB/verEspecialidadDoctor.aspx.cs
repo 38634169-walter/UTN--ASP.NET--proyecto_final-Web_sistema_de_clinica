@@ -21,9 +21,8 @@ namespace ProjectWEB
             validarAcciones();
             if (Request.QueryString["id"] != null) {
                 int id =Convert.ToInt32(Request.QueryString["id"]);
+                cargar_grid();
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
-                doctoresList=espNego.listar_especialidad_doctor(id);
-
                 especialidadList = espNego.especialidades_doctor_no_tiene(id);
                 if (!IsPostBack)
                 {
@@ -76,6 +75,32 @@ namespace ProjectWEB
         protected void ButtonQuitarEspecialidad_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "quitar_especialidad()", true);
+        }
+
+        protected void GridViewEspecialidad_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string[] arg = new string[2];
+            arg = e.CommandArgument.ToString().Split(';');
+            int esp =Convert.ToInt32(arg[0]);
+            int doc = Convert.ToInt32(arg[1]);
+            DoctorNegocio docNego = new DoctorNegocio();
+            docNego.quitar_especialidad_doctor(esp, doc);
+            cargar_grid();
+        }
+
+        protected void GridViewEspecialidad_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewEspecialidad.PageIndex = e.NewPageIndex;
+
+        }
+
+        public void cargar_grid()
+        {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            EspecialidadNegocio espNego = new EspecialidadNegocio();
+            doctoresList = espNego.listar_especialidad_doctor(id);
+            GridViewEspecialidad.DataSource = doctoresList;
+            GridViewEspecialidad.DataBind();
         }
     }
 }

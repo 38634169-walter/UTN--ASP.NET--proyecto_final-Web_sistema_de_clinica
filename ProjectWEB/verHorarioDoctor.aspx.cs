@@ -12,7 +12,7 @@ namespace ProjectWEB
 {
     public partial class agregarHorarioPersonal : System.Web.UI.Page
     {
-        public List<Doctor> doctoresList;
+        public static List<Doctor> doctoresList;
         public Doctor doctor;
         public List<Especialidad> especialidadList;
         public List<Permiso> permisosList;
@@ -22,8 +22,7 @@ namespace ProjectWEB
             if (Request.QueryString["id"] != null)
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
-                HorarioNegocio horNego = new HorarioNegocio();
-                doctoresList = horNego.horarios_doctor(id);
+                cargar_grid();
                 if (!IsPostBack) {
                     EspecialidadNegocio espNego = new EspecialidadNegocio();
                     especialidadList = espNego.especialidades_doctor_tiene(id);
@@ -119,9 +118,38 @@ namespace ProjectWEB
             }
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected void GridViewHorarios_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
+            int id = Convert.ToInt32(GridViewHorarios.DataKeys[e.RowIndex].Value);
+            HorarioNegocio horNego = new HorarioNegocio();
+            horNego.eliminar(id);
+            cargar_grid();
+        }
+
+        protected void GridViewHorarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewHorarios.PageIndex = e.NewPageIndex;
+            cargar_grid();
+        }
+        public void cargar_grid()
+        {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            HorarioNegocio horNego = new HorarioNegocio();
+            doctoresList = horNego.horarios_doctor(id);
+            GridViewHorarios.EditIndex = -1;
+            GridViewHorarios.DataSource = doctoresList;
+            GridViewHorarios.DataBind();
+        }
+
+        protected void GridViewHorarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                HorarioNegocio horNego = new HorarioNegocio();
+                horNego.eliminar(id);
+                cargar_grid();
+            }
         }
     }
 }

@@ -6,44 +6,38 @@
         <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloVer" runat="server" Text="Especialidades"></asp:Label>
     </div>
     
-    <div class="tabla-container mt-1">
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th colspan="2" class="cabeza-tabla">Especialidades</th>
-                </tr>
-                <tr>
-                    <th>Especialidad</th>
-                    <th>Quitar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% foreach (var doctor in doctoresList)
-                    { %>
-                    <tr>
-                        <td> <%: doctor.especialidad.nombre  %> </td>
-                        <td style="height:1cm;" class="d-flex justify-content-center align-items-center flex-row">
-                            <a class="quitarEspecialidadesDoctores d-none" href="quitarEspecialidad.aspx?idEsp=<%: doctor.especialidad.id %> &idDoc= <%: doctor.id %>"><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
 
 
 
-                            <asp:LinkButton ID="ButtonQuitarEspecialidad" runat="server" OnClick="ButtonQuitarEspecialidad_Click">
-                                <i class="far fa-trash-alt text-light rounded-circle bg-success p-2" style="font-size:15px;"></i>
-                            </asp:LinkButton>
-                            <input id="especialidad" value="<%: doctor.especialidad.id %>" type="text" style="display:none"></input>
-                            <input id="doctor" value="<%: doctor.id %>" type="text" style="display:none"></input>
-                        </td>
-                    </tr>
-                <% } %>
-                <% if (!doctoresList.Any())
-                    { %>
-                        <tr>
-                            <td colspan="2" >No hay especialidades agregadas</td>
-                        </tr>
-                <%} %>
-            </tbody>
-        </table>
-    </div> 
+
+
+    <asp:GridView 
+        ID="GridViewEspecialidad" 
+        runat="server"
+        OnRowCommand="GridViewEspecialidad_RowCommand"
+        OnPageIndexChanging="GridViewEspecialidad_PageIndexChanging"
+        AllowPaging="true"
+        PageSize="5"
+        DataKeyNames="id"
+        AutoGenerateColumns="false"
+        GridLines="None"
+        CssClass="gv"
+        PagerStyle-CssClass="pgr"
+        >
+            <Columns>
+                <asp:BoundField HeaderText="Especialidad" DataField="especialidad.nombre"/>
+                
+                <asp:TemplateField HeaderText="Acciones" HeaderStyle-CssClass="quitarEspecialidadesDoctores d-none" ItemStyle-CssClass="quitarEspecialidadesDoctores d-none">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="Eliminar" runat="server" OnClientClick="return eliminar_confirmacion(this);" CommandArgument='<% # Eval("especialidad.id") + ";" + Eval("id") %>' > 
+                            <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>                    
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+
+    </asp:GridView>
+
     
     <div class="asignarEspecilidadesDoctores d-none">
         <div class="d-flex justify-content-center align-items-center flex-column">

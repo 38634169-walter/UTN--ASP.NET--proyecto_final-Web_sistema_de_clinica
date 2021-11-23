@@ -1,12 +1,14 @@
-﻿
-var object = { status: false, element: null };
+﻿var object = { status: false, ele: null };
+var b = 1;
 
-function eliminarTurno(e) {
+function eliminar_confirmacion(e) {
 
     if (object.status) { return true; };
+
+
     Swal.fire({
         title: 'Seguro que deseas dar de baja el turno?',
-        text: "Se dara de baja!" + id,
+        text: "Se dara de baja!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -15,13 +17,16 @@ function eliminarTurno(e) {
         cancelButtonColor: '#3085d6',
         cancelButtonText: 'Cancelar',
         closeOnConfirm: true
-    },
-        function () {
+
+    }).then((result) => {
+        if (result.isConfirmed) {
             object.status = true;
-            object.element = e;
-            object.element.click();
-        
+            object.ele = e;
+            object.ele.click();
+            eliminarTurno(this);
+            b = 0;
         }
-    );
+    })
     return false;
-}
+
+};

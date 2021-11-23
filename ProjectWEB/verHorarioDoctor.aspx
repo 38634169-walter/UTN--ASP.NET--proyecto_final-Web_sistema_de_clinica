@@ -7,54 +7,46 @@
         <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTituloVer" runat="server" Text="Horarios"></asp:Label>
     </div>
 
-     <div class="tabla-container mt-1">
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th colspan="4" class="cabeza-tabla">Horarios</th>
-                </tr>
-                <tr>
-                    <th>Especialidad</th>
-                    <th>Horario de entrada</th>
-                    <th>Horario de salida</th>
-                    <th>Quitar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% foreach (var doctor in doctoresList)
-                    { %>
-                    <tr>
-                        <td> <%: doctor.horario.especialidad.nombre %> </td>
-                        <td> <%: doctor.horario.horaInicio %>:00Hs </td>
-                        <td> <%: doctor.horario.horaFin %>:00Hs </td>
-                        <td class="d-flex justify-content-center align-items-center flex-row">
-                            
-
-                            <a href="/eliminarHorario.aspx?id=<%: doctor.horario.id %>" class="eliminarHorariosDoctores d-none"><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
 
 
+    <asp:GridView ID="GridViewHorarios" 
+        runat="server" 
+        OnRowCommand="GridViewHorarios_RowCommand"
+        DataKeyNames="id"
+        AutoGenerateColumns="false"
+        CssClass="gv"
+        AllowPaging="true"
+        PageSize="10"
+        OnPageIndexChanging="GridViewHorarios_PageIndexChanging"
+        GridLines="None"
+        PagerStyle-CssClass="pgr">
+            <Columns>
 
+                <asp:BoundField HeaderText="Especialidad" DataField="horario.especialidad.nombre" />
+                <asp:TemplateField HeaderText="Horario de entreda">
+                    <ItemTemplate>
+                        <asp:Label ID="LabelInicio" runat="server" Text='<% # Eval("horario.horaInicio") + ":00Hs" %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
+                <asp:TemplateField HeaderText="Horario de salida">
+                    <ItemTemplate>
+                        <asp:Label ID="LabelFin" runat="server" Text='<% # Eval("horario.horaFin") + ":00Hs" %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                
 
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="return eliminarTurno(this)" OnClick="LinkButton1_Click">
-                                <i class="far fa-trash-alt text-light rounded-circle bg-success p-2" style="font-size:15px;"></i>
-                            </asp:LinkButton>
+                <asp:TemplateField HeaderText="Acciones" HeaderStyle-CssClass="eliminarHorariosDoctores d-none" ItemStyle-CssClass="eliminarHorariosDoctores d-none">
+                    <ItemTemplate>
+                        <asp:LinkButton CommandName="Eliminar" runat="server" CssClass=" bg-transparent" OnClientClick="return eliminar_confirmacion(this)" CommandArgument='<% # Eval("horario.id") %>'  >
+                            <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
+            </Columns>
+    </asp:GridView>
 
-
-                            <input id="eliminarHorario" value="<%: doctor.horario.id %>" type="text" style="display:none"></input>
-                        </td>
-                    </tr>
-                <% } %>
-                <% if(!doctoresList.Any())
-                    { %>
-                    <tr>
-                        <td colspan="4" > No hay horarios asignados</td>
-                    </tr>
-                <% } %>
-            </tbody>
-        </table>
-    </div> 
 
     <div class="asignarHorariosDoctores d-none">
         <div class="d-flex justify-content-center align-items-center flex-column">

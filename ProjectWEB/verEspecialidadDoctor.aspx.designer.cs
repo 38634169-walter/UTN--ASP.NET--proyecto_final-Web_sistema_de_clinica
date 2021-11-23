@@ -24,13 +24,13 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.Label LabelTituloVer;
 
         /// <summary>
-        /// Control ButtonQuitarEspecialidad.
+        /// Control GridViewEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ButtonQuitarEspecialidad;
+        protected global::System.Web.UI.WebControls.GridView GridViewEspecialidad;
 
         /// <summary>
         /// Control LabelTituloAgregar.

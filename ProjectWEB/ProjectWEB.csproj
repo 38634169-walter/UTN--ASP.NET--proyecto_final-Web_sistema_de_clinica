@@ -117,12 +117,12 @@
     <Content Include="Content\bootstrap5\.gitignore" />
     <Content Include="Content\bootstrap5\package.js" />
     <Content Include="Content\estilos\inicio.css" />
-    <Content Include="Content\estilos\todo.css" />
+    <Content Include="Content\estilos\global.css" />
     <Content Include="Content\img\fondo.png" />
     <Content Include="Content\img\giftAnimado1.gif" />
     <Content Include="Content\scripts\confirmacion.js" />
     <Content Include="Content\scripts\eliminarHorario.js" />
-    <Content Include="Content\scripts\confirmacionEliminar.js" />
+    <Content Include="Content\scripts\confirmEliminar.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
     <Content Include="Content\scripts\quitarEsp.js" />
     <Content Include="Content\scripts\validaciones.js" />
