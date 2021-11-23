@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using modelo;
 using negocio;
 using validarPermiso;
+using emailServer;
 
 namespace ProjectWEB
 {
@@ -156,6 +157,7 @@ namespace ProjectWEB
                 TurnoNegocio turNego = new TurnoNegocio();
                 turNego.modificar(turno);
                 accion = "modificado";
+                enviar_mail_confirmacion(turno);
             }
             else{ 
 
@@ -165,6 +167,7 @@ namespace ProjectWEB
                 TurnoNegocio turNego = new TurnoNegocio();
                 turNego.agregar(turno);
                 accion = "agregado";
+                enviar_mail_confirmacion(turno);
             }
             Response.Redirect("inicio.aspx?accion=" + accion); 
         }
@@ -262,6 +265,18 @@ namespace ProjectWEB
             {
                 Response.Redirect("inicio.aspx");
             }
+        }
+
+        public void enviar_mail_confirmacion(Turno turnoEnviar)
+        {
+            PacienteNegocio pacNego = new PacienteNegocio();
+            Paciente pacienteMail = new Paciente();
+            pacienteMail = pacNego.buscar("id", turno.paciente.id.ToString());
+            Email email = new Email();
+            string fecha = turno.fecha.ToString();
+            string hora = turno.hora.ToString();
+            hora += ":00 Hs";
+            email.correo(pacienteMail.email,"Turno Reservado",fecha,hora);
         }
 
     }

@@ -13,7 +13,7 @@ namespace ProjectWEB
     public partial class verTurnos1 : System.Web.UI.Page
     {
         public Turno turno;
-        public List<Turno> turnosList;
+        public static List<Turno> turnosList;
         public List<Permiso> permisosList;
 
         
@@ -25,8 +25,7 @@ namespace ProjectWEB
             if (!IsPostBack)
             {
                 turnosList = turNego.listar("lista", "", "");
-                GridViewTurnos.DataSource = turnosList;
-                GridViewTurnos.DataBind();
+                cargar_tabla();
             }
         }
 
@@ -72,19 +71,43 @@ namespace ProjectWEB
             }
         }
 
-        protected void eliminarTurno(object sender, GridViewDeleteEventArgs e)
+        protected void eliminar_turno(object sender, GridViewDeleteEventArgs e)
         {
-            int id =Convert.ToInt32(GridViewTurnos.DataKeys[e.RowIndex].Values[0]);
-            ScriptManager.RegisterStartupScript(this, typeof(Page), "eliminar", "eliminarTurno('" + id + "');", true);
+            int id =Convert.ToInt32(GridViewTurnos.DataKeys[e.RowIndex].Value);
 
+            
             TurnoNegocio turNego = new TurnoNegocio();
             turNego.eliminar(id);
-
-            GridViewTurnos.EditIndex = -1;
             turnosList = turNego.listar("lista", "", "");
+            cargar_tabla();
+        }
+        protected void GridViewTurnos_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            int id = Convert.ToInt32(GridViewTurnos.DataKeys[e.NewEditIndex].Values["id"].ToString());
+            Response.Redirect("accionesTurnos.aspx?id=" + id);
+        }
+
+
+        protected void GridViewTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewTurnos.PageIndex = e.NewPageIndex;
+            cargar_tabla();
+        }
+
+        public void cargar_tabla()
+        {
+            GridViewTurnos.EditIndex = -1;
             GridViewTurnos.DataSource = turnosList;
             GridViewTurnos.DataBind();
+        }
 
+        protected void GridViewTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ver")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect("verInfoTurno.aspx?id=" + id);
+            }
         }
     }
 }

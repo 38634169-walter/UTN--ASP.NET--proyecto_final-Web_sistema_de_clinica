@@ -121,7 +121,7 @@ namespace ProjectWEB
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "ranbomtext", "eliminarHorario()", true);
+            
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verHorarioDoctor.aspx.cs" Inherits="ProjectWEB.agregarHorarioPersonal" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+
+
     <div class="d-flex justify-content-center align-items-center flex-column">
         <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTituloVer" runat="server" Text="Horarios"></asp:Label>
     </div>
@@ -25,11 +28,19 @@
                         <td> <%: doctor.horario.horaInicio %>:00Hs </td>
                         <td> <%: doctor.horario.horaFin %>:00Hs </td>
                         <td class="d-flex justify-content-center align-items-center flex-row">
+                            
+
                             <a href="/eliminarHorario.aspx?id=<%: doctor.horario.id %>" class="eliminarHorariosDoctores d-none"><i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i></a>
 
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">
+
+
+
+
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="return eliminarTurno(this)" OnClick="LinkButton1_Click">
                                 <i class="far fa-trash-alt text-light rounded-circle bg-success p-2" style="font-size:15px;"></i>
                             </asp:LinkButton>
+
+
 
                             <input id="eliminarHorario" value="<%: doctor.horario.id %>" type="text" style="display:none"></input>
                         </td>

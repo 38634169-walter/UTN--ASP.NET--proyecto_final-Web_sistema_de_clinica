@@ -117,12 +117,12 @@
     <Content Include="Content\bootstrap5\.gitignore" />
     <Content Include="Content\bootstrap5\package.js" />
     <Content Include="Content\estilos\inicio.css" />
-    <Content Include="Content\estilos\todoPar.css" />
+    <Content Include="Content\estilos\todo.css" />
     <Content Include="Content\img\fondo.png" />
     <Content Include="Content\img\giftAnimado1.gif" />
     <Content Include="Content\scripts\confirmacion.js" />
     <Content Include="Content\scripts\eliminarHorario.js" />
-    <Content Include="Content\scripts\eliminarTurno.js" />
+    <Content Include="Content\scripts\confirmacionEliminar.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
     <Content Include="Content\scripts\quitarEsp.js" />
     <Content Include="Content\scripts\validaciones.js" />
@@ -409,6 +409,10 @@
     <ProjectReference Include="..\conexion\conexion.csproj">
       <Project>{65c3417a-8e03-43c1-a40b-58adaf004f9b}</Project>
       <Name>conexion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emailServer\emailServer.csproj">
+      <Project>{60f500e3-99f3-4e48-86db-2db2d4ce7929}</Project>
+      <Name>emailServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\modelo\modelo.csproj">
       <Project>{f30a6dec-e97c-4093-b690-642fdbac218c}</Project>

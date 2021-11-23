@@ -14,7 +14,7 @@
     </asp:PlaceHolder>
 
     <link href="~/Content/bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/estilos/todoPar.css" rel="stylesheet" />
+    <link href="~/Content/estilos/todo.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
@@ -157,10 +157,13 @@
             </div>
         </div>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="/Content/scripts/confirmaciones.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/Content/scripts/confirmacion.js"></script>
         <script src="/Content/scripts/noRegistrado.js"></script>
         <script src="/Content/scripts/validaciones.js"></script>
         <script src="/Content/scripts/validarPerm.js"></script>
+        
+        
     </form>
 </body>
 </html>
