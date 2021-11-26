@@ -281,10 +281,11 @@ namespace ProjectWEB
             Paciente pacienteMail = new Paciente();
             pacienteMail = pacNego.buscar("id", turno.paciente.id.ToString());
             Email email = new Email();
-            string fecha = turno.fecha.ToString();
+            string fecha = turno.fecha.ToString("dd/MM/yyyy");
             string hora = turno.hora.ToString();
             hora += ":00 Hs";
             email.correo(pacienteMail.email,"Turno Reservado",fecha,hora);
+            email.enviar_email();
         }
 
     }
