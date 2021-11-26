@@ -168,4 +168,3 @@ C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clini
 C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\ProjectWEB\obj\Debug\ProjectWEB.csproj.CoreCompileInputs.cache
 C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\ProjectWEB\obj\Debug\ProjectWEB.dll
 C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\ProjectWEB\obj\Debug\ProjectWEB.pdb
-C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\ProjectWEB\obj\Debug\ProjectWEB.csproj.CopyComplete

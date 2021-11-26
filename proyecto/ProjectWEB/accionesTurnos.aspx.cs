@@ -148,34 +148,57 @@ namespace ProjectWEB
             turno.empleado = new Secretaria();
             turno.empleado.idEmpleado = emp.idEmpleado;
             turno.hora = Convert.ToInt32(DropHora.SelectedValue);
-            
-            string accion = "";
-            if (turno.id != 0)
+            if (validar_fecha())
             {
-                turno.estado = new EstadoTurno();
-                turno.estado.id = 4;
-                TurnoNegocio turNego = new TurnoNegocio();
-                turNego.modificar(turno);
-                accion = "modificado";
-                enviar_mail_confirmacion(turno);
-            }
-            else{ 
+
+                string accion = "";
+                if (turno.id != 0)
+                {
+                    turno.estado = new EstadoTurno();
+                    turno.estado.id = 4;
+                    TurnoNegocio turNego = new TurnoNegocio();
+                    turNego.modificar(turno);
+                    accion = "modificado";
+                    enviar_mail_confirmacion(turno);
+                }
+                else
+                {
 
 
-                turno.estado = new EstadoTurno();
-                turno.estado.id = 2;
-                TurnoNegocio turNego = new TurnoNegocio();
-                turNego.agregar(turno);
-                accion = "agregado";
-                enviar_mail_confirmacion(turno);
+                    turno.estado = new EstadoTurno();
+                    turno.estado.id = 2;
+                    TurnoNegocio turNego = new TurnoNegocio();
+                    turNego.agregar(turno);
+                    accion = "agregado";
+                    enviar_mail_confirmacion(turno);
+                }
+                Response.Redirect("inicio.aspx?accion=" + accion);
             }
-            Response.Redirect("inicio.aspx?accion=" + accion); 
         }
 
 
 
 
+        public bool validar_fecha()
+        {
+            LabelError.Text = "";
+            bool validar=true;
+            DateTime fechaActual = DateTime.Now;
 
+            string anio = Convert.ToDateTime(TextBoxfecha.Text).ToString("yyyy");
+            string mes = Convert.ToDateTime(TextBoxfecha.Text).ToString("MM");
+            string dia = Convert.ToDateTime(TextBoxfecha.Text).ToString("dd");
+            string minutos = Convert.ToDateTime(TextBoxfecha.Text).ToString("mm"); 
+            string segundos = Convert.ToDateTime(TextBoxfecha.Text).ToString("ss"); 
+            DateTime fecha = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia), turno.hora, Convert.ToInt32(minutos), Convert.ToInt32(segundos));
+
+            if (fechaActual > fecha )
+            {
+                LabelError.Text += "*La fecha del turno no puede se menor a la actual";
+                validar = false;
+            }
+            return validar;
+        }
 
 
         public bool validar_dni()
