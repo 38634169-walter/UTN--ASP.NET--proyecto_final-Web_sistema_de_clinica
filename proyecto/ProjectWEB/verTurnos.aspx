@@ -48,11 +48,7 @@
                         <asp:BoundField HeaderText="Nombre" DataField="paciente.nombre"/>
                         <asp:BoundField HeaderText="Apellido" DataField="paciente.apellido"/>
                         <asp:BoundField HeaderText="DNI" DataField="paciente.dni"/>
-                        <asp:TemplateField HeaderText="Fecha">
-                            <ItemTemplate>
-                                <asp:Label ID="LabelFechaa" runat="server" Text=' <% # Eval("fecha") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:d}"/>
 
 
                         <asp:TemplateField HeaderText="Acciones">
