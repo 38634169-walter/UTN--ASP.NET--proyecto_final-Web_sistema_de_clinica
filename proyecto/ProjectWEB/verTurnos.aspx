@@ -46,7 +46,7 @@
                 AlternatingRowStyle-CssClass="alternadas"
                 CssClass="gv" 
                 PagerStyle-CssClass="pgr"
-                ShowHeaderWhenEmpty="true">
+                ShowHeaderWhenEmpty="true" OnRowDataBound="GridViewTurnos_RowDataBound">
                     <Columns>
 
                         <asp:BoundField HeaderText="ID" DataField="id"/>
@@ -58,9 +58,9 @@
 
 
                         <asp:TemplateField HeaderText="Acciones">
+
                             <ItemTemplate>
                                 <div class="d-flex justify-content-center align-items-center justify-content-center flex-row">
-                                    
                                     <asp:LinkButton CommandName="Delete" OnClientClick="return eliminar_confirmacion(this);" CssClass="eliminarTurno d-none bg-transparent " ID="buttonEliminar" ClientIDMode="Static" runat="server">
                                         <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
                                     </asp:LinkButton>
@@ -72,6 +72,7 @@
                                     <asp:LinkButton ID="buttonVer" runat="server" CommandName="ver" CommandArgument='<%# Eval("id") %>' >
                                         <i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size: 15px;"></i>
                                     </asp:LinkButton>
+                                    
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>

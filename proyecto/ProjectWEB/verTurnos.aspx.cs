@@ -120,5 +120,17 @@ namespace ProjectWEB
                 Response.Redirect("verInfoTurno.aspx?id=" + id);
             }
         }
+
+        protected void GridViewTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[4].Text == "Atendido")
+                {
+                    e.Row.Cells[6].Controls.RemoveAt(1);
+                    e.Row.Cells[6].Controls.RemoveAt(2);
+                }
+            }
+        }
     }
 }
