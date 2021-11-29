@@ -37,17 +37,27 @@
             </EmptyDataTemplate>
     </asp:GridView>
 
-    
-    <div class="asignarEspecilidadesDoctores d-none">
-        <div class="d-flex justify-content-center align-items-center flex-column">
-            <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
+    <div class="row">
+
+        <div class="col-sm-3 col-2">
         </div>
 
-        <div class="d-flex justify-content-center align-items-center flex-column">
-            <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
-            <asp:DropDownList ID="DropEspecialidad" runat="server"></asp:DropDownList>
-            <asp:Button Class="btn btn-success mt-3" ID="ButtonAsignar" runat="server" Text="Asignar especilidad" OnClick="ButtonAsignar_Click" />
+        <div class="asignarEspecilidadesDoctores d-none col-sm-6 col-8">
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
+                <asp:DropDownList CssClass="form-select" ID="DropEspecialidad" runat="server"></asp:DropDownList>
+                <asp:Button Class="btn btn-success my-3" ID="ButtonAsignar" runat="server" Text="Asignar especilidad" OnClick="ButtonAsignar_Click" />
+            </div>
         </div>
+
+        <div class="col-sm-3 col-2">
+        </div>
+
     </div>
+
     <script class="text-center" src="/Content/scripts/quitarEsp.js"></script>
 </asp:Content>

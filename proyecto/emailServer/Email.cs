@@ -16,8 +16,6 @@ namespace emailServer
         public Email() {
             server = new SmtpClient();
             server.Credentials = new NetworkCredential("walterTest25@gmail.com", "nhqvrkbnuxegnffn");
-            //server.Credentials = new NetworkCredential("walterdiaz9418@gmail.com", "cstkyahnvmwbdnkc");
-            //server.Credentials = new NetworkCredential("programationiii@gmail.com", "programacion3");
             server.EnableSsl = true;
             server.Port = 587;
             server.Host = "smtp.gmail.com";
@@ -30,7 +28,7 @@ namespace emailServer
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;
-            email.Body = "<div style='background: rgba(0,212,255,1); padding:20px;'><h1 style='color:white'>Clinica Milagro</h1></br><p style='color:black'>Su turno ha sido registrado con exito, para la fecha " + fecha + " a las " + hora + " .</p><p> Desde Clinica Milagro le deseamos un buen dia.</p><p> Saludos cordiales.</p></div>";
+            email.Body = "<div style='background:blue; padding:20px; border:6px solid rgb(77, 112, 206 );border-radius:15px;'><h1 style='color:white'>Clinica Milagro</h1> </br> <div style='color:white'>Su turno ha sido registrado con exito, para la fecha <strong style='color: black'> " + fecha + " a las " + hora + "</strong>.</div> <div style='color:white'>Desde Clinica Milagro le deseamos que tenga un buen dia.</div><div style='color:white'>Saludos Cordiales.</div></div>";
         }
 
         public void enviar_email()

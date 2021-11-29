@@ -11,22 +11,27 @@
             <div>
                 <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de turnos</h1>
             </div>
-
-            <div class="d-flex justify-content-start align-items-center flex-column">
-                <div class="mt-3">
-                    <label class="text-light ">DNI: </label>
-                    <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
-                </div>
-                <div class="mt-3">
-                    <label class="text-light ">Fecha: </label>
-                    <asp:TextBox ID="TextBoxFecha" runat="server" TextMode="Date"></asp:TextBox>
-                </div>
-                <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
-            </div>
             
-            <div class="d-flex justify-content-center align-items-center flex-row my-5">
-                <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+            <div class="row">
+                <div class="col-sm-3 col-2">
+                </div>
+
+                <div class="col-sm-6 col-8 d-flex justify-content-center align-items-center flex-column">
+                    <div class="mt-3">
+                        <label class="text-light ">DNI: </label>
+                        <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="mt-3">
+                        <label class="text-light ">Fecha: </label>
+                        <asp:TextBox CssClass="form-control" ID="TextBoxFecha" runat="server" TextMode="Date"></asp:TextBox>
+                    </div>
+                    <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
+                </div>
+
+                <div class="col-sm-3 col-2">
+                </div>
             </div>
+
 
             <asp:GridView ID="GridViewTurnos" runat="server"
                 OnRowDeleting="eliminar_turno" 
@@ -48,6 +53,7 @@
                         <asp:BoundField HeaderText="Nombre" DataField="paciente.nombre"/>
                         <asp:BoundField HeaderText="Apellido" DataField="paciente.apellido"/>
                         <asp:BoundField HeaderText="DNI" DataField="paciente.dni"/>
+                        <asp:BoundField HeaderText="Estado" DataField="estado.nombre"/>
                         <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:d}"/>
 
 
@@ -58,7 +64,7 @@
                                     <asp:LinkButton CommandName="Delete" OnClientClick="return eliminar_confirmacion(this);" CssClass="eliminarTurno d-none bg-transparent " ID="buttonEliminar" ClientIDMode="Static" runat="server">
                                         <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
                                     </asp:LinkButton>
-
+                                    
                                     <asp:LinkButton CommandName="Edit" ID="buttonEditar" runat="server" CssClass="editarTurno d-none">
                                         <i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size: 15px;"></i>
                                     </asp:LinkButton>

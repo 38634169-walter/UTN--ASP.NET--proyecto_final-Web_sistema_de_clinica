@@ -5,13 +5,24 @@
         <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de pacientes</h1>
     </div>
 
-    <div class="d-flex justify-content-start align-items-center flex-column">
-        <div class="mt-3">
-            <label class="text-light "> DNI: </label>
-            <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+    <div class="row">
+
+        <div class="col-sm-3 col-2">
+
         </div>
-        <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarCliente" runat="server" Text="Buscar" OnClick="ButtonBuscarCliente_Click"/>
+        <div class="col-sm-6 col-8 d-flex justify-content-start align-items-center flex-column">
+            <div class="mt-3">
+                <label class="text-light "> DNI: </label>
+                <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+            </div>
+            <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarCliente" runat="server" Text="Buscar" OnClick="ButtonBuscarCliente_Click"/>
+        </div>
+        <div class="col-sm-3 col-2">
+
+        </div>
+
     </div>
+
 
     <div class="tabla-container mt-4">
         <table class="tabla">

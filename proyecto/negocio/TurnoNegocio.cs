@@ -65,16 +65,16 @@ namespace negocio
             switch (buscarPor)
             {
                 case "lista":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha,et.nombre nombreEstado FROM Turnos t, Pacientes p,Datos_Personales dp ,Especialidades e, Estados_Turno et WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND et.IDEstadoTurno=t.ID_EstadoTurno AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
                 case "dni":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND dp.dni = '" + buscar + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha,et.nombre nombreEstado FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e, Estados_Turno et WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND et.IDEstadoTurno=t.ID_EstadoTurno AND dp.dni = '" + buscar + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
                 case "fecha":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha,et.nombre nombreEstado FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e, Estados_Turno et WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND et.IDEstadoTurno=t.ID_EstadoTurno AND t.fecha = '" + buscar + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
                 case "fecha y dni":
-                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND t.fecha = '" + buscar + "' AND dp.dni = '" + buscar2 + "' AND (t.ID_EstadoTurno=1 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=4) ";
+                    consulta = "SELECT t.IDTurno,p.IDPaciente,e.IDEspecialidad,dp.dni,dp.nombre AS nombrePaciente,dp.apellido,e.nombre AS nombreEspecialidad,t.hora,t.fecha,et.nombre nombreEstado FROM Turnos t, Pacientes p,Datos_Personales dp , Especialidades e, Estados_Turno et WHERE t.ID_Paciente = p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales AND t.ID_Especialidad = e.IDEspecialidad AND et.IDEstadoTurno=t.ID_EstadoTurno AND t.fecha = '" + buscar + "' AND dp.dni = '" + buscar2 + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
             }
 
@@ -92,7 +92,8 @@ namespace negocio
                     tur.id = Convert.ToInt32(con.lector["IDTurno"]);
                     tur.hora = Convert.ToInt32(con.lector["hora"]);
                     tur.fecha = Convert.ToDateTime(con.lector["fecha"]);
-                    
+                    tur.estado = new EstadoTurno();
+                    tur.estado.nombre = (string)con.lector["nombreEstado"];
 
                     tur.especialidad = new Especialidad();
                     tur.especialidad.id = Convert.ToInt32(con.lector["IDEspecialidad"]);
@@ -128,10 +129,10 @@ namespace negocio
             switch (buscarPor)
             {
                 case "todo":                    
-                    consulta = "SELECT DISTINCT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE,t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp,Empleados e,Doctores d WHERE t.ID_EstadoTurno=et.IDEstadoTurno AND t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor=d.IDDoctor AND d.ID_Empleado='" + id + "' AND (t.ID_EstadoTurno=4 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=1)";
+                    consulta = "SELECT DISTINCT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE,t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp,Empleados e,Doctores d WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor=d.IDDoctor AND et.IDEstadoTurno=t.ID_EstadoTurno AND d.ID_Empleado='" + id + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
                 case "fecha":
-                    consulta = "SELECT DISTINCT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE, t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp,Empleados e,Doctores d  WHERE t.ID_EstadoTurno=et.IDEstadoTurno AND t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor=d.IDDoctor AND d.ID_Empleado='" + id + "' AND t.fecha='" + buscar + "' AND (t.ID_EstadoTurno=4 OR t.ID_EstadoTurno=2 OR t.ID_EstadoTurno=1) ";
+                    consulta = "SELECT DISTINCT p.IDPaciente,dp.nombre AS nombreP,dp.apellido,dp.dni,t.fecha,t.hora,et.nombre AS nombreE, t.IDTurno FROM Turnos t, Estados_Turno et, Pacientes p, Datos_Personales dp,Empleados e,Doctores d WHERE t.ID_Paciente=p.IDPaciente AND p.ID_DatosPersonales=dp.IDDatosPersonales  AND t.ID_Doctor=d.IDDoctor AND et.IDEstadoTurno=t.ID_EstadoTurno AND d.ID_Empleado='" + id + "' AND t.fecha='" + buscar + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ";
                     break;
             }
 
@@ -189,7 +190,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT * FROM Turnos WHERE ID_Doctor = '" + turno.doctor.id + "' AND ID_Especialidad = '" + turno.especialidad.id + "' AND fecha = '" + turno.fecha.ToString("yyyy-MM-dd") + "' AND (ID_EstadoTurno=4 OR ID_EstadoTurno=2 OR ID_EstadoTurno=1) ");
+                con.consultar("SELECT t.IDTurno ,t.hora FROM Turnos t, Estados_Turno et WHERE et.IDEstadoTurno=t.ID_EstadoTurno AND t.ID_Doctor = '" + turno.doctor.id + "' AND t.ID_Especialidad = '" + turno.especialidad.id + "' AND t.fecha = '" + turno.fecha.ToString("yyyy-MM-dd") + "' AND (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {

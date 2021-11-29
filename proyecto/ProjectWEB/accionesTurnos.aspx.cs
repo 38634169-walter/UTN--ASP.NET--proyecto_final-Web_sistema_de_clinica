@@ -19,6 +19,7 @@ namespace ProjectWEB
         public static int horaEditando=99;
         public List<Doctor> doctoresList;
         public List<Doctor> doctoresList2;
+        public static List<Doctor> horariosDiasTrabajo;
         public List<Paciente> pacientesList;
         public List<Turno> turnosList;
         public List<Horario> horariosList;
@@ -28,6 +29,7 @@ namespace ProjectWEB
         {
             if (!IsPostBack)
             {
+                horariosDiasTrabajo=new List<Doctor>();
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
                 DropEspecialidad.DataSource = espNego.listar_especilidades_para_turnos();
                 DropEspecialidad.DataValueField = "id";
@@ -57,23 +59,19 @@ namespace ProjectWEB
                     DropHora.SelectedValue=horaEditando.ToString();
                     horaEditando = 99;
 
-
-                    //
                     DoctorNegocio docNego = new DoctorNegocio();
                     doctoresList = new List<Doctor>();
                     doctoresList = docNego.listar("especialidades con turno disponible", turno.especialidad.id);
-
                     DropPersonalDisponible.DataSource = doctoresList;
                     DropPersonalDisponible.DataValueField = "id";
                     DropPersonalDisponible.DataTextField = "nombreCompleto";
                     DropPersonalDisponible.DataBind();
                     DropPersonalDisponible.SelectedValue = turno.doctor.id.ToString();
-                    //
+                    verHorariosDelDoctor();
                 }
                 else
                 {
                     validar_permisos("Agregar turnos");
-
                     DropEspecialidad.Visible = false;
                     LabelEspecilidad.Visible = false;
                     TextBoxfecha.Visible = false;
@@ -102,8 +100,6 @@ namespace ProjectWEB
             turno.especialidad = new Especialidad();
             turno.especialidad.id = Convert.ToInt32(DropEspecialidad.SelectedValue);
 
-
-            //
             DoctorNegocio docNego = new DoctorNegocio();
             doctoresList = new List<Doctor>();
             doctoresList = docNego.listar("especialidades con turno disponible", id);
@@ -113,7 +109,6 @@ namespace ProjectWEB
             DropPersonalDisponible.DataTextField = "nombreCompleto";
             DropPersonalDisponible.DataBind();
             DropPersonalDisponible.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
-            //
             
             DropPersonalDisponible.Visible = true;
             LabelPersonal.Visible = true;
@@ -129,44 +124,50 @@ namespace ProjectWEB
             turno.doctor.id = Convert.ToInt32(DropPersonalDisponible.SelectedValue);
             TextBoxfecha.Visible = true;
             LabelFecha.Visible = true;
+
+            verHorariosDelDoctor();
         }
         protected void TextBoxfecha_TextChanged(object sender, EventArgs e)
         {
-            
-            int[] horariosDisponibles = horarios_disponibles();
 
-            DropHora.Visible = true;
-            LabelHora.Visible = true;
-            DropHora.DataSource = horariosDisponibles;
-            DropHora.DataBind();
+                int[] horariosDisponibles = horarios_disponibles();
+
+                DropHora.Visible = true;
+                LabelHora.Visible = true;
+                DropHora.DataSource = horariosDisponibles;
+                DropHora.DataBind();
+                if (horariosDisponibles.Count() < 1)
+                {
+                    LabelSinHorario.Text = "*No hay horarios disponibles en ese dia";
+                }
+                else
+                {
+                    LabelSinHorario.Text = "";
+                }
         }
 
         protected void ButtonReservar_Click(object sender, EventArgs e)
         {
-            Empleado emp = new Empleado();
-            emp = (Empleado)Session["empleado"];
-            turno.empleado = new Secretaria();
-            turno.empleado.idEmpleado = emp.idEmpleado;
-            turno.hora = Convert.ToInt32(DropHora.SelectedValue);
-            if (validar_fecha())
-            {
-
+            if (validar_fecha()) {
+                Empleado emp = new Empleado();
+                emp = (Empleado)Session["empleado"];
+                turno.empleado = new Secretaria();
+                turno.empleado.idEmpleado = emp.idEmpleado;
+                turno.hora = Convert.ToInt32(DropHora.SelectedValue);
+                EstadoTurnoNegocio estNego = new EstadoTurnoNegocio();
                 string accion = "";
                 if (turno.id != 0)
                 {
                     turno.estado = new EstadoTurno();
-                    turno.estado.id = 4;
+                    turno.estado.id = estNego.listar("Modificado");
                     TurnoNegocio turNego = new TurnoNegocio();
                     turNego.modificar(turno);
                     accion = "modificado";
                     enviar_mail_confirmacion(turno);
                 }
-                else
-                {
-
-
+                else {
                     turno.estado = new EstadoTurno();
-                    turno.estado.id = 2;
+                    turno.estado.id = estNego.listar("Esperando");
                     TurnoNegocio turNego = new TurnoNegocio();
                     turNego.agregar(turno);
                     accion = "agregado";
@@ -177,28 +178,30 @@ namespace ProjectWEB
         }
 
 
-
-
         public bool validar_fecha()
         {
-            LabelError.Text = "";
-            bool validar=true;
+            LabelSinHorario.Text = "";
+            bool validar = true;
             DateTime fechaActual = DateTime.Now;
 
             string anio = Convert.ToDateTime(TextBoxfecha.Text).ToString("yyyy");
             string mes = Convert.ToDateTime(TextBoxfecha.Text).ToString("MM");
             string dia = Convert.ToDateTime(TextBoxfecha.Text).ToString("dd");
-            string minutos = Convert.ToDateTime(TextBoxfecha.Text).ToString("mm"); 
-            string segundos = Convert.ToDateTime(TextBoxfecha.Text).ToString("ss"); 
-            DateTime fecha = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia), turno.hora, Convert.ToInt32(minutos), Convert.ToInt32(segundos));
+            int hora = Convert.ToInt32(DropHora.SelectedValue);
+            string minutos = Convert.ToDateTime(TextBoxfecha.Text).ToString("mm");
+            string segundos = Convert.ToDateTime(TextBoxfecha.Text).ToString("ss");
+            
+            DateTime fecha = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia), hora, Convert.ToInt32(minutos), Convert.ToInt32(segundos));
 
-            if (fechaActual > fecha )
+            if (fechaActual > fecha)
             {
-                LabelError.Text += "*La fecha del turno no puede se menor a la actual";
+                LabelSinHorario.Text += "*La fecha o hora del turno no puede ser menor a la actual";
                 validar = false;
             }
             return validar;
         }
+
+
 
 
         public bool validar_dni()
@@ -232,9 +235,10 @@ namespace ProjectWEB
             turno.fecha = Convert.ToDateTime(TextBoxfecha.Text);
             TurnoNegocio turNego = new TurnoNegocio();
             turnosList = turNego.turnos_medico_especialidad_fecha(turno);
-            HorarioNegocio horNego = new HorarioNegocio();
-            doctoresList2 = horNego.horarios_doctor_especialidad(turno.doctor.id, turno.especialidad.id);
 
+            string dia = turno.fecha.ToString("dddd");
+            HorarioNegocio horNego = new HorarioNegocio();
+            doctoresList2 = horNego.horarios_doctor_especialidad("con dia",turno.doctor.id, turno.especialidad.id,dia);
 
             int cont = 0;
             foreach (var doctor in doctoresList2)
@@ -286,9 +290,15 @@ namespace ProjectWEB
             return horariosDisponibles;
         }
 
+       public void verHorariosDelDoctor()
+        {
+            HorarioNegocio horNegg = new HorarioNegocio();
+            horariosDiasTrabajo = new List<Doctor>();
+            horariosDiasTrabajo = horNegg.horarios_doctor_especialidad("sin dia", turno.doctor.id, turno.especialidad.id, "");
+        }
+
         public void validar_permisos(string val)
         {
-            
             permisosList = new List<Permiso>();
             permisosList = (List<Permiso>)Session["permisos"];
             ValidarPermiso valPer = new ValidarPermiso();

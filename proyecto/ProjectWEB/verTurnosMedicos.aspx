@@ -17,7 +17,7 @@
         <table class="tabla">
             <thead>
                 <tr>
-                    <th colspan="6" class="cabeza-tabla">Turnos</th>
+                    <th colspan="7" class="cabeza-tabla">Turnos</th>
                 </tr>
                 <tr>
                     <th>Nombre</th>
@@ -25,6 +25,7 @@
                     <th>DNI</th>
                     <th>Fecha</th>
                     <th>Hora</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@
                         <td><%: turno.paciente.dni %></td>
                         <td><%: turno.fecha.ToString("dd/MM/yyyy") %></td>
                         <td><%: turno.hora %>:00Hs</td>   
+                        <td><%: turno.estado.nombre %></td>   
                         
                         <% if (turno.estado.nombre == "Modificado" || turno.estado.nombre == "Esperando") { %>
                             <td style="height:1cm;">
@@ -54,7 +56,7 @@
                 <% if(!turnosList.Any())
                     { %>
                     <tr>
-                        <td colspan="6">No hay resultados</td>                        
+                        <td colspan="7">No hay resultados</td>                        
                     </tr>
                 <% } %>
             </tbody>

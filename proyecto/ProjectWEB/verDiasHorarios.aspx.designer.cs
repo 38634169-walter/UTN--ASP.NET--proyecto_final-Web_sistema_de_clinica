@@ -11,7 +11,7 @@ namespace ProjectWEB
 {
 
 
-    public partial class eliminarTurnos
+    public partial class verDiasHorarios
     {
     }
 }

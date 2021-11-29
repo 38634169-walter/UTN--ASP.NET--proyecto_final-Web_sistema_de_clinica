@@ -85,12 +85,19 @@ namespace ProjectWEB
         public bool validar_paciente_existente()
         {
             LabelError.Text = "";
+            Paciente pac = new Paciente();
             PacienteNegocio pacNego = new PacienteNegocio();
-            paciente = pacNego.buscar("dni", TextBoxDni.Text);
-            if (paciente.id != 0)
+            pac = pacNego.buscar("dni", TextBoxDni.Text);
+            if (TextBoxDni.Text.Length > 10)
+            {
+                LabelError.Text += "*El DNI no puede contener mas de 10 caracteres </br>";
+                return false;
+            }
+            if (pac.id != 0)
             {
                 if(pacienteDniEditar != null && pacienteDniEditar == TextBoxDni.Text)
                 {
+                    pacienteDniEditar = "";
                     return true;
                 }
                 LabelError.Text = "*El paciente ya se encuentra registrado";

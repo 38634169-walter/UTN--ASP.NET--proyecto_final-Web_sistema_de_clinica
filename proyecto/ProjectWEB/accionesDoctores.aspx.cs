@@ -141,15 +141,26 @@ namespace ProjectWEB
 
             string dni = TextBoxDni.Text;
             string usu = TextBoxUsuario.Text;
-            PersonaNegocio perNego = new PersonaNegocio();
-            personaList = perNego.listar_datos_personales();
-            foreach (var persona in personaList)
+            if (TextBoxDni.Text.Length > 10)
             {
-                if(persona.dni == dni)
-                {
-                    LabelError.Text += "*El DNI ingresado ya existe. <br/>";
-                    validar = false;
-                }
+                LabelError.Text += "*El DNI ingresado no puede contener mas de 10 caracteres. </br>";
+                validar = false;
+            }
+            EmpleadoNegocio empNego = new EmpleadoNegocio();
+            Empleado emp = new Empleado();
+            emp=empNego.buscar(dni);
+            if (emp.idEmpleado != 0)
+            {
+                LabelError.Text += "*El DNI ingresado ya se encuentra registrado por un empleado. </br>";
+                validar = false;
+            }
+            PacienteNegocio pacNego = new PacienteNegocio();
+            Paciente pac = new Paciente();
+            pac=pacNego.buscar("dni",TextBoxDni.Text);
+            if (pac.id != 0)
+            {
+                LabelError.Text += "*El DNI ingresado pertenece a un paciente </br>";
+                validar = false;
             }
             UsuarioNegocio usuNego = new UsuarioNegocio();
             usuarioList=usuNego.lista_usuarios();
@@ -157,7 +168,7 @@ namespace ProjectWEB
             {
                 if (usuario.usuario == usu)
                 {
-                    LabelError.Text += "*El Usuario ingresado ya existe. <br/> ";
+                    LabelError.Text += "*El Usuario ingresado ya existe. </br> ";
                     validar = false;
                 }
             }
@@ -166,14 +177,14 @@ namespace ProjectWEB
             if(entrada > salida)
             {
                 validar = false;
-                LabelError.Text += "*El Horario de entrada no puede ser mayor al de salida. <br/> ";
+                LabelError.Text += "*El Horario de entrada no puede ser mayor al de salida. </br> ";
             }
             else
             {
                 if(entrada == salida)
                 {
                     validar = false;
-                    LabelError.Text += "*El horario de entrada y salida no pueden ser iguales. <br/>";
+                    LabelError.Text += "*El horario de entrada y salida no pueden ser iguales. </br>";
                 }
                 else
                 {

@@ -55,7 +55,14 @@ namespace ProjectWEB
                 doctor.horario.horaFin = horaFin;
                 doctor.horario.especialidad = new Especialidad();
                 doctor.horario.especialidad.id = Convert.ToInt32(DropDownListEspecilidad.SelectedValue);
-                horNego.agregar(doctor);
+                bool lunes = CheckBoxLunes.Checked;
+                bool martes = CheckBoxMartes.Checked;
+                bool miercoles = CheckBoxMiercoles.Checked;
+                bool jueves = CheckBoxJueves.Checked;
+                bool viernes = CheckBoxViernes.Checked;
+                bool sabado = CheckBoxSabado.Checked;
+                bool domingo = CheckBoxDomingo.Checked;
+                horNego.agregar(doctor,lunes,martes,miercoles,jueves,viernes,sabado,domingo);
                 string confirmacion = "agregado";
                 Response.Redirect("inicio.aspx?accion=" + confirmacion);
             }
@@ -63,39 +70,64 @@ namespace ProjectWEB
         public bool validar_horario(List<Doctor> doctoresList,int horaInicio,int horaFin)
         {
             LabelError.Text = "";
+            bool validar = true;
+            
             if (horaInicio > horaFin)
             {
-                LabelError.Text = "*El horario de inicio no debe ser mayor al de fin";
-                return false;
+                LabelError.Text += "*El horario de inicio no debe ser mayor al de fin </br>";
+                validar=false;
             }
             else
             {
                 if(horaInicio == horaFin)
                 {
-                    LabelError.Text = "*Los horarios de inicio y fin no deben ser iguales";
-                    return false;
+                    LabelError.Text += "*Los horarios de inicio y fin no deben ser iguales </br>";
+                    validar = false;
                 }
                 if(horaInicio > 24 || horaFin > 24)
                 {
-                    LabelError.Text = "*El horario ingresado se encuentra fuera del rango de 24hs";
-                    return false;
+                    LabelError.Text += "*El horario ingresado se encuentra fuera del rango de 24hs </br>";
+                    validar = false;
                 }
             }
+            DiaDeTrabajoNegocio dtNego = new DiaDeTrabajoNegocio();
+            List<DiaDeTrabajo> diasTrabajoList = new List<DiaDeTrabajo>();
             foreach (var doctor in doctoresList)
             {
-                for(int i=doctor.horario.horaInicio + 1;i<doctor.horario.horaFin;i++)
+                
+                diasTrabajoList = dtNego.dias_trabajo(doctor.horario.id.ToString());
+
+                foreach (var dia in diasTrabajoList)
                 {
-                    for (int x=horaInicio;x<=horaFin;x++)
-                    {
-                        if (i == x)
+                    bool buscar = false;
+                    
+                    if (dia.nombre == "lunes" && CheckBoxLunes.Checked == true) buscar = true;
+                    if (dia.nombre == "martes" && CheckBoxMartes.Checked == true) buscar = true;
+                    if (dia.nombre == "miércoles" && CheckBoxMiercoles.Checked == true) buscar = true;
+                    if (dia.nombre == "jueves" && CheckBoxJueves.Checked == true) buscar = true;
+                    if (dia.nombre == "viernes" && CheckBoxViernes.Checked == true) buscar = true;
+                    if (dia.nombre == "sábado" && CheckBoxSabado.Checked == true) buscar = true;
+                    if (dia.nombre == "domingo" && CheckBoxDomingo.Checked == true) buscar = true;
+
+                    if (buscar == true) {
+                        //for (int i = doctor.horario.horaInicio + 1; i < doctor.horario.horaFin; i++)
+                        for (int i = doctor.horario.horaInicio; i < doctor.horario.horaFin; i++)
                         {
-                            LabelError.Text = "*El rango de ese horario ya se encuentra en uso por el doctor";
-                            return false;
+
+                            for (int x = horaInicio; x <= horaFin; x++)
+                            {
+                                if (i == x)
+                                {
+                                    LabelError.Text += "*El dia " + dia.nombre + " esta ocupado a las " + i + ":00Hs" + "</br>";
+                                    validar = false;
+                                }
+                            }
+
                         }
                     }
                 }
             }
-            return true;
+            return validar;
         }
         public void validarAcciones()
         {
@@ -149,6 +181,11 @@ namespace ProjectWEB
                 HorarioNegocio horNego = new HorarioNegocio();
                 horNego.eliminar(id);
                 cargar_grid();
+            }
+            if (e.CommandName == "Ver")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect("verDiasHorarios.aspx?id=" + id);
             }
         }
     }

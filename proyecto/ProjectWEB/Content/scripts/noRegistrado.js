@@ -3,7 +3,6 @@ function no_registrado() {
         position: 'top-end',
         icon: 'success',
         title: 'El paciente no esta registrado, podes registrarlo aca',
-        showConfirmButton: true,
-        //target: document.getElementById('m'),
+        showConfirmButton: true
     })
 }

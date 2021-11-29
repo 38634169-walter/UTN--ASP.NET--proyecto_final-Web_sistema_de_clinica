@@ -30,6 +30,22 @@
                         <asp:Label ID="LabelPersonal" runat="server" Text="Doctor: "></asp:Label>
                         <asp:DropDownList ClientIDMode="Static" CssClass="form-select ms-2" ID="DropPersonalDisponible" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropPersonalDisponible_SelectedIndexChanged"></asp:DropDownList>
                     </div>
+                    
+
+                        <% if (horariosDiasTrabajo.Any() && horariosDiasTrabajo != null )
+                            { %>
+                                <div class="bg-primary p-3 my-2" style="border-radius:10px; border:3px solid white; box-shadow:10px 10px 10px black">
+                                    <p class="h1 text-light titulo"><i class="fas fa-clock"></i>Horarios del Doctor</p>
+                                    <% foreach (var dc in horariosDiasTrabajo)
+                                        {%>
+                                            <div class="mt-1 text-start text-black">
+                                                <p><strong class="text-light pe-2">> </strong> <%: dc.horario.dias + " " + dc.horario.horaInicio + ":00Hs a " +  dc.horario.horaFin  + ":00Hs" %></p>
+                                            </div>                                                            
+
+                                        <%} %>
+                                </div>
+                        <%} %>
+
                     <div class="m-2 rounded-circle">
                         <asp:Label ID="LabelFecha" runat="server" Text="Fecha: "></asp:Label>
                         <asp:TextBox ClientIDMode="Static" CssClass="form-control ms-2" ID="TextBoxfecha" runat="server" TextMode="Date" OnTextChanged="TextBoxfecha_TextChanged" AutoPostBack="True" ></asp:TextBox>   
@@ -40,6 +56,10 @@
                         <asp:Label ID="LabelHora" runat="server" Text="Horario: "></asp:Label>
                         <asp:DropDownList ClientIDMode="Static" CssClass="form-select ms-2" ID="DropHora" runat="server"></asp:DropDownList>
                     </div>
+                    <div class="m-2 rounded-circle text-center">
+                        <asp:Label ID="LabelSinHorario" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+                    </div>
+
 
 
                     <div class="d-flex justify-content-center align-items-center">
