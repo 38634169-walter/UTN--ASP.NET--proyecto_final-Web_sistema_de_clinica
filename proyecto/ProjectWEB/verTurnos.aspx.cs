@@ -116,7 +116,7 @@ namespace ProjectWEB
         {
             if (e.CommandName == "ver")
             {
-                int id = Convert.ToInt32(e.CommandArgument);
+                string id = e.CommandArgument.ToString();
                 Response.Redirect("verInfoTurno.aspx?id=" + id);
             }
         }
@@ -125,10 +125,12 @@ namespace ProjectWEB
         {
             if(e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (e.Row.Cells[4].Text == "Atendido")
+                Turno turno = e.Row.DataItem as Turno;
+                if(turno.estado.nombre == "Atendido")
                 {
                     e.Row.Cells[6].Controls.RemoveAt(1);
                     e.Row.Cells[6].Controls.RemoveAt(2);
+                    e.Row.Cells[6].Text = "Atendido";
                 }
             }
         }

@@ -72,6 +72,7 @@ namespace ProjectWEB
                 else
                 {
                     validar_permisos("Agregar turnos");
+                    turno = new Turno();
                     DropEspecialidad.Visible = false;
                     LabelEspecilidad.Visible = false;
                     TextBoxfecha.Visible = false;

@@ -37,6 +37,7 @@
                 OnRowDeleting="eliminar_turno" 
                 OnRowEditing="GridViewTurnos_RowEditing"
                 OnRowCommand="GridViewTurnos_RowCommand"
+                OnRowDataBound="GridViewTurnos_RowDataBound"
                 OnPageIndexChanging="GridViewTurnos_PageIndexChanging" 
                 AllowPaging="true" 
                 PageSize="5" 
@@ -46,7 +47,8 @@
                 AlternatingRowStyle-CssClass="alternadas"
                 CssClass="gv" 
                 PagerStyle-CssClass="pgr"
-                ShowHeaderWhenEmpty="true" OnRowDataBound="GridViewTurnos_RowDataBound">
+                ShowHeaderWhenEmpty="true">
+                    
                     <Columns>
 
                         <asp:BoundField HeaderText="ID" DataField="id"/>
@@ -61,6 +63,7 @@
 
                             <ItemTemplate>
                                 <div class="d-flex justify-content-center align-items-center justify-content-center flex-row">
+
                                     <asp:LinkButton CommandName="Delete" OnClientClick="return eliminar_confirmacion(this);" CssClass="eliminarTurno d-none bg-transparent " ID="buttonEliminar" ClientIDMode="Static" runat="server">
                                         <i class="far fa-trash-alt text-light rounded-circle bg-danger p-2" style="font-size:15px;"></i>
                                     </asp:LinkButton>
@@ -68,12 +71,14 @@
                                     <asp:LinkButton CommandName="Edit" ID="buttonEditar" runat="server" CssClass="editarTurno d-none">
                                         <i class="fas fa-user-edit text-light rounded-circle bg-success p-2" style="font-size: 15px;"></i>
                                     </asp:LinkButton>
-
+                                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
                                     <asp:LinkButton ID="buttonVer" runat="server" CommandName="ver" CommandArgument='<%# Eval("id") %>' >
                                         <i class="far fa-eye text-light rounded-circle bg-primary p-2" style="font-size: 15px;"></i>
                                     </asp:LinkButton>
-                                    
-                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
 

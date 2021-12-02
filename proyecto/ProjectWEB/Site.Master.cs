@@ -17,11 +17,11 @@ namespace ProjectWEB
         public List<Permiso> permisosList;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (Session["logged"] == null)
             {
                 Response.Redirect("login.aspx");
             }
+
             empleado = new Empleado();
             empleado = (Empleado)Session["empleado"];
             LabelNombre.Text = empleado.nombre + " " + empleado.apellido;
