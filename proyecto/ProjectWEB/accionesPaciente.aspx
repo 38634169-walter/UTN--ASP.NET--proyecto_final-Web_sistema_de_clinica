@@ -43,7 +43,7 @@
                     </div>
                     <div class="mt-2">
                         <asp:Label ID="Label5" runat="server" Text="Telefono: " Type="Integer" MinimumValue="0"></asp:Label>
-                        <asp:TextBox CssClass=" form-control" ID="TextBoxTelefono" runat="server" TextMode="Phone" AutoPostBack="true" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox CssClass=" form-control" ID="TextBoxTelefono" runat="server" TextMode="Number" AutoPostBack="true" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     
                     <div class="d-flex justify-content-center align-items-center">

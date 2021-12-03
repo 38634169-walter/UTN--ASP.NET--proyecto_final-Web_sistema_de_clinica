@@ -55,7 +55,7 @@ namespace ProjectWEB
                     GridViewTurnos.DataBind();
                 }
             }
-            if (!turnosList.Any() || turnosList[0].id == null)
+            if (!turnosList.Any() || turnosList[0].id == 0)
             {
                 GridViewTurnos.DataSource = turnosList;
                 GridViewTurnos.DataBind();

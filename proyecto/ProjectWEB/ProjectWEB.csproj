@@ -124,7 +124,7 @@
     <Content Include="Content\scripts\confirmacion.js" />
     <Content Include="Content\scripts\confirmEliminar.js" />
     <Content Include="Content\scripts\noRegistrado.js" />
-    <Content Include="Content\scripts\validarCampo.js" />
+    <Content Include="Content\scripts\validarCampos.js" />
     <Content Include="Content\scripts\validarPerm.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

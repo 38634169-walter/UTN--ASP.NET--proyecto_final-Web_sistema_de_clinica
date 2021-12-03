@@ -68,10 +68,9 @@
 
         <div class=" col-sm-6 col-8 asignarHorariosDoctores d-none">
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar horario"></asp:Label>
+                <asp:Label class="h1 text-center text-light titulo my-3" ID="LabelTituloAgregar" runat="server" Text="Agregar horario"></asp:Label>
             </div>
 
-            <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
 
             <div class="d-flex justify-content-center align-items-center flex-column my-2">
                 <asp:Label ID="LabelEspecialidad" runat="server" Text="Especialidad: "></asp:Label>
@@ -114,16 +113,25 @@
 
 
 
-
-            <div class="d-flex justify-content-center align-items-center flex-column my-2">
-                <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>
-                <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioInicio" runat="server"></asp:TextBox>
+            <div class="d-flex justify-content-start align-items-center flex-row ">
+                <div class="d-flex justify-content-center align-items-center flex-column mx-1">
+                    <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>
+                    <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioInicio" runat="server" TextMode="Number"></asp:TextBox>
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column mx-1">
+                    <asp:Label ID="LabelHorarioFin" runat="server" Text="Horario de Fin: "></asp:Label>
+                    <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioFin" runat="server" TextMode="Number"></asp:TextBox>
+                </div>
             </div>
-            <div class="d-flex justify-content-center align-items-center flex-column my-2">
-                <asp:Label ID="LabelHorarioFin" runat="server" Text="Horario de Fin: "></asp:Label>
-                <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioFin" runat="server"></asp:TextBox>
+            
+            
+            <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
+
+            
+            <div class="d-flex justify-content-center align-items-center">
                 <asp:Button Class="btn btn-success my-3" ID="ButtonAsignar" runat="server" Text="Asignar horario" OnClientClick="return validar_horario_doctor()" OnClick="ButtonAsignar_Click" />
             </div>
+
         </div>
 
         <div class=" col-sm-3 col-2">

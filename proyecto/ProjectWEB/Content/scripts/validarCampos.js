@@ -1,4 +1,5 @@
 ﻿
+
 function validar_paciente() {
     var vali = true;
     
@@ -164,7 +165,19 @@ function validar_agregar_doctor() {
         $('#TextBoxUsuario').addClass('is-valid');
         $('#TextBoxUsuario').removeClass('is-invalid');
     }
-    if ($('#TextBoxClave').val() == "") {
+
+    var clave = $('#TextBoxClave').val();
+    var validarClave = true;
+    for (var i = 0; i < clave.length; i++) {
+        if (clave[i] == "?" || clave[i] == ":" || clave[i] == "=" || clave[i] == "\'" || clave[i] == ")'" || clave[i] == "('" ) {
+            validarClave = false;
+            $('#LabelError').html("*No se puede utilizar los siguientes simbolos para la contraseña  ? , : , \' , = , ) , ( ");
+            $('#errorClave').html("*No se puede utilizar los siguientes simbolos  ? , : , \' , = , ) , ( ");
+        }
+    }
+    if (clave == "") validarClave = false;
+
+    if (validarClave == false) {
         $('#TextBoxClave').addClass('is-invalid');
         $('#TextBoxClave').removeClass('is-valid');
         vali = false;
@@ -201,6 +214,7 @@ function validar_agregar_doctor() {
         $('#TextBoxHorarioEntrada').addClass('is-valid');
         $('#TextBoxHorarioEntrada').removeClass('is-invalid');
     }
+
     if ($('#TextBoxHorarioSalida').val() == "") {
         $('#TextBoxHorarioSalida').addClass('is-invalid');
         $('#TextBoxHorarioSalida').removeClass('is-valid');
@@ -272,7 +286,21 @@ function validar_modificar_doctor() {
         $('#TextBoxUsuario').addClass('is-valid');
         $('#TextBoxUsuario').removeClass('is-invalid');
     }
-    if ($('#TextBoxClave').val() == "") {
+
+
+    var clave = $('#TextBoxClave').val();
+    var validarClave = true;
+    for (var i = 0; i < clave.length; i++) {
+        if (clave[i] == "?" || clave[i] == ":" || clave[i] == "=" || clave[i] == "\'" || clave[i] == ")'" || clave[i] == "('") {
+            validarClave = false;
+            $('#LabelError').html("*No se puede utilizar los siguientes simbolos para la contraseña  ? , : , \' , = , ) , ( ");
+            $('#errorClave').html("*No se puede utilizar los siguientes simbolos  ? , : , \' , = , ) , ( ");
+        }
+    }
+
+    if (clave == "") validarClave = false;
+
+    if (validarClave == false) {
         $('#TextBoxClave').addClass('is-invalid');
         $('#TextBoxClave').removeClass('is-valid');
         vali = false;

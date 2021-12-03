@@ -36,16 +36,16 @@
                 <div class="col-8 col-md-6 shadow p-3">
                     <li>
                         <label class="form-label">Usuario: </label>
-                        <asp:TextBox class="form-control" ID="TextBoxUsuario" runat="server"></asp:TextBox>
+                        <asp:TextBox class="form-control" ID="TextBoxUsuario" runat="server" ClientIDMode="Static"></asp:TextBox>
                     </li>
                     <li>
                         <label class="form-label">Contaseña: </label>
-                        <asp:TextBox ID="TextBoxClave" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxClave" runat="server" class="form-control" TextMode="Password" ClientIDMode="Static"></asp:TextBox>
                     </li>
                     <li>
-                        <asp:Label ID="LabelIncorrecto" runat="server" Text="" ForeColor="Red"></asp:Label>
+                        <asp:Label ID="LabelIncorrecto" runat="server" Text="" ForeColor="Red" ClientIDMode="Static"></asp:Label>
                     </li>
-                    <asp:Button class="btn btn-success mt-3" ID="Button1" runat="server" Text="Ingresar" OnClick="Button1_Click"/>
+                    <asp:Button class="btn btn-success mt-3" ID="Button1" runat="server" Text="Ingresar" OnClientClick="return validar_ingreso_usuario()" OnClick="Button1_Click"/>
                 </div>
                 
                 <div class="col-2 col-md-3">
@@ -54,7 +54,6 @@
               
 
             </div>
-
         </div>
     </form>
 </body>

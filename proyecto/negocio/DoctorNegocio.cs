@@ -81,12 +81,12 @@ namespace negocio
             }
         }
           
-        public void agregar(Doctor doctor)
+        public void agregar(Doctor doctor, bool lu, bool ma, bool mi, bool ju, bool vi, bool sa, bool dom)
         {
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_AGREGAR_DOCTOR '" + doctor.nombre + "', '" + doctor.apellido + "','" + doctor.dni + "','" + doctor.email + "','" + doctor.telefono + "','" + doctor.sueldo + "','" + doctor.especialidad.id + "','" + doctor.horario.horaInicio + "','" + doctor.horario.horaFin + "','" + doctor.usuario.usuario + "','" + doctor.usuario.clave + "'  ");
+                con.consultar("EXEC SP_AGREGAR_DOCTOR '" + doctor.nombre + "', '" + doctor.apellido + "','" + doctor.dni + "','" + doctor.email + "','" + doctor.telefono + "','" + doctor.sueldo + "','" + doctor.especialidad.id + "','" + doctor.horario.horaInicio + "','" + doctor.horario.horaFin + "','" + doctor.usuario.usuario + "','" + doctor.usuario.clave + "', '" + lu + "', '" + ma + "', '" + mi + "', '" + ju + "', '" + vi + "', '" + sa + "', '" + dom + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

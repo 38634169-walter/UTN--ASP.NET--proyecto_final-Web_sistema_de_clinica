@@ -90,6 +90,11 @@ namespace ProjectWEB
                     validar = false;
                 }
             }
+            if(!(CheckBoxLunes.Checked) && !(CheckBoxMartes.Checked) && !(CheckBoxMiercoles.Checked) && !(CheckBoxJueves.Checked) && !(CheckBoxViernes.Checked) && !(CheckBoxSabado.Checked) && !(CheckBoxDomingo.Checked))
+            {
+                validar = false;
+                LabelError.Text += "*Se debe ingresar al menos un dia para el horario del doctor";
+            }
             DiaDeTrabajoNegocio dtNego = new DiaDeTrabajoNegocio();
             List<DiaDeTrabajo> diasTrabajoList = new List<DiaDeTrabajo>();
             foreach (var doctor in doctoresList)
@@ -110,7 +115,6 @@ namespace ProjectWEB
                     if (dia.nombre == "domingo" && CheckBoxDomingo.Checked == true) buscar = true;
 
                     if (buscar == true) {
-                        //for (int i = doctor.horario.horaInicio + 1; i < doctor.horario.horaFin; i++)
                         for (int i = doctor.horario.horaInicio; i < doctor.horario.horaFin; i++)
                         {
 

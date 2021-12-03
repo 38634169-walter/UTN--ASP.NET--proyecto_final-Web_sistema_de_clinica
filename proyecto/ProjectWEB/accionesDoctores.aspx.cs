@@ -56,6 +56,16 @@ namespace ProjectWEB
                     LabelHorarioEntrada.Style.Add("display", "none");
                     LabelHorarioSalida.Style.Add("display", "none");
                     LabelEspecialidad.Style.Add("display", "none");
+
+                    tituloHorarios.Visible = false;
+                    CheckBoxLunes.Visible = false;
+                    CheckBoxMartes.Visible = false;
+                    CheckBoxMiercoles.Visible = false;
+                    CheckBoxJueves.Visible = false;
+                    CheckBoxViernes.Visible = false;
+                    CheckBoxSabado.Visible = false;
+                    CheckBoxDomingo.Visible = false;
+
                     TextBoxUsuario.Text = doctor.usuario.usuario;
                     TextBoxClave.Text = doctor.usuario.clave;
 
@@ -108,7 +118,15 @@ namespace ProjectWEB
                     doctor.horario.horaInicio = Convert.ToInt32(TextBoxHorarioEntrada.Text);
                     doctor.horario.horaFin = Convert.ToInt32(TextBoxHorarioSalida.Text);
 
-                    docNego.agregar(doctor);
+                    bool lunes = CheckBoxLunes.Checked;
+                    bool martes = CheckBoxMartes.Checked;
+                    bool miercoles = CheckBoxMiercoles.Checked;
+                    bool jueves = CheckBoxJueves.Checked;
+                    bool viernes = CheckBoxViernes.Checked;
+                    bool sabado = CheckBoxSabado.Checked;
+                    bool domingo = CheckBoxDomingo.Checked;
+
+                    docNego.agregar(doctor, lunes, martes, miercoles, jueves, viernes, sabado, domingo);
                     confirmacion = "agregado";
                 }
              }
@@ -195,6 +213,14 @@ namespace ProjectWEB
                     }
                 }
             }
+
+            if (!(CheckBoxLunes.Checked) && !(CheckBoxMartes.Checked) && !(CheckBoxMiercoles.Checked) && !(CheckBoxJueves.Checked) && !(CheckBoxViernes.Checked) && !(CheckBoxSabado.Checked) && !(CheckBoxDomingo.Checked))
+            {
+                validar = false;
+                LabelError.Text += "*Se debe ingresar al menos un dia para el horario del doctor";
+            }
+
+
             
             return validar;
         }

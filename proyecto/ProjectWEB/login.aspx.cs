@@ -32,21 +32,37 @@ namespace ProjectWEB
             bool validar = false;
             empleado = new Empleado();
             empleado = usuNego.validarUsu(usuario, clave, ref validar);
-            if (validar == true)
+            if (validarInyeccion() != false)
             {
-                PermisoNegocio perNego = new PermisoNegocio();
-                permisosList = new List<Permiso>();
-                string id = empleado.usuario.id.ToString();
-                permisosList = perNego.listar("idUsuario",id);
-                Session.Add("empleado", empleado);
-                Session.Add("permisos", permisosList);
-                Session.Add("logged", true);
-                Response.Redirect("inicio.aspx", false);
+                if (validar == true)
+                {
+                    PermisoNegocio perNego = new PermisoNegocio();
+                    permisosList = new List<Permiso>();
+                    string id = empleado.usuario.id.ToString();
+                    permisosList = perNego.listar("idUsuario", id);
+                    Session.Add("empleado", empleado);
+                    Session.Add("permisos", permisosList);
+                    Session.Add("logged", true);
+                    Response.Redirect("inicio.aspx", false);
+                }
+                else
+                {
+                    LabelIncorrecto.Text = "*Usuario o clave incorrectos";
+                }
             }
-            else
+        }
+        public bool validarInyeccion()
+        {
+            string clave = TextBoxClave.Text;
+            for (int i=0;i<clave.Length;i++)
             {
-                LabelIncorrecto.Text = "*Usuario o clave incorrectos";
+                if (clave[i] == '?' || clave[i] == ':' || clave[i] == '=' || clave[i] == '\'' || clave[i] == ')' || clave[i] == '(' )
+                {
+                    LabelIncorrecto.Text = "*No se puede utilizar los siguientes simbolos para la contraseña  ? , : , \' , = , ) , ( ";
+                    return false;
+                }
             }
+            return true;
         }
     }
 }

@@ -346,7 +346,14 @@ CREATE PROCEDURE SP_AGREGAR_DOCTOR(
 	@horarioInicio TINYINT,
 	@horarioFin TINYINT,
 	@usuario VARCHAR(25),
-	@clave VARCHAR(20)
+	@clave VARCHAR(20),
+	@lunes BIT,
+	@martes BIT,
+	@miercoles BIT,
+	@jueves BIT,
+	@viernes BIT,
+	@sabado BIT,
+	@domingo BIT
 )
 AS 
 BEGIN 
@@ -368,8 +375,32 @@ BEGIN
 
 			INSERT INTO Doctores(ID_Empleado) VALUES (@IDEmpleado)
 
+			DECLARE @IDHorario BIGINT
 			INSERT INTO Horarios (horarioInicio,horarioFin,ID_Empleado,ID_Especialidad) VALUES
 			(@horarioInicio,@horarioFin,@IDEmpleado,@IDEspecialidad)
+			SET @IDHorario = @@IDENTITY
+
+			IF @lunes = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,1)
+			END
+			IF @martes = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,2)
+			END
+			IF @miercoles = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,3)
+			END
+			IF @jueves = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,4)
+			END
+			IF @viernes = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,5)
+			END
+			IF @sabado = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,6)
+			END
+			IF @domingo = 1 BEGIN 
+				INSERT INTO Horarios_DiasTrabajo(ID_Horario,ID_DiasTrabajo)VALUES(@IDHorario,7)
+			END
 
 			DECLARE @IDDoctor SMALLINT
 			SELECT @IDDoctor=IDDoctor FROM Doctores WHERE ID_Empleado=@IDEmpleado
@@ -548,7 +579,7 @@ BEGIN
 END
 
 
-------------- FIN DE INSERTCIONES -------------
+------------- FIN DE INSERCIONES -------------
 
 
 
