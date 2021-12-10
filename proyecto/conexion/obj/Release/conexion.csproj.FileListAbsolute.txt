@@ -1,0 +1,6 @@
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\bin\Release\conexion.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\bin\Release\conexion.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\obj\Release\conexion.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\obj\Release\conexion.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\obj\Release\conexion.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\conexion\obj\Release\conexion.pdb

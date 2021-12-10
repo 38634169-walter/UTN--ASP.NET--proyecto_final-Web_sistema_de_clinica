@@ -1,0 +1,10 @@
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\negocio.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\negocio.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\conexion.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\modelo.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\conexion.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\bin\Release\modelo.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\obj\Release\negocio.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\obj\Release\negocio.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\obj\Release\negocio.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\negocio\obj\Release\negocio.pdb

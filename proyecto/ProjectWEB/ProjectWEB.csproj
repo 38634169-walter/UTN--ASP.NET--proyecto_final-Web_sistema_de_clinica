@@ -118,7 +118,7 @@
     <Content Include="Content\bootstrap5\.gitignore" />
     <Content Include="Content\bootstrap5\package.js" />
     <Content Include="Content\estilos\inicio.css" />
-    <Content Include="Content\estilos\global.css" />
+    <Content Include="Content\estilos\glob.css" />
     <Content Include="Content\img\fondo.png" />
     <Content Include="Content\img\giftAnimado1.gif" />
     <Content Include="Content\scripts\confirmacion.js" />

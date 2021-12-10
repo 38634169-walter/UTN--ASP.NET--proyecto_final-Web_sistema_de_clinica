@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="agregarEspecialidad.aspx.cs" Inherits="ProjectWEB.agregarEspecialidad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="d-flex justify-content-center align-items-center">
-        <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Especialidad"></asp:Label>
+        <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Especialidad"></asp:Label>
     </div>
     
     <div class="row">

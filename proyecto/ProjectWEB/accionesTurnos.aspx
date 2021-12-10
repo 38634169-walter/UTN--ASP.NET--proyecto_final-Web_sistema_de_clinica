@@ -8,7 +8,7 @@
          </div>
         <div class="col-6">
             <div class="d-flex justify-content-center align-items-center">
-                <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
+                <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
             </div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>

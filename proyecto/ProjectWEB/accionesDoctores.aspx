@@ -15,7 +15,7 @@
                 <div class="col-10 d-flex justify-content-start align-items-center flex-column">
 
                     <div class="d-flex justify-content-center align-items-center">
-                        <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Medico"></asp:Label>
+                        <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Medico"></asp:Label>
                     </div>
 
 
@@ -73,7 +73,7 @@
 
 
                     <div class="text-center text-light mt-5">
-                        <asp:Label CssClass="titulo h1" ID="tituloHorarios" runat="server" Text="Agregar especialidad con horarios"></asp:Label>
+                        <asp:Label CssClass="titulo2 h1" ID="tituloHorarios" runat="server" Text="Agregar especialidad con horarios"></asp:Label>
                     </div>
 
 

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
      <div>
-        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Dias del Horario </h1>
+        <h1 class="text-center text-light my-5 titulo2" >Dias del Horario </h1>
     </div>
     <div class="tabla-container">
         <table class="tabla">

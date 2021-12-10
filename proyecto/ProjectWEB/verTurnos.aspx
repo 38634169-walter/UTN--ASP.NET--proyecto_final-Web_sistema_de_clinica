@@ -9,7 +9,7 @@
 
 
             <div>
-                <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de turnos</h1>
+                <h1 class="text-center text-light mt-3 titulo2">Listado de turnos</h1>
             </div>
             
             <div class="row">
@@ -17,12 +17,12 @@
                 </div>
 
                 <div class="col-sm-6 col-8 d-flex justify-content-center align-items-center flex-column">
-                    <div class="mt-3">
-                        <label class="text-light ">DNI: </label>
+                    <div class="input-group mt-3">
+                        <span class="input-group-text" id="basic-addon1"> DNI: </span>
                         <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
                     </div>
-                    <div class="mt-3">
-                        <label class="text-light ">Fecha: </label>
+                    <div class="input-group mt-3">
+                        <span class="input-group-text" id="basic-addon1"> Fecha: </span>
                         <asp:TextBox CssClass="form-control" ID="TextBoxFecha" runat="server" TextMode="Date"></asp:TextBox>
                     </div>
                     <asp:Button class="btn btn-success mt-3" ID="ButtonBuscar" runat="server" Text="Buscar" OnClick="ButtonBuscar_Click" />
@@ -31,7 +31,7 @@
                 <div class="col-sm-3 col-2">
                 </div>
             </div>
-
+            
 
             <asp:GridView ID="GridViewTurnos" runat="server"
                 OnRowDeleting="eliminar_turno" 
@@ -40,7 +40,7 @@
                 OnRowDataBound="GridViewTurnos_RowDataBound"
                 OnPageIndexChanging="GridViewTurnos_PageIndexChanging" 
                 AllowPaging="true" 
-                PageSize="5" 
+                PageSize="10" 
                 DataKeyNames="id" 
                 AutoGenerateColumns="false"
                 GridLines="None"

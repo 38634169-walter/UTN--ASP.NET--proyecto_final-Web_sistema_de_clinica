@@ -40,7 +40,7 @@
                     </li>
                     <li>
                         <label class="form-label">Contaseña: </label>
-                        <asp:TextBox ID="TextBoxClave" runat="server" class="form-control" TextMode="Password" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxClave" runat="server" class="form-control" TextMode="Password" ClientIDMode="Static" type="password"></asp:TextBox>
                     </li>
                     <li>
                         <asp:Label ID="LabelIncorrecto" runat="server" Text="" ForeColor="Red" ClientIDMode="Static"></asp:Label>

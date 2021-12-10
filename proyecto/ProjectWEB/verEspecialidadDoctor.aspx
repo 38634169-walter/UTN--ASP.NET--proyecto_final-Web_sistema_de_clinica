@@ -3,7 +3,7 @@
 
 
     <div class="d-flex justify-content-center align-items-center flex-column">
-        <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloVer" runat="server" Text="Especialidades"></asp:Label>
+        <asp:Label class="h1 text-center text-light titulo2 mt-5 mb-5" ID="LabelTituloVer" runat="server" Text="Especialidades"></asp:Label>
     </div>
     
 
@@ -44,7 +44,7 @@
 
         <div class="asignarEspecilidadesDoctores d-none col-sm-6 col-8">
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <asp:Label class="h1 text-center text-light titulo mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
+                <asp:Label class="h1 text-center text-light titulo2 mt-5 mb-5" ID="LabelTituloAgregar" runat="server" Text="Agregar especialidad"></asp:Label>
             </div>
 
             <div class="d-flex justify-content-center align-items-center flex-column">

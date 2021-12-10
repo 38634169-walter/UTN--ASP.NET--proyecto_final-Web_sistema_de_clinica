@@ -4,3 +4,8 @@ C:\Users\PC\Desktop\UTN\2DO AÑO (1er cuatrimestre)\PROGRAMACION 3\WEB\TPs\PROYE
 C:\Users\PC\Desktop\UTN\2DO AÑO (1er cuatrimestre)\PROGRAMACION 3\WEB\TPs\PROYECTO FINAL\PROYECTO\ProyectoFinal\modelo\obj\Debug\modelo.csproj.CoreCompileInputs.cache
 C:\Users\PC\Desktop\UTN\2DO AÑO (1er cuatrimestre)\PROGRAMACION 3\WEB\TPs\PROYECTO FINAL\PROYECTO\ProyectoFinal\modelo\obj\Debug\modelo.dll
 C:\Users\PC\Desktop\UTN\2DO AÑO (1er cuatrimestre)\PROGRAMACION 3\WEB\TPs\PROYECTO FINAL\PROYECTO\ProyectoFinal\modelo\obj\Debug\modelo.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\modelo\bin\Debug\modelo.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\modelo\bin\Debug\modelo.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\modelo\obj\Debug\modelo.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\modelo\obj\Debug\modelo.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\modelo\obj\Debug\modelo.pdb

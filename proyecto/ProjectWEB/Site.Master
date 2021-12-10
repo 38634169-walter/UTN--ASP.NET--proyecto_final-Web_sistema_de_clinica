@@ -12,27 +12,186 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
-    <link href="~/Content/bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/estilos/global.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-
-    <webopt:BundleReference runat="server" Path="~/Content/estilos" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- bootstrap -->
+    <link href="~/Content/bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <!-- css -->
+    <webopt:BundleReference runat="server" Path="~/Content/estilos" />
+    <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka+One&family=Lobster&display=swap" rel="stylesheet">
+    <!-- sweet alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
+
     <style>
-        i {
-            font-size: 2rem;
-            color: aqua;
-            margin-right: 10px;
+
+            li{
+                list-style:none;
+            }
+            
+            a{
+                text-decoration:none;
+                color:white;
+            }
+            
+            .iconosMenu{
+                font-size: 2rem;
+                color: aqua;
+                margin-right: 10px;
+            }
+            
+            .titulo{
+                font-family: 'Abril Fatface', cursive;
+            }
+            
+            .tabla-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            
+            .cabeza-tabla {
+                background: rgb(202, 172, 3);
+                color: white;
+                font-size: calc(1vw + 15px);
+                text-align: center;
+            }
+            
+            .tabla > thead {
+                background: gold;
+                text-align: center;
+            }
+            
+            .tabla > tbody > tr {
+                background: rgb(253, 237, 144);
+                text-align: center;
+            }
+            
+            .gv {
+                margin: auto;
+                width: 13cm;
+                background: gold;
+                margin-top: 1cm;
+                margin-bottom: 1cm;
+                border-radius: 5px;
+            }
+
+            
+            .gv th {
+                color:white;
+                background: rgb(202, 172, 3);
+                text-align: center;
+                padding: 10px;
+                border: 2px solid rgb(202, 172, 3);
+                border-radius: 5px;
+            }
+               
+            .gv td {
+                background: rgb(253, 237, 144);
+                text-align: center;
+                border: 2px solid rgb(202, 172, 3);
+                border-radius: 5px;
+                padding: 5px;
+            }
+            
+            .alternadas {
+                background: rgb(253, 217, 144);
+            }
+            
+            .pgr {
+                border-radius: 5px;
+                border: 0px solid rgb(202, 172, 3);
+            }
+            
+            .pgr table {
+                background: rgb(202, 172, 3);
+                
+            }
+            
+            .pgr td {
+                color: white;
+                background: rgb(202, 172, 3);
+                border-radius: 5px;
+                border: 0px solid black;
+            }
+            
+            .pgr a {
+                color: black;
+                background: white;
+                text-decoration: none;
+                padding: 5px 10px;
+                margin: 2px;
+                border: 2px solid black;
+                border-radius: 5px;
+            }
+            
+            .pgr a:hover {
+                color: rgb(202, 172, 3);
+                border: 4px solid rgb(202, 172, 3);
+                margin: 0;
+                box-shadow: 10px 10px 5px black;
+            }
+            
+            
+            
+     
+
+
+
+
+        i{
+            margin-right:10px;
         }
+        .titulo1{font-family: 'Bebas Neue', cursive;}
+
+        .titulo2{font-family: 'Fredoka One', cursive;}
+
+        .titulo3{font-family: 'Lobster', cursive;}
+
+        .fondo1{
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,111,121,1) 0%, rgba(217,246,251,1) 100%);
+        }
+        .fondo2{
+            background: linear-gradient(0deg, rgba(71,147,148,1) 0%, rgba(58,118,116,1) 100%);
+        }
+        .menuResponsive{height: 100vh; overflow-y:scroll;}
+        .bodyResponsive{height:100vh;overflow-y:scroll;}
+        .tabla {
+            margin: auto;
+            width: 13cm;
+            border-radius: 10px;
+            border-collapse: separate;
+            border-radius: 15px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border: 2px solid rgb(202, 172, 3);
+            background: gold;
+        }
+
+
+        @media all and (max-width:992px){
+            .menuResponsive{height:auto;background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(102,104,118,1) 100%);position:fixed;top:0;width:100vw;z-index: 9999;}
+            .bodyResponsive{margin-top:90px;}
+            .subMenu{height:50vh;}
+            #text-emp {color: white;}
+        }
+        @media all and (max-width:700px) {   
+            .tabla{
+                width:100%;
+            }
+        }
+
+
     </style>
 
 </head>
@@ -61,19 +220,20 @@
         </asp:ScriptManager>
 
         <div class=" container-fluid vh-100">
-            <div class="row vh-100">
-                <div class="col-lg-4 overflow-scroll position-relative vh-md-100 vh-50 p-0" style="background: linear-gradient(0deg, rgba(71,147,148,1) 0%, rgba(58,118,116,1) 100%);">
+            <div class="row">
+                <div class="col-lg-4 overflow-scroll p-0 menuResponsive fondo2">
 
                     <nav id="barra" class="navbar navbar-expand-lg navbar-light bg-transaparent">
                         <div id="barraDentro" class="container-fluid d-flex justify-content-lg-center align-items-lg-center flex-lg-column">
                             
-                            <a class="navbar-brand" href="/inicio.aspx">
-                                <h1 id="text-emp" class="text-center mt-4" style="font-family: 'Abril Fatface', cursive;">Clinica Milagro</h1>
+                            <a class="navbar-brand d-flex justify-content-center align-items-center flex-lg-column flex-row" href="/inicio.aspx">
+                                <img class="text-center" src="Content/img/logo.png" width="100px" height="50px" />
+                                <h1 id="text-emp" class="text-center" style="font-family: 'Abril Fatface', cursive;">Clinica Milagro</h1>
                             </a>
                             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-ellipsis-v text-light"></i>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
+                            <div class="collapse navbar-collapse subMenu" id="navbarNav">
                                 <ul id="barraAdentro" class="navbar-nav d-flex justify-content-center align-items-start flex-column mt-1 w-100 ">
 
                                     <div class="w-100 d-flex justify-content-center align-items-center">
@@ -83,7 +243,6 @@
                                     <ul class="d-flex justify-content-center align-items-start flex-column mt-5">
 
 
-                                        <!-- SECRETARIAS -->
                                         <div id="verPacientes" runat="server" class="d-none">
                                             <i class="fas fa-user iconosMenu"></i>
                                             <a class="bg-transparent border-0 text-light fw-bold" href="/verPacientes.aspx">Ver Paciente</a>
@@ -102,9 +261,6 @@
                                         </div>
 
 
-                                        <!-- DOCTORES -->
-
-
                                         <div id="verTurnosDoctor" runat="server" class="d-none">
                                             <i class="far fa-list-alt iconosMenu"></i>
                                             <a class="bg-transparent border-0 text-light fw-bold" href="/verTurnosMedicos.aspx">Ver mis turnos</a>
@@ -114,9 +270,6 @@
                                             <i class="fas fa-user iconosMenu"></i>
                                             <a class="bg-transparent border-0 text-light fw-bold" href="/verHistoriales.aspx">Ver historiales</a>
                                         </div>
-
-
-                                        <!-- ADMINISTRADORES -->
 
 
 
@@ -148,7 +301,7 @@
                 </div>
 
 
-                <div class="col-lg-8 bg-light overflow-scroll vh-100" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,111,121,1) 0%, rgba(217,246,251,1) 100%);">
+                <div class="col-lg-8 bg-light fondo1 bodyResponsive">
 
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>

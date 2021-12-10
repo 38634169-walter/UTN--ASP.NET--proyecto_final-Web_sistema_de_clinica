@@ -1,0 +1,13 @@
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\validarPermiso.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\validarPermiso.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\modelo.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\negocio.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\conexion.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\modelo.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\negocio.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\bin\Release\conexion.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\obj\Release\validarPermiso.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\obj\Release\validarPermiso.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\obj\Release\validarPermiso.dll
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\obj\Release\validarPermiso.pdb
+C:\Users\PC\Desktop\github\UTN--ASP.NET--proyecto_final-Web_sistema_turnos_clinica\proyecto\validarPermiso\obj\Release\validarPermiso.csproj.CopyComplete
