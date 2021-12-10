@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
     <div class="d-flex justify-content-center align-items-center">
-        <asp:Label CssClass="text-center text-light mt-3 h1" style="font-family: 'Abril Fatface', cursive;" ID="LabelTitulo" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="text-center text-light mt-3 titulo2 h1" ID="LabelTitulo" runat="server" Text=""></asp:Label>
     </div>
 
     <div class="tabla-container mt-5">

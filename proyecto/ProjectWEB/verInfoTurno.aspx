@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verInfoTurno.aspx.cs" Inherits="ProjectWEB.verInfoTurno" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Info de Turno</h1>
+        <h1 class="text-center mt-3 titulo2 my-5">Info de Turno</h1>
     </div>
     <div class="tabla-container">
         <table class="tabla">

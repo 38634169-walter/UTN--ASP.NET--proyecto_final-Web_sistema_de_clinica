@@ -113,7 +113,7 @@
 
 
 
-            <div class="d-flex justify-content-start align-items-center flex-row ">
+            <div class="d-flex justify-content-start align-items-center flex-sm-row flex-column">
                 <div class="d-flex justify-content-center align-items-center flex-column mx-1">
                     <asp:Label ID="LabelHorarioInicio" runat="server" Text="Horario de Inicio: "></asp:Label>
                     <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioInicio" runat="server" TextMode="Number"></asp:TextBox>

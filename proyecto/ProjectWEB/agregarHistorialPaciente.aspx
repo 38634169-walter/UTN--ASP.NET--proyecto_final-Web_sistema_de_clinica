@@ -3,7 +3,7 @@
 
 
     <div class="d-flex justify-content-center align-items-center">
-        <asp:Label class="h1 text-center text-light titulo mt-4 mb-5" ID="LabelPaciente" runat="server" Text="Agregar observacion a "></asp:Label>
+        <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelPaciente" runat="server" Text="Agregar observacion a "></asp:Label>
     </div>
 
     <div class="d-flex justify-content-center align-items-center flex-column">

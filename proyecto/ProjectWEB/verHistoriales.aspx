@@ -2,16 +2,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
     <div>
-        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;">Listado de pacientes</h1>
+        <h1 class="text-center text-light mt-3 titulo2">Listado de pacientes</h1>
     </div>
 
-    <div class="d-flex justify-content-start align-items-center flex-column">
-        <div class="mt-3">
-            <label class="text-light "> DNI: </label>
-            <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+
+
+
+    <div class="row">
+        <div class="col-sm-3 col-2">
         </div>
-        <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarPaciente" runat="server" Text="Buscar" OnClick="ButtonBuscarPaciente_Click"/>
-    </div>
+        <div class="col-sm-6 col-8 d-flex justify-content-start align-items-center flex-column">
+            <div class="input-group mt-3">
+                <span class="input-group-text" id="basic-addon1">DNI: </span>
+                <asp:TextBox CssClass="form-control" ID="TextBoxDni" runat="server"></asp:TextBox>
+            </div>
+            <asp:Button class="btn btn-success text-light mt-2" ID="ButtonBuscarPaciente" runat="server" Text="Buscar" OnClick="ButtonBuscarPaciente_Click"/>
+        </div>
+        <div class="col-sm-3 col-2">
+        </div>
 
     <div class="tabla-container mt-5">
         <table class="tabla">

@@ -27,6 +27,7 @@ namespace ProjectWEB
         public string noRegistrado ;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 horariosDiasTrabajo=new List<Doctor>();
@@ -76,7 +77,7 @@ namespace ProjectWEB
                     DropEspecialidad.Visible = false;
                     LabelEspecilidad.Visible = false;
                     TextBoxfecha.Visible = false;
-                    LabelFecha.Visible = false;
+                    TFecha.Style.Add("display","none");
                     DropHora.Visible = false;
                     LabelHora.Visible = false;
                     DropPersonalDisponible.Visible = false;
@@ -123,8 +124,8 @@ namespace ProjectWEB
 
             turno.doctor = new Doctor();
             turno.doctor.id = Convert.ToInt32(DropPersonalDisponible.SelectedValue);
+            TFecha.Style.Add("display", "block");
             TextBoxfecha.Visible = true;
-            LabelFecha.Visible = true;
 
             verHorariosDelDoctor();
         }

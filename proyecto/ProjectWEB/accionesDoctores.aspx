@@ -15,13 +15,13 @@
                 <div class="col-10 d-flex justify-content-start align-items-center flex-column">
 
                     <div class="d-flex justify-content-center align-items-center">
-                        <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Medico"></asp:Label>
+                        <asp:Label class="h1 text-center titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Medico"></asp:Label>
                     </div>
 
 
                     <div class=" row">
 
-                        <div class="col-6">
+                        <div class="col-sm-6 col-12">
 
                             <div class="mt-2">
                                 <asp:Label ID="Label2" runat="server" Text="Nombre: "></asp:Label>
@@ -46,7 +46,7 @@
 
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-sm-6 col-12">
                             <div class="mt-2">
                                 <asp:Label ID="LabelSueldo" runat="server" Text="Sueldo: " ViewStateMode="Enabled"></asp:Label>
                                 <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxSueldo" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
@@ -85,7 +85,7 @@
 
                     <div class="row my-4 d-flex justify-content-start align-items-start flex-row w-75">
 
-                        <div class="col-6 w-50">
+                        <div class="col-sm-6  w-50">
                             <div>
                                 <asp:CheckBox ID="CheckBoxLunes" runat="server" Text="Lunes" ClientIDMode="Static" />
                             </div>
@@ -114,7 +114,7 @@
 
                     </div>
 
-                    <div class="d-flex justify-content-start align-items-center flex-row ">
+                    <div class="d-flex justify-content-start align-items-center flex-sm-row flex-column">
                 
                         <div class="my-1 mx-1">
                             <asp:Label ID="LabelHorarioEntrada" runat="server" Text="Horario de entrada: "></asp:Label>

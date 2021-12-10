@@ -8,16 +8,16 @@
          </div>
         <div class="col-6">
             <div class="d-flex justify-content-center align-items-center">
-                <asp:Label class="h1 text-center text-light titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
+                <asp:Label class="h1 text-center titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
             </div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                         
                     <asp:Label ID="LabelError" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
                     
-                    <div class="m-2 rounded-circle">
-                        <asp:Label ID="LabelDni" runat="server" Text="DNI: "></asp:Label>
-                        <asp:TextBox ClientIDMode="Static" CssClass="form-control ms-2" ID="TextBoxDni" runat="server" AutoPostBack="True" OnTextChanged="TextBoxDni_TextChanged"></asp:TextBox>
+                    <div class=" input-group m-2 rounded-circle">
+                        <span class="input-group-text" ID="tDni" runat="server"> DNI: </span>
+                        <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxDni" runat="server" AutoPostBack="True" OnTextChanged="TextBoxDni_TextChanged"></asp:TextBox>
                         <asp:Label ID="LabelValidar" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </div>
 
@@ -46,13 +46,13 @@
                                 </div>
                         <%} %>
 
-                    <div class="m-2 rounded-circle">
-                        <asp:Label ID="LabelFecha" runat="server" Text="Fecha: "></asp:Label>
-                        <asp:TextBox ClientIDMode="Static" CssClass="form-control ms-2" ID="TextBoxfecha" runat="server" TextMode="Date" OnTextChanged="TextBoxfecha_TextChanged" AutoPostBack="True" ></asp:TextBox>   
+                    <div class="input-group mt-4 rounded-circle">
+                        <span class="input-group-text" ID="TFecha" runat="server"> Fecha: </span>
+                        <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxfecha" runat="server" TextMode="Date" OnTextChanged="TextBoxfecha_TextChanged" AutoPostBack="True" ></asp:TextBox>   
                     </div>
 
 
-                    <div class="m-2 rounded-circle ">
+                    <div class="m-2 rounded-circle">
                         <asp:Label ID="LabelHora" runat="server" Text="Horario: "></asp:Label>
                         <asp:DropDownList ClientIDMode="Static" CssClass="form-select ms-2" ID="DropHora" runat="server"></asp:DropDownList>
                     </div>

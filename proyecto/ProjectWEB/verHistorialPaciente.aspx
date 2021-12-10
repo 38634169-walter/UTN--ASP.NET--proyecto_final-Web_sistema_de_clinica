@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
     <div>
-        <h1 class="text-center text-light mt-3 " style="font-family: 'Abril Fatface', cursive;"><%: paciente %> </h1>
+        <h1 class="text-center text-light mt-3 titulo2"><%: paciente %> </h1>
     </div>
 
     <div class="tabla-container mt-5">

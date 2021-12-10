@@ -42,13 +42,13 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.Label LabelError;
 
         /// <summary>
-        /// Control LabelDni.
+        /// Control tDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDni;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tDni;
 
         /// <summary>
         /// Control TextBoxDni.
@@ -105,13 +105,13 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.DropDownList DropPersonalDisponible;
 
         /// <summary>
-        /// Control LabelFecha.
+        /// Control TFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFecha;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TFecha;
 
         /// <summary>
         /// Control TextBoxfecha.
