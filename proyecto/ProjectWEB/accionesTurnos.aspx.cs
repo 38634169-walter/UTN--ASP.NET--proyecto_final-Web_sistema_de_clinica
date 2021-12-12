@@ -19,7 +19,6 @@ namespace ProjectWEB
         public static int horaEditando=99;
         public List<Doctor> doctoresList;
         public List<Doctor> doctoresList2;
-        public static List<Doctor> horariosDiasTrabajo;
         public List<Paciente> pacientesList;
         public List<Turno> turnosList;
         public List<Horario> horariosList;
@@ -30,7 +29,6 @@ namespace ProjectWEB
             
             if (!IsPostBack)
             {
-                horariosDiasTrabajo=new List<Doctor>();
                 EspecialidadNegocio espNego = new EspecialidadNegocio();
                 DropEspecialidad.DataSource = espNego.listar_especilidades_para_turnos();
                 DropEspecialidad.DataValueField = "id";
@@ -204,8 +202,6 @@ namespace ProjectWEB
         }
 
 
-
-
         public bool validar_dni()
         {
             LabelError.Text = "";
@@ -294,9 +290,79 @@ namespace ProjectWEB
 
        public void verHorariosDelDoctor()
         {
+            labelHorariosDoctor.Text = "";
             HorarioNegocio horNegg = new HorarioNegocio();
-            horariosDiasTrabajo = new List<Doctor>();
+            List<Doctor>  horariosDiasTrabajo = new List<Doctor>();
             horariosDiasTrabajo = horNegg.horarios_doctor_especialidad("sin dia", turno.doctor.id, turno.especialidad.id, "");
+            string[] horarioDias=new string[7];
+            bool[] banderaDias = new bool[7];
+            foreach (var horario in horariosDiasTrabajo)
+            {
+                switch (horario.horario.dias)
+                {
+                    case "lunes":
+                        if (banderaDias[0]==false) {
+                            horarioDias[0] = "<p class='text-light fw-bold mb-0 mt-1'>>Lunes: </p>";
+                            banderaDias[0] = true;
+                        }
+                        horarioDias[0] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "martes":
+                        if (banderaDias[1] == false)
+                        {
+                            horarioDias[1] = "<p class='text-light fw-bold mb-0 mt-1'>>Martes: </p>";
+                            banderaDias[1] = true;
+                        }
+                        horarioDias[1] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "miércoles":
+                        if (banderaDias[2] == false)
+                        {
+                            horarioDias[2] = "<p class='text-light fw-bold mb-0 mt-1'>>Miercoles: </p>";
+                            banderaDias[2] = true;
+                        }
+                        horarioDias[2] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "jueves":
+                        if (banderaDias[3] == false)
+                        {
+                            horarioDias[3] = "<p class='text-light fw-bold mb-0 mt-1'>>Jueves: </p>";
+                            banderaDias[3] = true;
+                        }
+                        horarioDias[3] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "viernes":
+                        if (banderaDias[4] == false)
+                        {
+                            horarioDias[4] = "<p class='text-light fw-bold mb-0 mt-1'>>Viernes: </p>";
+                            banderaDias[4] = true;
+                        }
+                        horarioDias[4] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "sábado":
+                        if (banderaDias[5] == false)
+                        {
+                            horarioDias[5] = "<p class='text-light fw-bold mb-0 mt-1'>>Sabado: </p>";
+                            banderaDias[5] = true;
+                        }
+                        horarioDias[5] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                    case "domingo":
+                        if (banderaDias[6] == false)
+                        {
+                            horarioDias[6] = "<p class='text-light fw-bold mb-0 mt-1'>>Domingo: </p>";
+                            banderaDias[6] = true;
+                        }
+                        horarioDias[6] += "  -De " + horario.horario.horaInicio.ToString() + ":00Hs a " + horario.horario.horaFin.ToString() + ":00hs </br>";
+                        break;
+                }
+
+            }
+            for (int i=0;i<7;i++)
+            {
+                labelHorariosDoctor.Text += horarioDias[i];
+            }
+            horariosDoctorContainer.Style.Add("display","block");
         }
 
         public void validar_permisos(string val)

@@ -3,6 +3,16 @@ CREATE DATABASE sistemaTurnosTPFinal
 GO
 USE sistemaTurnosTPFinal
 
+select * from Especialidades
+ 
+SELECT dp.nombre nomD,dp.apellido apeD,h.horarioInicio,h.horarioFin,h.IDHorario,es.nombre nomE,h.IDHorario,
+dt.nombre nomDT FROM Doctores d, Empleados e, Horarios h, Datos_Personales dp, Especialidades es, 
+Dias_Trabajo dt, Horarios_DiasTrabajo hdt WHERE d.ID_Empleado = e.IDEmpleado AND 
+h.ID_Empleado=e.IDEmpleado AND e.ID_DatosPersonales = dp.IDDatosPersonales AND 
+h.ID_Especialidad = es.IDEspecialidad AND hdt.ID_Horario=h.IDHorario AND 
+hdt.ID_DiasTrabajo=dt.IDDiasTrabajo AND d.IDDoctor=4 AND 
+h.ID_Especialidad = 1 
+
 select * from Doctores as d
 inner join Empleados as e on e.IDEmpleado=d.ID_Empleado
 inner join Datos_Personales as dp on dp.IDDatosPersonales=e.ID_DatosPersonales

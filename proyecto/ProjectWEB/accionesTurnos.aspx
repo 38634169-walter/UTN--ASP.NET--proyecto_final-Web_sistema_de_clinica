@@ -32,19 +32,10 @@
                     </div>
                     
 
-                        <% if (horariosDiasTrabajo.Any() && horariosDiasTrabajo != null )
-                            { %>
-                                <div class="bg-primary p-3 my-2" style="border-radius:10px; border:3px solid white; box-shadow:10px 10px 10px black">
+                                <div ID="horariosDoctorContainer" runat="server" class="bg-primary p-3 my-2" style="border-radius:10px; border:3px solid white; box-shadow:10px 10px 10px black;display:none">
                                     <p class="h1 text-light titulo"><i class="fas fa-clock"></i>Horarios del Doctor</p>
-                                    <% foreach (var dc in horariosDiasTrabajo)
-                                        {%>
-                                            <div class="mt-1 text-start text-black">
-                                                <p><strong class="text-light pe-2">> </strong> <%: dc.horario.dias + " " + dc.horario.horaInicio + ":00Hs a " +  dc.horario.horaFin  + ":00Hs" %></p>
-                                            </div>                                                            
-
-                                        <%} %>
+                                    <asp:Label runat="server" ID="labelHorariosDoctor" Text=""></asp:Label>
                                 </div>
-                        <%} %>
 
                     <div class="input-group mt-4 rounded-circle">
                         <span class="input-group-text" ID="TFecha" runat="server"> Fecha: </span>

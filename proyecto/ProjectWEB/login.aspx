@@ -16,6 +16,9 @@
         body{
             background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,55,1) 0%, rgba(0,212,255,1) 100%);
         }
+        li{
+            list-style:none;
+        }
     </style>
 </head>
 <body>
