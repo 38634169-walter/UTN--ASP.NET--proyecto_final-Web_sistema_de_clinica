@@ -114,16 +114,17 @@
 
                     </div>
 
-                    <div class="d-flex justify-content-start align-items-center flex-sm-row flex-column">
+
+                    <div class="d-flex justify-content-start align-items-end flex-column">
                 
-                        <div class="my-1 mx-1">
+                        <div class="d-flex justify-content-center align-items-center flex-row">
                             <asp:Label ID="LabelHorarioEntrada" runat="server" Text="Horario de entrada: "></asp:Label>
-                            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioEntrada" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ClientIDMode="Static" CssClass="form-control m-1" ID="TextBoxHorarioEntrada" runat="server" TextMode="Number" style="width:65px;"></asp:TextBox>:00Hs
                         </div>
 
-                        <div class="my-1 mx-1">
+                        <div class="d-flex justify-content-center align-items-center flex-row">
                             <asp:Label ID="LabelHorarioSalida" runat="server" Text="Horario de salida: "></asp:Label>
-                            <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxHorarioSalida" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ClientIDMode="Static" CssClass="form-control m-1" ID="TextBoxHorarioSalida" runat="server" TextMode="Number" style="width:65px;"></asp:TextBox>:00Hs
                         </div>
                     </div>
 

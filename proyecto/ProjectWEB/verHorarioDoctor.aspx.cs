@@ -67,45 +67,49 @@ namespace ProjectWEB
                 Response.Redirect("inicio.aspx?accion=" + confirmacion);
             }
         }
-        public bool validar_horario(List<Doctor> doctoresList,int horaInicio,int horaFin)
+        public bool validar_horario(List<Doctor> doctoresList, int horaInicio, int horaFin)
         {
             LabelError.Text = "";
             bool validar = true;
-            
+            bool validarHorario = true;
+
             if (horaInicio > horaFin)
             {
                 LabelError.Text += "*El horario de inicio no debe ser mayor al de fin </br>";
-                validar=false;
+                validar = false;
             }
             else
             {
-                if(horaInicio == horaFin)
+                if (horaInicio == horaFin)
                 {
                     LabelError.Text += "*Los horarios de inicio y fin no deben ser iguales </br>";
                     validar = false;
                 }
-                if(horaInicio > 24 || horaFin > 24)
+                if (horaInicio > 24 || horaFin > 24)
                 {
                     LabelError.Text += "*El horario ingresado se encuentra fuera del rango de 24hs </br>";
                     validar = false;
                 }
             }
-            if(!(CheckBoxLunes.Checked) && !(CheckBoxMartes.Checked) && !(CheckBoxMiercoles.Checked) && !(CheckBoxJueves.Checked) && !(CheckBoxViernes.Checked) && !(CheckBoxSabado.Checked) && !(CheckBoxDomingo.Checked))
+            if (!(CheckBoxLunes.Checked) && !(CheckBoxMartes.Checked) && !(CheckBoxMiercoles.Checked) && !(CheckBoxJueves.Checked) && !(CheckBoxViernes.Checked) && !(CheckBoxSabado.Checked) && !(CheckBoxDomingo.Checked))
             {
                 validar = false;
                 LabelError.Text += "*Se debe ingresar al menos un dia para el horario del doctor";
             }
             DiaDeTrabajoNegocio dtNego = new DiaDeTrabajoNegocio();
             List<DiaDeTrabajo> diasTrabajoList = new List<DiaDeTrabajo>();
+
+
+            string[] horarioDia = new string[7];
+            bool[] bandederaHorario = new bool[7];
             foreach (var doctor in doctoresList)
             {
-                
-                diasTrabajoList = dtNego.dias_trabajo(doctor.horario.id.ToString());
 
+                diasTrabajoList = dtNego.dias_trabajo(doctor.horario.id.ToString());
                 foreach (var dia in diasTrabajoList)
                 {
                     bool buscar = false;
-                    
+
                     if (dia.nombre == "lunes" && CheckBoxLunes.Checked == true) buscar = true;
                     if (dia.nombre == "martes" && CheckBoxMartes.Checked == true) buscar = true;
                     if (dia.nombre == "miércoles" && CheckBoxMiercoles.Checked == true) buscar = true;
@@ -122,8 +126,67 @@ namespace ProjectWEB
                             {
                                 if (i == x)
                                 {
-                                    LabelError.Text += "*El dia " + dia.nombre + " esta ocupado a las " + i + ":00Hs" + "</br>";
                                     validar = false;
+                                    validarHorario = false;
+                                    switch (dia.nombre)
+                                    {
+                                        case "lunes":
+                                            if (bandederaHorario[0] == false)
+                                            {
+                                                horarioDia[0] = "<p class='text-light fw-bold mb-0 mt-1'>>Lunes: </p>";
+                                                bandederaHorario[0] = true;
+                                            }
+                                            horarioDia[0] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "martes":
+                                            if (bandederaHorario[1] == false)
+                                            {
+                                                horarioDia[1] = "<p class='text-light fw-bold mb-0 mt-1'>>Martes: </p>";
+                                                bandederaHorario[1] = true;
+                                            }
+                                            horarioDia[1] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "miércoles":
+                                            if (bandederaHorario[2] == false)
+                                            {
+                                                horarioDia[2] = "<p class='text-light fw-bold mb-0 mt-1'>>Miercoles: </p>";
+                                                bandederaHorario[2] = true;
+                                            }
+                                            horarioDia[2] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "jueves":
+                                            if (bandederaHorario[3] == false)
+                                            {
+                                                horarioDia[3] = "<p class='text-light fw-bold mb-0 mt-1'>>Jueves: </p>";
+                                                bandederaHorario[3] = true;
+                                            }
+                                            horarioDia[3] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "viernes":
+                                            if (bandederaHorario[4] == false)
+                                            {
+                                                horarioDia[4] = "<p class='text-light fw-bold mb-0 mt-1'>>Viernes: </p>";
+                                                bandederaHorario[4] = true;
+                                            }
+                                            horarioDia[4] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "sábado":
+                                            if (bandederaHorario[5] == false)
+                                            {
+                                                horarioDia[5] = "<p class='text-light fw-bold mb-0 mt-1'>>Sabado: </p>";
+                                                bandederaHorario[5] = true;
+                                            }
+                                            horarioDia[5] += x.ToString() + ":00Hs, ";
+                                            break;
+                                        case "domingo":
+                                            if (bandederaHorario[6] == false)
+                                            {
+                                                horarioDia[6] = "<p class='text-light fw-bold mb-0 mt-1'>>Domingo: </p>";
+                                                bandederaHorario[6] = true;
+                                            }
+                                            horarioDia[6] += x.ToString() + ":00Hs, ";
+                                            break;
+                                    }
                                 }
                             }
 
@@ -131,6 +194,15 @@ namespace ProjectWEB
                     }
                 }
             }
+            if (validarHorario == false)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    labelHorariOcupado.Text += horarioDia[j];
+                }
+                errorContainer.Style.Add("display", "block");
+            }
+            
             return validar;
         }
         public void validarAcciones()

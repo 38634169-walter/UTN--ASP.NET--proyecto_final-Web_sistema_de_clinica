@@ -168,6 +168,24 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.TextBox TextBoxHorarioFin;
 
         /// <summary>
+        /// Control errorContainer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorContainer;
+
+        /// <summary>
+        /// Control labelHorariOcupado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelHorariOcupado;
+
+        /// <summary>
         /// Control LabelError.
         /// </summary>
         /// <remarks>

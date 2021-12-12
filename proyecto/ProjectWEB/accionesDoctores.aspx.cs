@@ -209,7 +209,7 @@ namespace ProjectWEB
                     if (entrada > 24 || salida > 24)
                     {
                         validar = false;
-                        LabelError.Text += "*El horario ingresado se encuentra fuera del rango de 24hs.";
+                        LabelError.Text += "*El horario ingresado se encuentra fuera del rango de 24hs. </br>";
                     }
                 }
             }

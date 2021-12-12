@@ -27,7 +27,7 @@
     <div class="text-light d-flex justify-content-center align-items-center flex-sm-row flex-column p-3">
         <img src="/Content/img/giftAnimado1.gif" alt="Imagen no disponible" />
         <div class="w-10 text-sm-start text-center ms-sm-5">
-            <h1 class="titulo2">Nuestra identidad importa</h1>
+            <h2 class="titulo2">Nuestra identidad importa</h2>
             <p class="titulo2">Hacemos de el mundo un lugar mejor para que todos puedan tener su oportunidad</p>
             <a class="btn btn-success" href="/login.aspx" >Ingresar al sistema</a>
         </div>
