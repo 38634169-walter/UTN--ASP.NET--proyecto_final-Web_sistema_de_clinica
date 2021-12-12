@@ -148,33 +148,38 @@ namespace ProjectWEB
 
         protected void ButtonReservar_Click(object sender, EventArgs e)
         {
-            if (validar_fecha()) {
-                Empleado emp = new Empleado();
-                emp = (Empleado)Session["empleado"];
-                turno.empleado = new Secretaria();
-                turno.empleado.idEmpleado = emp.idEmpleado;
-                turno.hora = Convert.ToInt32(DropHora.SelectedValue);
-                EstadoTurnoNegocio estNego = new EstadoTurnoNegocio();
-                string accion = "";
-                if (turno.id != 0)
+            if (DropHora.SelectedValue.Trim() != "")
+            {
+                if (validar_fecha())
                 {
-                    turno.estado = new EstadoTurno();
-                    turno.estado.id = estNego.listar("Modificado");
-                    TurnoNegocio turNego = new TurnoNegocio();
-                    turNego.modificar(turno);
-                    accion = "modificado";
-                    enviar_mail_confirmacion(turno);
+                    Empleado emp = new Empleado();
+                    emp = (Empleado)Session["empleado"];
+                    turno.empleado = new Secretaria();
+                    turno.empleado.idEmpleado = emp.idEmpleado;
+                    turno.hora = Convert.ToInt32(DropHora.SelectedValue);
+                    EstadoTurnoNegocio estNego = new EstadoTurnoNegocio();
+                    string accion = "";
+                    if (turno.id != 0)
+                    {
+                        turno.estado = new EstadoTurno();
+                        turno.estado.id = estNego.listar("Modificado");
+                        TurnoNegocio turNego = new TurnoNegocio();
+                        turNego.modificar(turno);
+                        accion = "modificado";
+                        enviar_mail_confirmacion(turno);
+                    }
+                    else
+                    {
+                        turno.estado = new EstadoTurno();
+                        turno.estado.id = estNego.listar("Esperando");
+                        TurnoNegocio turNego = new TurnoNegocio();
+                        turNego.agregar(turno);
+                        accion = "agregado";
+                        enviar_mail_confirmacion(turno);
+                    }
+                    Response.Redirect("inicio.aspx?accion=" + accion);
                 }
-                else {
-                    turno.estado = new EstadoTurno();
-                    turno.estado.id = estNego.listar("Esperando");
-                    TurnoNegocio turNego = new TurnoNegocio();
-                    turNego.agregar(turno);
-                    accion = "agregado";
-                    enviar_mail_confirmacion(turno);
-                }
-                Response.Redirect("inicio.aspx?accion=" + accion);
-            }
+            }    
         }
 
 

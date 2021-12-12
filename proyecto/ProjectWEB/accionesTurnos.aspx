@@ -3,10 +3,10 @@
 
      <div class=" row">
 
-        <div class="col-3">
+        <div class="col-md-3 col-1">
 
          </div>
-        <div class="col-6">
+        <div class="col-md-6 col-10">
             <div class="d-flex justify-content-center align-items-center">
                 <asp:Label class="h1 text-center titulo2 mt-4 mb-5" ID="LabelTitulo" runat="server" Text="Agregar Turno"></asp:Label>
             </div>
@@ -43,9 +43,9 @@
                     </div>
 
 
-                    <div class="m-2 rounded-circle">
+                    <div class =" d-flex justify-content-center align-items-center flex-row my-2">
                         <asp:Label ID="LabelHora" runat="server" Text="Horario: "></asp:Label>
-                        <asp:DropDownList ClientIDMode="Static" CssClass="form-select ms-2" ID="DropHora" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ClientIDMode="Static" CssClass="form-select mx-1" ID="DropHora" runat="server" style="width:75px;"></asp:DropDownList> :00Hs
                     </div>
                     <div class="m-2 rounded-circle text-center">
                         <asp:Label ID="LabelSinHorario" runat="server" Text="" ForeColor="#CC0000"></asp:Label>
@@ -61,7 +61,7 @@
             </asp:UpdatePanel>
         </div>
 
-         <div class="col-3">
+         <div class="col-md-3 col-1">
 
          </div>
      </div>

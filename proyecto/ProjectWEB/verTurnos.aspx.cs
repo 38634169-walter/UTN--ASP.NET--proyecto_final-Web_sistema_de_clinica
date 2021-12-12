@@ -130,7 +130,7 @@ namespace ProjectWEB
                 {
                     e.Row.Cells[6].Controls.RemoveAt(1);
                     e.Row.Cells[6].Controls.RemoveAt(2);
-                    e.Row.Cells[6].Text = "Atendido";
+                    e.Row.Cells[6].Text = "-";
                 }
             }
         }
