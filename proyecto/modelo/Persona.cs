@@ -15,5 +15,7 @@ namespace modelo
         public string nombreCompleto { get; set; }
         public string email { get; set; }
         public string telefono { get; set; }
+        public DateTime fechaNacimiento { get; set; }
+        public DateTime fechaIngreso { get; set; }
     }
 }

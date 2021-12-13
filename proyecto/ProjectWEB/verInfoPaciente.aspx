@@ -16,6 +16,7 @@
                 <tr><td><strong>DNI: </strong></td><td><%: paciente.dni %> </td></tr>
                 <tr><td><strong>Email: </strong></td><td><%: paciente.email %> </td></tr>
                 <tr><td><strong>Telefono: </strong></td><td> <%: paciente.telefono %> </td></tr>
+                <tr><td><strong>Fecha de nacimiento: </strong></td><td> <%: paciente.fechaNacimiento.ToString("dd-MM-yyyy") %> </td></tr>
                 </tbody>
         </table>
     </div>        

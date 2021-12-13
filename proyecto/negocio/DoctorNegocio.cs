@@ -58,7 +58,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("SELECT dp.nombre, dp.apellido, dp.dni,dp.email,dp.telefono, u.usuario,u.clave,e.sueldo FROM Doctores d, Usuarios u, Empleados e, Datos_Personales dp WHERE d.ID_Empleado = e.IDEmpleado AND e.IDEmpleado = u.IDUsuario AND e.ID_DatosPersonales=dp.IDDatosPersonales AND d.IDDoctor='" + id + "'  AND e.estado='1' AND u.estado='1' ");
+                con.consultar("SELECT dp.nombre, dp.apellido, dp.dni,dp.email,dp.telefono,dp.fechaNacimiento, u.usuario,u.clave,e.sueldo FROM Doctores d, Usuarios u, Empleados e, Datos_Personales dp WHERE d.ID_Empleado = e.IDEmpleado AND e.IDEmpleado = u.IDUsuario AND e.ID_DatosPersonales=dp.IDDatosPersonales AND d.IDDoctor='" + id + "'  AND e.estado='1' AND u.estado='1' ");
                 con.ejecutar_lectura();
                 while (con.lector.Read())
                 {
@@ -69,6 +69,7 @@ namespace negocio
                     doctor.email = (string)con.lector["email"];
                     doctor.telefono = (string)con.lector["telefono"];
                     doctor.sueldo = Convert.ToDouble(con.lector["sueldo"]);
+                    doctor.fechaNacimiento = Convert.ToDateTime(con.lector["fechaNacimiento"]);
                     doctor.usuario = new Usuario();
                     doctor.usuario.usuario = (string)con.lector["usuario"];
                     doctor.usuario.clave = (string)con.lector["clave"];
@@ -86,7 +87,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_AGREGAR_DOCTOR '" + doctor.nombre + "', '" + doctor.apellido + "','" + doctor.dni + "','" + doctor.email + "','" + doctor.telefono + "','" + doctor.sueldo + "','" + doctor.especialidad.id + "','" + doctor.horario.horaInicio + "','" + doctor.horario.horaFin + "','" + doctor.usuario.usuario + "','" + doctor.usuario.clave + "', '" + lu + "', '" + ma + "', '" + mi + "', '" + ju + "', '" + vi + "', '" + sa + "', '" + dom + "' ");
+                con.consultar("EXEC SP_AGREGAR_DOCTOR '" + doctor.nombre + "', '" + doctor.apellido + "','" + doctor.dni + "','" + doctor.email + "','" + doctor.telefono + "','" + doctor.sueldo + "','" + doctor.especialidad.id + "','" + doctor.horario.horaInicio + "','" + doctor.horario.horaFin + "','" + doctor.usuario.usuario + "','" + doctor.usuario.clave + "', '" + doctor.fechaNacimiento.ToString("yyyy-MM-dd") + "', '" + doctor.fechaIngreso.ToString("yyyy-MM-dd") + "','" + lu + "', '" + ma + "', '" + mi + "', '" + ju + "', '" + vi + "', '" + sa + "', '" + dom + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
@@ -104,7 +105,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_MODIFICAR_DOCTOR '" + doctor.id + "', '" +  doctor.nombre + "', '" + doctor.apellido + "', '" + doctor.email + "', '" + doctor.telefono + "', '" + doctor.sueldo + "', '" + doctor.usuario.usuario + "', '" + doctor.usuario.clave + "'  ");
+                con.consultar("EXEC SP_MODIFICAR_DOCTOR '" + doctor.id + "', '" +  doctor.nombre + "', '" + doctor.apellido + "', '" + doctor.email + "', '" + doctor.telefono + "', '" + doctor.sueldo + "', '" + doctor.usuario.usuario + "', '" + doctor.usuario.clave + "', '" + doctor.fechaNacimiento.ToString("yyyy-MM-dd") + "'  ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)

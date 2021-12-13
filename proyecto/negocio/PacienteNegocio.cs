@@ -40,6 +40,7 @@ namespace negocio
                     paciente.dni = (string)con.lector["dni"];
                     paciente.email = (string)con.lector["email"];
                     paciente.telefono = (string)con.lector["telefono"];
+                    paciente.fechaNacimiento = Convert.ToDateTime(con.lector["fechaNacimiento"]);
                 }
                 return paciente;
             }
@@ -58,12 +59,13 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("UPDATE Datos_Personales SET nombre=@nombre, apellido=@apellido, dni=@dni, email=@email, telefono=@telefono WHERE IDDatosPersonales = '" + paciente.idDatosPersonales + "' ");
+                con.consultar("UPDATE Datos_Personales SET nombre=@nombre, apellido=@apellido, dni=@dni, email=@email, telefono=@telefono, fechaNacimiento=@fechaNacimiento WHERE IDDatosPersonales = '" + paciente.idDatosPersonales + "' ");
                 con.setear_parametros("@nombre",paciente.nombre);
                 con.setear_parametros("@apellido",paciente.apellido);
                 con.setear_parametros("@dni",paciente.dni);
                 con.setear_parametros("@email",paciente.email);
                 con.setear_parametros("@telefono",paciente.telefono);
+                con.setear_parametros("@fechaNacimiento",paciente.fechaNacimiento.ToString("yyyy-MM-dd"));
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
@@ -81,7 +83,7 @@ namespace negocio
             ConexionDB con = new ConexionDB();
             try
             {
-                con.consultar("EXEC SP_INSERTAR_PACIENTE '" + paciente.nombre + "','" + paciente.apellido + "','" + paciente.email + "','" + paciente.telefono + "','" + paciente.dni + "' ");
+                con.consultar("EXEC SP_INSERTAR_PACIENTE '" + paciente.nombre + "','" + paciente.apellido + "','" + paciente.email + "','" + paciente.telefono + "','" + paciente.dni + "','" + paciente.fechaNacimiento.ToString("yyyy-MM-dd") + "', '" + paciente.fechaIngreso.ToString("yyyy-MM-dd") + "' ");
                 con.ejecutar_escritura();
             }
             catch (Exception ex)
@@ -112,6 +114,7 @@ namespace negocio
                     pac.dni = (string)con.lector["dni"];
                     pac.email = (string)con.lector["email"];
                     pac.telefono = (string)con.lector["telefono"];
+                    pac.fechaNacimiento = Convert.ToDateTime(con.lector["fechaNacimiento"]);
                     pacientesList.Add(pac);
                 }
                 return pacientesList; 

@@ -326,7 +326,7 @@
         <script src="/Content/scripts/confirmacion.js"></script>
         <script src="/Content/scripts/confirmEliminar.js"></script>
         <script src="/Content/scripts/noRegistrado.js"></script>
-        <script src="/Content/scripts/validarCampos.js"></script>
+        <script src="/Content/scripts/validarCampo.js"></script>
         <script src="/Content/scripts/validarPerm.js"></script>
     </form>
 </body>

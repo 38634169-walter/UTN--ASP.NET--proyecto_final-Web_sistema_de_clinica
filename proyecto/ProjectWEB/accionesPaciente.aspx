@@ -45,6 +45,10 @@
                         <asp:Label ID="Label5" runat="server" Text="Telefono: " Type="Integer" MinimumValue="0"></asp:Label>
                         <asp:TextBox CssClass=" form-control" ID="TextBoxTelefono" runat="server" TextMode="Number" AutoPostBack="true" ClientIDMode="Static"></asp:TextBox>
                     </div>
+                    <div class="mt-2">
+                        <asp:Label ID="Label6" runat="server" Text="Fecha de nacimiento: " Type="Integer" MinimumValue="0"></asp:Label>
+                        <asp:TextBox CssClass=" form-control" ID="TextBoxFechaNacimiento" runat="server" TextMode="Date" AutoPostBack="true" ClientIDMode="Static"></asp:TextBox>
+                    </div>
                     
                     <div class="d-flex justify-content-center align-items-center">
                         <asp:Button class="btn btn-success my-4" ID="ButtonAgregarModificar" OnClientClick="return validar_paciente()" runat="server" Text="Agregar" OnClick="ButtonAgregarModificar_Click"/>

@@ -34,6 +34,14 @@ WHERE et.IDEstadoTurno=t.ID_EstadoTurno AND t.ID_Doctor = 2 AND
 t.ID_Especialidad = '" + turno.especialidad.id + "' AND t.fecha = '2021/12/17' AND 
 (et.nombre='Modificado' OR et.nombre='Esperando' OR et.nombre='Atendido') 
 
+
+----------------AGREGADOS----------------
+
+--DatosPersonales
+    --fechaNacimiento
+	--fechaIngresoSistema
+
+
 --------------------------------------------------------------------------
 ----------------------------------TABLAS----------------------------------
 --------------------------------------------------------------------------
@@ -45,6 +53,8 @@ CREATE TABLE Datos_Personales(
 	email VARCHAR(50) NOT NULL,
 	telefono VARCHAR(15) NOT NULL,
 	dni VARCHAR(11) NOT NULL UNIQUE,
+	fechaNacimiento DATE NOT NULL CHECK(fechaNacimiento<GETDATE()),
+	fechaIngresoSistema DATE NOT NULL,
 	estado BIT DEFAULT 1
 )
 
@@ -157,16 +167,24 @@ CREATE TABLE Roles_Permisos(
 ---------------------------------------------------
 -------------------------DATOS---------------------
 ---------------------------------------------------
-
-INSERT INTO Datos_Personales(nombre,apellido,dni,email,telefono) VALUES
-('Ramon','Valdez',1234,'valdez@gmail.com',15779328),
-('Sofia','Diaz',12345,'diaz@gmail.com',157796456),
-('Romina','Ramirez',123456,'ramirez@gmail.com',1576634332),
-('Raul','Valdez',1234567,'valdezr@gmail.com',15754812),
-('Walter','Diaz',12345678,'walter@gmail.com',1577667638),
-('Rosario','Vasquez',1234074,'r-vasquez@gmail.com',1577937466),
-('Wal','Waldo',1233,'walter.diaz@alumnos.frgp.utn.edu.ar',1574778788),
-('Manu','Chao',12333,'manu@gmail.com',157897908)
+	IDDatosPersonales BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	nombre VARCHAR(30) NOT NULL,
+	apellido VARCHAR(30) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	telefono VARCHAR(15) NOT NULL,
+	dni VARCHAR(11) NOT NULL UNIQUE,
+	fechaNacimiento DATE NOT NULL CHECK(fechaNacimiento<GETDATE()),
+	fechaIngresoSistema DATE NOT NULL,
+	estado BIT DEFAULT 1
+INSERT INTO Datos_Personales(nombre,apellido,dni,email,telefono,fechaNacimiento,fechaIngresoSistema) VALUES
+('Ramon','Valdez',1234,'valdez@gmail.com',15779328,'1980/12/20','2000/12/12'),
+('Sofia','Diaz',12345,'diaz@gmail.com',157796456,'1985/11/20','2003/10/12'),
+('Romina','Ramirez',123456,'ramirez@gmail.com',1576634332,'1981/10/25','2009/08/15'),
+('Raul','Valdez',1234567,'valdezr@gmail.com',15754812,'1970/10/20','2007/03/20'),
+('Walter','Diaz',12345678,'walter@gmail.com',1577667638,'1982/07/09','1990/10/12'),
+('Rosario','Vasquez',1234074,'r-vasquez@gmail.com',1577937466,'1992/11/09','2002/12/27'),
+('Wal','Waldo',1233,'walter.diaz@alumnos.frgp.utn.edu.ar',1574778788,'19997/03/15','2005/05/17'),
+('Manu','Chao',12333,'manu@gmail.com',157897908,'1980/06/21','1998/02/19')
 
 INSERT INTO Empleados (ID_DatosPersonales,SueldO) VALUES
 (1,120000),
@@ -334,15 +352,17 @@ CREATE PROCEDURE SP_INSERTAR_PACIENTE
 	@apellido VARCHAR(30),
 	@email VARCHAR(30),
 	@telefono VARCHAR(15),
-	@dni VARCHAR(11) 
+	@dni VARCHAR(11),
+	@fechaNacimiento DATE,
+	@fechaIngreso DATE
 )
 AS
 BEGIN 
 	BEGIN TRY
 		
 		DECLARE @ID BIGINT
-		INSERT INTO Datos_Personales (nombre,apellido,dni,email,telefono) VALUES
-		(@nombre,@apellido,@dni,@email,@telefono)
+		INSERT INTO Datos_Personales (nombre,apellido,dni,email,telefono,fechaNacimiento,fechaIngresoSistema) VALUES
+		(@nombre,@apellido,@dni,@email,@telefono,@fechaNacimiento,@fechaIngreso)
 
 		SELECT TOP 1 @ID=IDDatosPersonales FROM Datos_Personales ORDER BY IDDatosPersonales DESC
 
@@ -350,7 +370,6 @@ BEGIN
 
 	END TRY
 	BEGIN CATCH 
-		--RAISERROR('ERROR AL INSERTAR',16,1)
 		PRINT ERROR_MESSAGE()
 	END CATCH
 END
@@ -368,6 +387,8 @@ CREATE PROCEDURE SP_AGREGAR_DOCTOR(
 	@horarioFin TINYINT,
 	@usuario VARCHAR(25),
 	@clave VARCHAR(20),
+	@fechaNacimiento DATE,
+	@fechaIngreso DATE,
 	@lunes BIT,
 	@martes BIT,
 	@miercoles BIT,
@@ -381,8 +402,8 @@ BEGIN
 	BEGIN TRY 
 		BEGIN TRANSACTION
 			DECLARE @IDDatosPersonales BIGINT
-			INSERT INTO Datos_Personales(nombre,apellido,dni,email,telefono) VALUES
-			(@nombre,@apellido,@dni,@email,@telefono)
+			INSERT INTO Datos_Personales(nombre,apellido,dni,email,telefono,fechaNacimiento,fechaIngresoSistema) VALUES
+			(@nombre,@apellido,@dni,@email,@telefono,@fechaNacimiento,@fechaIngreso)
 
 			SELECT TOP 1 @IDDatosPersonales =IDDatosPersonales FROM Datos_Personales ORDER BY IDDatosPersonales DESC
 
@@ -445,7 +466,8 @@ CREATE PROCEDURE SP_MODIFICAR_DOCTOR(
 	@telefono VARCHAR(15),
 	@sueldo MONEY,
 	@usuario VARCHAR(25),
-	@clave VARCHAR(20)
+	@clave VARCHAR(20),
+	@fechaNacimiento DATE
 )
 AS 
 BEGIN 
@@ -467,6 +489,7 @@ BEGIN
 			UPDATE Datos_Personales SET apellido=@apellido WHERE IDDatosPersonales = @IDDatosPersonales
 			UPDATE Datos_Personales SET telefono=@telefono WHERE IDDatosPersonales = @IDDatosPersonales
 			UPDATE Datos_Personales SET email=@email WHERE IDDatosPersonales = @IDDatosPersonales
+			UPDATE Datos_Personales SET fechaNacimiento=@fechaNacimiento WHERE IDDatosPersonales=@IDDatosPersonales
 
 			UPDATE Usuarios SET usuario=@usuario WHERE IDUsuario = @IDUsuario
 			UPDATE Usuarios SET clave=@clave WHERE IDUsuario = @IDUsuario

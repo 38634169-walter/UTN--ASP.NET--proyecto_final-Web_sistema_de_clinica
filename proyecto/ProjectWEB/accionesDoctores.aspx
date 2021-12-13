@@ -32,10 +32,10 @@
                                 <asp:Label ID="Label1" runat="server" Text="Apellido: "></asp:Label>
                                 <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxApellido" runat="server"></asp:TextBox>
                             </div>
-
+                            
                             <div class="mt-2">
-                                <asp:Label ID="LabelDni" runat="server" Text="DNI: " ViewStateMode="Enabled"></asp:Label>
-                                <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxDni" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
+                                <asp:Label ID="LabelFechaNacimiento" runat="server" Text="Fecha de nacimiento: " ViewStateMode="Enabled"></asp:Label>
+                                <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxFechaNacimiento" runat="server" ValidateRequestMode="Enabled" TextMode="Date"></asp:TextBox>
                             </div>
 
                             <div class="mt-2">
@@ -69,6 +69,11 @@
 
                         </div>
 
+                    </div>
+                    
+                    <div class="mt-2">
+                        <asp:Label ID="LabelDni" runat="server" Text="DNI: " ViewStateMode="Enabled"></asp:Label>
+                        <asp:TextBox ClientIDMode="Static" CssClass="form-control" ID="TextBoxDni" runat="server" ValidateRequestMode="Enabled" TextMode="Number"></asp:TextBox>
                     </div>
 
 

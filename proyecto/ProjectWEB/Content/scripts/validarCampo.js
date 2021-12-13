@@ -49,6 +49,15 @@ function validar_paciente() {
         $('#TextBoxTelefono').addClass('is-valid');
         $('#TextBoxTelefono').removeClass('is-invalid');
     }
+    if ($('#TextBoxFechaNacimiento').val() == "") {
+        $('#TextBoxFechaNacimiento').addClass('is-invalid');
+        $('#TextBoxFechaNacimiento').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#TextBoxFechaNacimiento').addClass('is-valid');
+        $('#TextBoxFechaNacimiento').removeClass('is-invalid');
+    }
 
     return vali;
 }
@@ -71,7 +80,7 @@ function validar_historial() {
 function validar_horario_doctor() {
     var vali = true;
 
-    if ($('#TextBoxHorarioInicio').val() == "" ) {
+    if ($('#TextBoxHorarioInicio').val() == "" || parseInt($('#TextBoxHorarioInicio').val()) < 0 || parseInt($('#TextBoxHorarioInicio').val()) > 24 ) {
         $('#TextBoxHorarioInicio').addClass('is-invalid');
         $('#TextBoxHorarioInicio').removeClass('is-valid');
         vali = false;
@@ -80,7 +89,7 @@ function validar_horario_doctor() {
         $('#TextBoxHorarioInicio').addClass('is-valid');
         $('#TextBoxHorarioInicio').removeClass('is-invalid');
     }
-    if ($('#TextBoxHorarioFin').val() == "") {
+    if ($('#TextBoxHorarioFin').val() == "" || parseInt($('#TextBoxHorarioFin').val()) < 0 || parseInt($('#TextBoxHorarioFin').val()) > 24 ) {
         $('#TextBoxHorarioFin').addClass('is-invalid');
         $('#TextBoxHorarioFin').removeClass('is-valid');
         vali = false;
@@ -196,6 +205,16 @@ function validar_agregar_doctor() {
         $('#TextBoxDni').addClass('is-valid');
         $('#TextBoxDni').removeClass('is-invalid');
     }
+    if ($('#TextBoxFechaNacimiento').val() == "") {
+        $('#TextBoxFechaNacimiento').addClass('is-invalid');
+        $('#TextBoxFechaNacimiento').removeClass('is-valid');
+        vali = false;
+    }
+    else {
+        $('#TextBoxFechaNacimiento').addClass('is-valid');
+        $('#TextBoxFechaNacimiento').removeClass('is-invalid');
+    }
+
     if ($('#DropEspecilidad').val() == "") {
         $('#DropEspecilidad').addClass('is-invalid');
         $('#DropEspecilidad').removeClass('is-valid');
@@ -205,7 +224,7 @@ function validar_agregar_doctor() {
         $('#DropEspecilidad').addClass('is-valid');
         $('#DropEspecilidad').removeClass('is-invalid');
     }
-    if ($('#TextBoxHorarioEntrada').val() == "") {
+    if ($('#TextBoxHorarioEntrada').val() == "" || parseInt($('#TextBoxHorarioEntrada').val()) < 0 || parseInt($('#TextBoxHorarioEntrada').val()) > 24 ) {
         $('#TextBoxHorarioEntrada').addClass('is-invalid');
         $('#TextBoxHorarioEntrada').removeClass('is-valid');
         vali = false;
@@ -215,7 +234,7 @@ function validar_agregar_doctor() {
         $('#TextBoxHorarioEntrada').removeClass('is-invalid');
     }
 
-    if ($('#TextBoxHorarioSalida').val() == "") {
+    if ($('#TextBoxHorarioSalida').val() == "" || parseInt($('#TextBoxHorarioSalida').val()) < 0 || parseInt($('#TextBoxHorarioSalida').val()) > 24 ) {
         $('#TextBoxHorarioSalida').addClass('is-invalid');
         $('#TextBoxHorarioSalida').removeClass('is-valid');
         vali = false;

@@ -41,6 +41,7 @@ namespace ProjectWEB
                     TextBoxDni.Text = paciente.dni;
                     TextBoxTelefono.Text = paciente.telefono;
                     TextBoxEmail.Text = paciente.email;
+                    TextBoxFechaNacimiento.Text = String.Format ("{0:yyyy-MM-dd}",paciente.fechaNacimiento);
                 }
             }
             else
@@ -65,6 +66,8 @@ namespace ProjectWEB
                 paciente.dni = TextBoxDni.Text;
                 paciente.telefono = TextBoxTelefono.Text;
                 paciente.email = TextBoxEmail.Text;
+                paciente.fechaNacimiento = Convert.ToDateTime(TextBoxFechaNacimiento.Text);
+                paciente.fechaIngreso = DateTime.Now;
 
 
                 string confirmacion = "";

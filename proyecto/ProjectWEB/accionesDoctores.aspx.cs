@@ -48,6 +48,7 @@ namespace ProjectWEB
                     TextBoxEmail.Text = doctor.email;
                     TextBoxTelefono.Text = doctor.telefono;
                     TextBoxSueldo.Text = doctor.sueldo.ToString();
+                    TextBoxFechaNacimiento.Text = String.Format("{0:yyyy-MM-dd}",doctor.fechaNacimiento);
                     TextBoxDni.Style.Add("display", "none");
                     LabelDni.Style.Add("display", "none");
                     DropEspecilidad.Style.Add("display", "none");
@@ -88,6 +89,8 @@ namespace ProjectWEB
             doctor.telefono = TextBoxTelefono.Text;
             doctor.email = TextBoxEmail.Text;
             doctor.sueldo = Convert.ToDouble(TextBoxSueldo.Text);
+            doctor.fechaNacimiento = Convert.ToDateTime(TextBoxFechaNacimiento.Text);
+            doctor.fechaIngreso = DateTime.Now;
 
             DoctorNegocio docNego = new DoctorNegocio();
             string confirmacion="";

@@ -69,22 +69,22 @@ namespace ProjectWEB
         protected global::System.Web.UI.WebControls.TextBox TextBoxApellido;
 
         /// <summary>
-        /// Control LabelDni.
+        /// Control LabelFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDni;
+        protected global::System.Web.UI.WebControls.Label LabelFechaNacimiento;
 
         /// <summary>
-        /// Control TextBoxDni.
+        /// Control TextBoxFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDni;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFechaNacimiento;
 
         /// <summary>
         /// Control LabelClave.
@@ -184,6 +184,24 @@ namespace ProjectWEB
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxUsuario;
+
+        /// <summary>
+        /// Control LabelDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelDni;
+
+        /// <summary>
+        /// Control TextBoxDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDni;
 
         /// <summary>
         /// Control tituloHorarios.
